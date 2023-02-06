@@ -1,12 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Showpan</title>
-</head>
-<body>
-  
-</body>
-</html>
+<!-- index view -->
+<section id="index-container">
+  <section class="main">
+    {{!-- display a toast message if one provided --}}
+    {{#if toastMessage}}
+    <div class="btn-container">
+      <img src="/assets/logo-nb-nt-smiley-200.webp" alt="logo"></img>
+      <p class="toast" id="index-toast">{{toastMessage}}</p>
+      <button id="register-button">Register</button>
+      <button id="sign-in-button">Sign In</button>
+    </div>
+  </section>
+  {{else}}
+  <div class="btn-container">
+    <img src="/assets/logo-nb-nt-smiley-200.webp" alt="logo"></img>
+    <h1>Welcome to Showpan</h1>
+    <button id="register-button">Register</button>
+    <button id="sign-in-button">Sign In</button>
+  </div>
+</section>
+{{/if}}
+{{!-- Modals --}}
+<!-- Modal HTML for the register form -->
+<div id="register-modal" class="modal">
+  <div class="modal-content">
+    {{> new-account}}
+  </div>
+</div>
+<!-- Modal HTML for the sign in form -->
+<div id="sign-in-modal" class="modal">
+  <div class="modal-content">
+    {{> login}}
+  </div>
+</div>
+</section>

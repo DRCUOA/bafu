@@ -2,14 +2,13 @@ const debug = require('debug');
 
 // debug namespace
 const devAuthCtrl = debug('devLOG:AuthCtrl');
-
 // import dao
 const userDao = require('../models/user-dao');
 
 // add user to locals
 async function addUserToLocals(req, res, next) {
   devAuthCtrl('attempt to add user to locals');
-  const user = userDao.retrieveUserWithAuthToken(req.cookies.authToken);
+  const user = await userDao.retrieveUserWithAuthToken(req.cookies.authToken);
 
   try {
     if (user) {
@@ -31,6 +30,7 @@ async function verifyAuthenticated(req, res, next) {
   if( res.locals.user ) {
     next();
   } else {
+    devAuthCtrl('render index')
   res.render("index");
   }
 };

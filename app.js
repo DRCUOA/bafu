@@ -10,7 +10,7 @@
 const express = require('express');
 const app = express();
 require("dotenv").config();
-const port = process.env.PORT || 1235;
+const port = process.env.PORT || 5050;
 
 //http logging
 const morgan = require('morgan');
@@ -47,6 +47,20 @@ app.use(toaster)
 const { addUserToLocals, verifyAuthenticated } = require("./controllers/auth-controller");
 app.use(addUserToLocals);
 
+// index routing, to index for new users to hp for authenticated users
+app.get('/', verifyAuthenticated, (req, res) => {
+  devApp('route to hp')
+  res.render('homepage');
+});
 
+// setup routes
+const authRouting = require("./routes/auth-routes");
+app.use("/", authRouting);
 
+const clientInputValidation = require("./routes/clientValidationRouting.js");
+app.use('/validation', clientInputValidation);
 
+//start the server
+app.listen(port, () => {
+  devApp(`ShowPan App V1.0.0 | Listening on port ${port}`)
+});
