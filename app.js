@@ -22,9 +22,10 @@ devApp('dev log enabled');
 
 //set-up cookie parser
 const cookieParser = require('cookie-parser');
-app.use(cookieParser);
+app.use(cookieParser());
 
 //enable url-encoding
+
 app.use(express.urlencoded({extended: true}));
 
 //make a static folder available
@@ -49,7 +50,7 @@ app.use(addUserToLocals);
 
 // index routing, to index for new users to hp for authenticated users
 app.get('/', verifyAuthenticated, (req, res) => {
-  devApp('route to hp')
+  devApp('route to hp');
   res.render('homepage');
 });
 

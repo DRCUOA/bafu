@@ -4,7 +4,6 @@ function toaster(req, res, next) {
   res.setToastMessage = (message) => {
       res.cookie("toastMessage", message);
   };
-
   next();
 };
 

@@ -1,4 +1,253 @@
-body {
-  border: 10px solid saddlebrown;
-  background-color: navajowhite;
+
+/**************************************************************************
+ *
+ *      CSS Variables
+ *
+ **********/
+
+ :root {
+  /* Color Palette */
+  --primary-color: rgba(255, 255, 255, 0.8);
+  --off-primary-color: rgba(184, 177, 177, 0.6);
+  --secondary-color: rgb(0, 0, 0);
+  --tertiary-color: rgba(255, 69, 0, .7);
+  --shading: rgb(199, 196, 195);
+
+
+  /* Shadows */
+  --base-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  --lg-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  --offset-base-box-shadow: 0 4px 8px 0  rgba(255, 255, 255, 0.8);
+  --offset-lg-box-shadow: 0 10px 20px 0 rgba(255, 255, 255, 0.8);
+
+  /* Fonts */
+  --primary-font: Arial, sans-serif;
+  --secondary-font: Arial, sans-serif;  
+
+
+  /* Text size */
+  --sm-text-size: 12px;
+  --base-text-size: 17px;
+  --mid-text-size: 24px;
+  --large-text-size: 36px;
+  --vlarge-text-size: 48px;
+  --hero-text: 64px;
+
+  /* Spacing */
+  --base-spacing: 16px;
+  --xs-spacing: 8px;
+  --sm-spacing: 16px;
+  --md-spacing: 24px;
+  --lg-spacing: 32px;
+  --xl-spacing: 40px;
+
+  /* Radius */
+  --base-radius: 4px;
+}
+
+/*******************************************************************
+ *
+ *      Main Layout
+ *
+ **********/
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  text-transform: none;
+  padding: 0px;
+}
+
+
+a:hover {
+  border-radius: 10px 0px 10px 0px;
+  border: 4px solid var(--tertiary-color);
+  padding: 5px;
+  color: var(--secondary-color);
+}
+
+
+#header {
+  height: 1px;
+  background-color: var(--primary-color);
+}
+
+#page-title-weight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 30px;
+  color: var(--tertiary-color);
+}
+
+.nav {
+    position: fixed;
+    flex-direction: column;
+    height: 100px;
+    align-items: center;
+    padding: 5px;
+    top: 35px;
+    right: 0;
+    background: white;
+    border: 3px solid var(--tertiary-color);
+    border-radius: 15px;
+    margin: 30px;
+    height: fit-content;
+    z-index: 1;
+}
+
+.nav > a {
+  width: 30vw;
+  padding: 5px;
+  background-color: var(--shading);
+  border-radius: 10px 0px 10px 0px;
+  
+}
+
+.nav > a:hover {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+#content {
+  margin-top: 0px;
+  padding: 0px;
+  background-color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 50px;
+  background-color: rgb(64, 63, 63);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 0px;
+  border: 1px solid var(--secondary-color);
+  font-size: 14px;
+}
+
+/**************************************************************************
+ *
+ *      Index Route - Register/Sign In
+ *
+ **********/
+
+.main {
+  display: block;
+  margin: 5vw;
+  box-shadow: var(--lg-box-shadow);
+}
+
+.main .btn-container {
+  display: flex;
+  flex-direction:  row;
+  align-items: center;
+  justify-content: center;
+  text-justify: auto;
+  width: 100%;
+}
+
+.btn-container > h1 {
+  font: var(--primary-font);
+  text-align: center;
+}
+
+.main button {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin: 20px;
+  width: 150px
+}
+
+#index-toast {
+  color: var(--tertiary-color);
+}
+
+/**************************************************************************
+ *
+ *      Modal Styles
+ *
+ **********/
+
+.modal {
+  display: none;  /* Hidden by default */
+  position: fixed;   /* Stay in place */
+  z-index: 1;   /* Sit on top */
+  padding-top: 100px;  /* Location of the box */
+  left: 0%;
+  top: 0;
+  width: 100%;   /* Full width */
+  height: 100%;  /* Full height */
+  overflow: auto;  /* Enable scroll if needed */
+  background-color: var(--primary-color); 
+}
+
+/* Modal Content */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  background-color: rgb(235, 235, 235);
+  margin: var(--lg-spacing);
+  padding: var(--sm-spacing);
+  width: fit-content;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s ease-in-out;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: var(--base-box-shadow);
+}
+
+
+label, input {
+  display: block;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+input:focus {
+  background-color: rgb(184, 184, 184);
+}
+
+form > button {
+  border-radius: 5px;
+  margin: 0 calc(100%/4.3) 0 calc(100%/3);
+  padding: 10px;
+}
+
+form > button:hover {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+#close-log-in, #reg-close {
+    position: absolute;
+    right: var(--sm-spacing);
+    top: var(--sm-spacing);  
+    cursor:pointer;
+    font-size: var(--mid-text-size);
+    transition: transform 1s ease, color 1s ease;
+    transform: rotate(0deg) scale(1);
+    transform-origin: center;
+    font-weight: 400;
+}
+
+#close-log-in:hover, #reg-close:hover {
+  transform: rotate(180deg) scale(1.3);
+  color: var(--tertiary-color);
+  transition: transform 1s ease, color 1s ease;
+  transform-origin: center;
+  font-weight: 900;
 }
