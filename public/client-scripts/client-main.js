@@ -2,6 +2,22 @@
 *  Client-side Javascript
 */
 
+//hamburger menu
+if (document.getElementById('hamburger') || document.getElementById('nav')) {
+  const nav = document.getElementById("nav");
+  const hamburgerMenu = document.getElementById("hamburger-menu");
+  function toggleNav() {
+    if (nav.style.display === "flex") {
+      nav.style.display = "none";
+      hamburgerMenu.classList.remove("open");
+    } else {
+      nav.style.display = "flex";
+      nav.style.flexDirection = "column";
+      hamburgerMenu.classList.add("open");
+    }
+  };
+}
+
 // regisitration and login helpers:
 if (document.getElementById('register-button') || document.getElementById('sign-in-button')) {
   document.getElementById('register-button').addEventListener('click', function () {
@@ -10,7 +26,7 @@ if (document.getElementById('register-button') || document.getElementById('sign-
   document.getElementById('sign-in-button').addEventListener('click', function () {
     document.getElementById('sign-in-modal').style.display = 'block';
   });
-// register
+  // register
   // Get the close btn
   const closeRegButton = document.querySelector('#reg-close');
 
@@ -39,4 +55,19 @@ if (document.getElementById('register-button') || document.getElementById('sign-
 
   let footer = document.querySelector('#footer');
   footer.style.display = "None";
+}
+
+// contact-us form modal
+if (document.querySelector('#contact-us-form')) {
+    // Get the modal and it's close control btn, add event listener for click, display on modal on click
+    const modalContactUs = document.querySelector('#contact-us-form');
+    const closeContactUs = document.querySelector('#close-contact-us');
+    document.querySelector('#contact-us-btn').addEventListener('click', function () {
+    modalContactUs.style.display = 'block';
+    });
+  // When the close button is clicked, set the modal's display property to "none"
+  closeContactUs.addEventListener('click', function () {
+    console.log('close control btn clicked')
+    modalContactUs.style.display = "none";
+  });
 }
