@@ -61,6 +61,9 @@ app.use("/", authRouting);
 const clientInputValidation = require("./routes/clientValidationRouting.js");
 app.use('/validation', clientInputValidation);
 
+const itemsRouting = require("./routes/itemsRouting");
+app.use("/items", itemsRouting);
+
 //start the server
 app.listen(port, () => {
   devApp(`ShowPan App V1.0.0 | Listening on port ${port}`)
