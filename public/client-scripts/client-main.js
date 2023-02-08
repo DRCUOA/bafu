@@ -57,17 +57,17 @@ if (document.getElementById('register-button') || document.getElementById('sign-
   footer.style.display = "None";
 }
 
-// contact-us form modal
-if (document.querySelector('#contact-us-form')) {
+// new-item-form modal
+if (document.querySelector('#enter-new-details-form')) {
     // Get the modal and it's close control btn, add event listener for click, display on modal on click
-    const modalContactUs = document.querySelector('#contact-us-form');
-    const closeContactUs = document.querySelector('#close-contact-us');
-    document.querySelector('#contact-us-btn').addEventListener('click', function () {
-    modalContactUs.style.display = 'block';
+    const modalNewItemForm = document.querySelector('#new-item-form');
+    const closeNewItemForm = document.querySelector('#close-new-details-form');
+    document.querySelector('#new-item-form-btn').addEventListener('click', function () {
+    modalNewItemForm.style.display = 'block';
     });
   // When the close button is clicked, set the modal's display property to "none"
-  closeContactUs.addEventListener('click', function () {
+  closeNewItemForm.addEventListener('click', function () {
     console.log('close control btn clicked')
-    modalContactUs.style.display = "none";
+    modalNewItemForm.style.display = "none";
   });
 }

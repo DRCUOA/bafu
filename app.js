@@ -61,7 +61,7 @@ app.use("/", authRouting);
 const clientInputValidation = require("./routes/clientValidationRouting.js");
 app.use('/validation', clientInputValidation);
 
-const itemsRouting = require("./routes/itemsRouting");
+const itemsRouting = require("./routes/items-routing");
 app.use("/items", itemsRouting);
 
 //start the server

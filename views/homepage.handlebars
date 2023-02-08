@@ -2,14 +2,19 @@
 <div id="hero-content">
   <div class="hero-ctas">
     <div>
-      <button id="contact-us-btn">Scan<span><img id="hero-logo" src="/assets/logo-nb-nt-smiley-200.webp" alt="logo-a graphic that appears like a friendly simling face"></span>Reset</button>
+      <button id="new-item-form-btn">Scan<span><img id="hero-logo" src="/assets/logo-nb-nt-smiley-200.webp"
+            alt="logo-a graphic that appears like a friendly simling face"></span>Reset</button>
     </div>
   </div>
 </div>
 
+{{#if toastMessage}}
+<p class="toast" id="index-toast">{{toastMessage}}</p>
+{{/if}}
+
 <!-- Modal for contact form -->
-<div id="contactus" class="modal">
+<div id="new-item-form" class="modal">
   <div class="modal-content">
-    {{> contactus}}
+    {{> new-item-form}}
   </div>
 </div>

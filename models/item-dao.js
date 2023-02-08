@@ -46,9 +46,9 @@ async function createItem(item) {
 
 
 module.exports = {
-  createItem: createItem,
-  retrieveItemWithId,
-  retrieveItemWithSearchString,
-  updateItemWithId,
-  deleteItemWithId
+  createItem: createItem
+  // retrieveItemWithId,
+  // retrieveItemWithSearchString,
+  // updateItemWithId,
+  // deleteItemWithId
 };
