@@ -1,0 +1,30 @@
+<!-- item-summary view,  displays after creation of new item in db or on manaul request from user 
+used to display one-item only -->
+{{#custom-each itemCreated}}
+<div class="item-summary-container">
+  <img id="item-image" src="/assets/stockimage-item.jpeg"
+    alt="photo associated with an item in the application database">
+  <p id="item-id">Item ID:
+    <strong style="color: blue;">{{item_id}}</strong> inserted into the pantry
+  </p>
+  <p id="barcode">Item Barcode:
+    <strong style="color: blue;">{{barcode}}</strong>
+  </p>
+  <p id="item-name">Item Name:
+    <strong style="color: blue">{{name}}</strong>
+  </p>
+  <p id="item-description">Item Description:
+    <strong style="color: blue">{{description}}</strong>
+  </p>
+  <p id="item-cost">Item cost:
+    <strong style="color: blue">$ {{cost}} {{UOM}} </strong>
+  </p>
+  <p id="item-qty">Qty Added:
+    <strong style="color: blue;">{{qty}} </strong>
+  </p>
+  <div>
+    <button id="confirm-ok-btn"><span><img id="hero-logo" src="/assets/logo-nb-nt-smiley-200.webp"
+          alt="logo-a graphic that appears like a friendly simling face"></span></button>
+  </div>
+</div>
+{{/custom-each}}

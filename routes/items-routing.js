@@ -28,7 +28,7 @@ router.post("/create-new", async (req, res) => {
   try {
     const itemCreated = await itemsController.createNewItem(item);
     devItemsRLog('return from controller:', itemCreated);
-    if (!itemCreated.validationPass) {
+    if (itemCreated.value) {
       res.render("homepage", {
         showModal: true,
         item: item,
@@ -36,7 +36,8 @@ router.post("/create-new", async (req, res) => {
         });
     } else {
       res.setToastMessage("Item Created Sucessfully!");
-      res.render("item-summary", {item: itemCreated});
+      res.render('item-summary', {itemCreated: [itemCreated]});
+
     }
   } catch (err) {
     devItemsRLog(err);

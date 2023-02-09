@@ -44,7 +44,7 @@ async function createNewItem(item) {
     devItemController('Validated data object being passed to model:', item);
     const newItem = await itemDao.createItem(item);
       devItemController(`Item with barcode: ${newItem.barcode} added with item_id : ${newItem.item_id}`);
-    return result;
+    return newItem;
   }                     
 }
 module.exports = {      
