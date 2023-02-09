@@ -70,4 +70,19 @@ if (document.querySelector('#enter-new-details-form')) {
     console.log('close control btn clicked')
     modalNewItemForm.style.display = "none";
   });
+
+  document.getElementById("enter-new-details-form").addEventListener("submit", function(event) {
+    console.log('submit event fired')
+    event.preventDefault();
+    const formElements = event.target.elements;
+    for (let i = 0; i < formElements.length; i++) {
+      if (formElements[i].value === "") {
+        const placeholder = formElements[i].getAttribute("placeholder");
+        if (placeholder) {
+          formElements[i].value = placeholder;
+        }
+      }
+    }
+    this.submit();
+  });
 }

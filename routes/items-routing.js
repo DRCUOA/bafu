@@ -16,24 +16,32 @@ router.post("/create-new", async (req, res) => {
   const newItemId = uuid();
 
   const item = {
-    id: newItemId,
+    item_id: newItemId,
     barcode: req.body.barcode,
     name: req.body.name,
-    description:req.body.description,
+    description: req.body.description,
     cost: req.body.cost,
     UOM: req.body.UOM,
     qty: req.body.qty
-    };
+  };
 
   try {
     const itemCreated = await itemsController.createNewItem(item);
-    devItemsRLog('return from controller:',itemCreated);
-    res.setToastMessage("Item Created Sucessfully!");
-    res.render("homepage");
+    devItemsRLog('return from controller:', itemCreated);
+    if (!itemCreated.validationPass) {
+      res.render("homepage", {
+        showModal: true,
+        item: item,
+        errorMessage: itemCreated.error.message
+        });
+    } else {
+      res.setToastMessage("Item Created Sucessfully!");
+      res.render("item-summary");
+    }
   } catch (err) {
-      devItemsRLog(err);
-      res.setToastMessage("Item Setup Failed!");
-      res.render("homepage");
+    devItemsRLog(err);
+    res.setToastMessage("Item Setup Failed. Server responded with: " + err);
+    res.render("homepage", { item: req.body, showError: true });
   }
 });
 

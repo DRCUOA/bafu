@@ -13,7 +13,7 @@
 {{/if}}
 
 <!-- Modal for contact form -->
-<div id="new-item-form" class="modal">
+<div id="new-item-form" class="modal" style="display: {{#if showModal}}block{{else}}none{{/if}};">  
   <div class="modal-content">
     {{> new-item-form}}
   </div>
