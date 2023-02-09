@@ -36,7 +36,7 @@ router.post("/create-new", async (req, res) => {
         });
     } else {
       res.setToastMessage("Item Created Sucessfully!");
-      res.render("item-summary");
+      res.render("item-summary", {item: itemCreated});
     }
   } catch (err) {
     devItemsRLog(err);
