@@ -6,76 +6,21 @@
             alt="logo-a graphic that appears like a friendly simling face"></span>Reset</button>
     </div>
     <!-- Scanning Viewport-->
-    <style>
-      #interactive {
-        position: relative;
-        width: 480px;
-        height: 320px;
-
-      }
-
-      #interactive:before {
-        content: "";
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        border: 1px solid black;
-      }
-
-      #interactive:after {
-        content: "";
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        border: 2px solid greenyellow;
-        animation: scan 3s linear infinite;
-      }
-
-      @keyframes scan {
-        0% {
-          transform: translate(0%, 0%);
-        }
-
-        10% {
-          transform: translate(-5%, 0%);
-          border: 2px solid red;
-        }
-
-        20% {
-          transform: translate(-5%, 5%);
-          border: 2px solid greenyellow;
-        }
-
-        30% {
-          transform: translate(5%, 5%);
-          border: 2px solid orangered;
-        }
-
-        40% {
-          transform: translate(5%, 0%);
-          border: 2px solid greenyellow;
-        }
-
-        50% {
-          transform: translate(0%, -5%);
-          border: 2px solid red;
-        }
-      }
-    </style>
+    
+    <div id="result">
+      <p id="output"></p>
+    </div>
 
     <div id="interactive" class="viewport">
-
-    </div>
-    <div id="camera-frame">
-      <video id="camera-stream"></video>
+      <svg id="animatedLine">
+        <line x1="0" y1="150" x2="420" y2="150" />
+      </svg>
+      <div id="camera-frame">
+        <video id="camera-stream"></video>
+      </div>
     </div>
 
   </div>
-
 </div>
 
 {{#if toastMessage}}

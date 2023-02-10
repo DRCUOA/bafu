@@ -56,33 +56,3 @@ if (document.getElementById('register-button') || document.getElementById('sign-
   let footer = document.querySelector('#footer');
   footer.style.display = "None";
 }
-
-// new-item-form modal
-if (document.querySelector('#enter-new-details-form')) {
-    // Get the modal and it's close control btn, add event listener for click, display on modal on click
-    const modalNewItemForm = document.querySelector('#new-item-form');
-    const closeNewItemForm = document.querySelector('#close-new-details-form');
-    document.querySelector('#new-item-form-btn').addEventListener('click', function () {
-    modalNewItemForm.style.display = 'block';
-    });
-  // When the close button is clicked, set the modal's display property to "none"
-  closeNewItemForm.addEventListener('click', function () {
-    console.log('close control btn clicked')
-    modalNewItemForm.style.display = "none";
-  });
-
-  document.getElementById("enter-new-details-form").addEventListener("submit", function(event) {
-    console.log('submit event fired')
-    event.preventDefault();
-    const formElements = event.target.elements;
-    for (let i = 0; i < formElements.length; i++) {
-      if (formElements[i].value === "") {
-        const placeholder = formElements[i].getAttribute("placeholder");
-        if (placeholder) {
-          formElements[i].value = placeholder;
-        }
-      }
-    }
-    this.submit();
-  });
-}

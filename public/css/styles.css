@@ -13,6 +13,8 @@
   --tertiary-color: rgba(255, 69, 0, 1);
   --shading: rgb(199, 196, 195);
 
+  /*borders */
+  --frame-corner: 3px solid rgb(3, 19, 232);
 
   /* Shadows */
   --base-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -350,6 +352,89 @@ form > button:hover {
   display: none;
 }
 
+
+/**************************************************************************
+ *
+ *     scanner view styles 
+ *
+ **********/
+ #interactive {
+  position: relative;
+  width: 420px;
+  height: 280px;
+  border: 2px solid greenyellow;
+}
+
+#interactive:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5%;
+  height: calc(5% * 1.5);
+  border-top: var(--frame-corner);
+  border-left: var(--frame-corner);
+  transform: rotate(0deg);
+  
+}
+
+#interactive:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 5%;
+  height: calc(5% * 1.5);
+  border-bottom: var(--frame-corner);
+  border-right: var(--frame-corner);
+  transform: rotate(0deg);
+}
+
+#animatedLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 500px;
+  width: 500px;
+}
+
+#animatedLine line {
+  animation: line-animation 4s linear infinite;
+  stroke: red;
+  stroke-width: 2;
+}
+
+.stopped #animatedLine line {
+  animation: none;
+}
+
+@keyframes line-animation {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-35%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(26%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+#result {
+  position: relative;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 /**************************************************************************
  *
  *     summary item - single 
@@ -362,6 +447,7 @@ form > button:hover {
   align-items: center;
   text-align: center;
   margin-top: 3em;
+  padding: 50px;
 }
 
 
@@ -371,6 +457,11 @@ background: linear-gradient(to top left, black, white , gray);
 border-radius: 90px;
 color: var(--secondary-color);
 cursor: pointer;
+}
+
+#item-image {
+  height: 200px;
+  width: 150px;
 }
 
 /**************************************************************************
