@@ -28,15 +28,27 @@ if (document.querySelector('#item-image-capture')) {
       }
     })();
 
-    // 5. add event listener to snap-item-image, on click, capture the live image in the device camera and display it in the canvas 
-    snapButton.addEventListener('click', () => {
-      frozen = true;
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // 5. add document event listener for key events: on "ctrl-p" event - freeze image and draw on canvas
+    let controlLeftPressed = false;
+    document.addEventListener('keydown', () => {
+      if (event.code === "ControlLeft") {
+        controlLeftPressed = true;
+      }
+      if (controlLeftPressed = true && event.code === 'KeyP') {
+        frozen = true;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      } 
+    });
+    document.addEventListener('keyup', () => {
+      if(event.code === "ControlLeft") {
+        controlLeftPressed = false;
+      }
     });
 
     // 6. save the image in an object for later use in the code
     const image = new Image();
     image.src = canvas.toDataURL();
+    console.log(image.src)
     // You can use the `image` object in the rest of your code
   });
 };
