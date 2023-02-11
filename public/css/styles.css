@@ -201,6 +201,7 @@ a:hover {
   background-color: rgb(235, 235, 235);
   margin: var(--lg-spacing);
   padding: var(--sm-spacing);
+  margin-top: 10vh;
   width: fit-content;
   position: absolute;
   top: 30%;
@@ -220,6 +221,7 @@ label, input {
   justify-content: center;
   border-radius: 5px;
   padding: 2px;
+  min-width: 12vw;
 }
 
 input:focus {

@@ -1,4 +1,5 @@
 {{!-- modal form to pop up on unregonised item scan, used to enter new details --}}
+<script src="/client-scripts/item-img-cap.js" defer></script>
 <div class="modal-content">
   <form id="enter-new-details-form" method="post" action="/items/create-new">
     <span class="close" id="close-new-details-form">&times;</span>
@@ -6,10 +7,10 @@
     style="height: 40px; width: 40px; margin: -9px -10px -1px 0px;">
     <br>
     {{#if toastMessage}}
+      <canvas id="item-image-capture"></canvas>
+      <button id="snap-item-image">Capture</button> 
       <div class="error-message">{{toastMessage}}</div>
     {{/if}}
-    <img id="item-image" src=""
-    alt="photo associated with an item in the application database">
     <label for="barcode-found">Barcode:</label>
     <input type="text" name="barcode" id="barcode-found" placeholder="{{ item.barcode }}">
     <br>
@@ -28,6 +29,7 @@
     <label for="qty">Qty:</label>
     <input type="number" name="qty" id="qty" placeholder="{{ item.qty }}" min="0" max="1000" step="1">
     <br>
+
     <button type="submit">Submit</button>
   </form>
 </div>
