@@ -1,4 +1,5 @@
 <!-- homepage view -->
+<script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
 <div id="hero-content">
   <div class="hero-ctas">
     <div>
@@ -8,7 +9,7 @@
     <!-- Scanning Viewport-->
     
     <div id="result">
-      <p id="output"></p>
+        <img id="cap" alt="image capture from device cam whem barcode detected" style="display: none;">  
     </div>
 
     <div id="interactive" class="viewport">
@@ -19,7 +20,7 @@
         <video id="camera-stream"></video>
       </div>
     </div>
-
+<canvas id="camera-view"></canvas>
   </div>
 </div>
 

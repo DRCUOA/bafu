@@ -8,8 +8,10 @@
     {{#if toastMessage}}
       <div class="error-message">{{toastMessage}}</div>
     {{/if}}
-    <label for="barcode">Barcode:</label>
-    <input type="text" name="barcode" id="barcode" placeholder="{{ item.barcode }}">
+    <img id="item-image" src=""
+    alt="photo associated with an item in the application database">
+    <label for="barcode-found">Barcode:</label>
+    <input type="text" name="barcode" id="barcode-found" placeholder="{{ item.barcode }}">
     <br>
     <label for="name">Name:</label>
     <input type="text" name="name" id="name" placeholder="{{ item.name }}">

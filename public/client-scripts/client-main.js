@@ -56,3 +56,10 @@ if (document.getElementById('register-button') || document.getElementById('sign-
   let footer = document.querySelector('#footer');
   footer.style.display = "None";
 }
+
+if(document.querySelector("#item-summary")) {
+  const okBtn = document.querySelector('#confirm-ok-btn');
+  okBtn.addEventListener('click', () => {
+    window.location.href = "/";
+  });
+};
