@@ -6,9 +6,12 @@
     <img src="/assets/logo-nb-nt-smiley-200.webp" alt="logo"
     style="height: 40px; width: 40px; margin: -9px -10px -1px 0px;">
     <br>
-    {{#if toastMessage}}
       <canvas id="item-image-capture"></canvas>
-      <button id="snap-item-image">Capture</button> 
+      <p>Hold product to camera and capture image</p>
+      <input type="hidden" name="image" id="image-blob">
+
+
+    {{#if toastMessage}}
       <div class="error-message">{{toastMessage}}</div>
     {{/if}}
     <label for="barcode-found">Barcode:</label>

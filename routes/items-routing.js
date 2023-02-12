@@ -22,11 +22,14 @@ router.post("/create-new", async (req, res) => {
     description: req.body.description,
     cost: req.body.cost,
     UOM: req.body.UOM,
-    qty: req.body.qty
+    qty: req.body.qty,
+    image_blob: req.body.imageBlob
   };
 
   try {
     const itemCreated = await itemsController.createNewItem(item);
+    await itemsController.imageBlobtoPath();
+    const imageSrc = itemsController.getImageSrcByItemId(item.item_id);
     devItemsRLog('return from controller:', itemCreated);
     if (itemCreated.value) {
       res.render("homepage", {
@@ -36,7 +39,7 @@ router.post("/create-new", async (req, res) => {
         });
     } else {
       res.setToastMessage("Item Created Sucessfully!");
-      res.render('item-summary', {itemCreated: [itemCreated]});
+      res.render('item-summary', {itemCreated: [itemCreated], imageSrc});
 
     }
   } catch (err) {

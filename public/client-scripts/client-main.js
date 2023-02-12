@@ -35,7 +35,6 @@ if (document.getElementById('register-button') || document.getElementById('sign-
 
   // When the close button is clicked, set the modal's display property to "none"
   closeRegButton.addEventListener('click', function () {
-    console.log('Close btn clicked')
     modalReg.style.display = "none";
   });
 

@@ -4,7 +4,10 @@
 
 if (document.querySelector('#interactive')) {
   const scanBtn = document.querySelector('#new-item-form-btn');
+  const animatedLine = document.querySelector('#animatedLine');
+  // scan button click event:
   scanBtn.addEventListener('click', function () {
+    animatedLine.style.display = "block";
     scanBtn.disabled = true;
     document.querySelector('#interactive').style.display = 'block';
     const vport = document.querySelector('#interactive');
@@ -22,7 +25,7 @@ if (document.querySelector('#interactive')) {
       decoder: {
         readers: [
           "i2of5_reader",
-          ]
+        ]
       },
       debug: {
         showCanvas: true,
@@ -56,6 +59,48 @@ if (document.querySelector('#interactive')) {
         const barcodeFound = document.querySelector('#barcode-found');
         barcodeFound.value = data.codeResult.code;
         // capture scan image and set the imageData src - NOT WORKING : see buggy mess below for last attempt.
+        // 1. find the canvas element on the document with id 'item-image-capture'
+        const canvas = document.getElementById('item-image-capture');
+        // 2. set the canvas element context such that it will be able to display an image when one is captured
+        const context = canvas.getContext('2d');
+        // 3. find the button element on the document with id 'snap-item-image'
+        const snapButton = document.getElementById('snap-item-image');
+        // 4. start the camera on the device
+        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+          const video = document.createElement('video');
+          video.srcObject = stream;
+          video.play();
+          let frozen = false;
+          // Display the live stream in the canvas
+          (function loop() {
+            if (!frozen) {
+              context.drawImage(video, 0, 0, canvas.width, canvas.height);
+              requestAnimationFrame(loop);
+            }
+          })();
+          // 5. add document event listener for key events: on "backQuote-1" event - freeze image and draw on canvas
+          let DigitOnePressed = false;
+          document.addEventListener('keydown', () => {
+            if (event.code === "Digit1") {
+              DigitOnePressed = true;
+            }
+            if (DigitOnePressed = true && event.code === 'Backquote') {
+              frozen = true;
+              context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            }
+          });
+          document.addEventListener('keyup', () => {
+            if (event.code === "Backquote") {
+              DigitOnePressed = false;
+            }
+          });
+          // 6. save the image in an object for later use in the code
+          const image = new Image();
+          const imageSubmitHolder = document.querySelector("#image-blob"); 
+          image.src = canvas.toDataURL();
+          console.log(image.binaryData);
+          imageSubmitHolder.innerHTML = `<input type="hidden" name="imageBlob" id="image-blob" value="${image.src}">`
+        });
         scanBtn.disabled = false;
       });
     });

@@ -1,11 +1,9 @@
 <!-- item-summary view,  displays after creation of new item in db or on manaul request from user 
 used to display one-item only -->
 
-{{#custom-each itemCreated}}
 <div class="item-summary-container" id="item-summary">
-
-
-
+  <img src="{{imageSrc}}" alt="image of product at time of scanning" id="item-image">
+{{#custom-each itemCreated}}
   <p id="item-id">Item ID:
     <strong style="color: blue;">{{item_id}}</strong> inserted into the pantry
   </p>
