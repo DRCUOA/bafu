@@ -43,56 +43,52 @@ async function createItem(item) {
   return item
 };
 
-async function getItemsWithImgBlobs() {
-  devItemDAO('retrive items with blobs and no img_paths');
+async function retrieveItemByID(itemId) {
   const db = await dbPromise;
-  const itemIds = await db.get(SQL`
-    SELECT item_id, item_img_blob, item_img_path
+  const item = db.get(SQL`
+    SELECT *
     FROM items WHERE
-    item_img_path IS NULL AND
-    item_img_blob IS NOT NULL;`)
-  devItemDAO(itemIds)
-  return itemIds;
-}
-
-async function updateImgDetailsByItemID(itemId, filePath) {
-  devItemDAO('update item record with file path')
-  const db = await dbPromise;
-  const updated_at = moment(new (Date)).format('YYYY-MM-DD HH:mm:ss');
-  // update the item record with the img filepath and clean out used blob data
-  const sql = `
-      UPDATE 
-      items SET 
-      updated_at = ?, 
-      item_img_path = ?, 
-      item_img_blob = NULL 
-      WHERE item_id = ?`;
-  const params = [updated_at, filePath, itemId];
-  await db.run(sql, params);
-  devItemDAO('update item record with file path')
-  return
-}
-
-async function retrieveItemImagePathByID(itemId) {
-  const db = await dbPromise;
-  
-  const imagePath = db.get(SQL`
-  SELECT item_img_path
-  FROM items WHERE
-  item_id = ${itemId};`);
-
-  return imagePath;
-
-}
-
+    item_id = ${itemId};`);
+  return item;
+};
 
 module.exports = {
   createItem,
-  getItemsWithImgBlobs,
-  retrieveItemImagePathByID,
-  updateImgDetailsByItemID
-  // retrieveItemWithId,
+  retrieveItemByID
   // retrieveItemWithSearchString,
   // updateItemWithId,
   // deleteItemWithId
 };
+
+
+
+
+// async function getItemsWithImgBlobs() {
+//   devItemDAO('retrive items with blobs and no img_paths');
+//   const db = await dbPromise;
+//   const itemIds = await db.get(SQL`
+//     SELECT item_id, item_img_blob, item_img_path
+//     FROM items WHERE
+//     item_img_path IS NULL AND
+//     item_img_blob IS NOT NULL;`)
+//   devItemDAO(itemIds)
+//   return itemIds;
+// }
+
+// async function updateImgDetailsByItemID(itemId, filePath) {
+//   devItemDAO('update item record with file path')
+//   const db = await dbPromise;
+//   const updated_at = moment(new (Date)).format('YYYY-MM-DD HH:mm:ss');
+//   // update the item record with the img filepath and clean out used blob data
+//   const sql = `
+//       UPDATE 
+//       items SET 
+//       updated_at = ?, 
+//       item_img_path = ?, 
+//       item_img_blob = NULL 
+//       WHERE item_id = ?`;
+//   const params = [updated_at, filePath, itemId];
+//   await db.run(sql, params);
+//   devItemDAO('update item record with file path')
+//   return
+// }
