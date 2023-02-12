@@ -1,6 +1,6 @@
 {{!-- modal form to pop up on unregonised item scan, used to enter new details --}}
-<script src="/client-scripts/item-img-cap.js" defer></script>
-Copy code
+{{!-- <script src="/client-scripts/item-img-cap.js" defer></script> NOT IN USE CURRENTLY --}}
+
 <div class="modal-content">
   <form id="enter-new-details-form" method="post" enctype="multipart/form-data" action="/items/create-new">
     <span class="close" id="close-new-details-form">&times;</span>
@@ -28,10 +28,7 @@ Copy code
     <label for="qty">Qty:</label>
     <input type="number" name="qty" id="qty" placeholder="{{ item.qty }}" min="0" max="1000" step="1">
     <br>
-    <div>
-      <video id="video" width="320" height="240" autoplay></video>
-      <canvas id="canvas" width="320" height="240"></canvas>
-    </div>
+    <input type="file" name="item_img" id="item_img">
     <button type="submit">Submit</button>
   </form>
 </div>

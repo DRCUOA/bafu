@@ -19,7 +19,7 @@ async function createItem(item) {
   devItemDAO("creating item");
   const db = await dbPromise;
   const created_at = moment(new (Date)).format('YYYY-MM-DD HH:mm:ss');
-  devItemDAO(`DAO Proforma INSERT statement = INSERT INTO items (item_id,created_at, barcode,item_name,item_description,item_cost,item_UOM,item_quantity) VALUES (${item.item_id},${created_at},${item.barcode},${item.name},${item.description},${item.cost},${item.UOM},${item.qty},${item_img_path});`)
+  devItemDAO(`DAO Proforma INSERT statement = INSERT INTO items (item_id,created_at, barcode,item_name,item_description,item_cost,item_UOM,item_quantity) VALUES (${item.item_id},${created_at},${item.barcode},${item.name},${item.description},${item.cost},${item.UOM},${item.qty},${item.item_img_path});`)
   const result = await db.run(SQL`INSERT INTO items (
     item_id,
     created_at, 
@@ -38,7 +38,7 @@ async function createItem(item) {
     ${item.cost},
     ${item.UOM},
     ${item.qty},
-    ${item.image_path}
+    ${item.item_img_path}
     );`);
     return item;
 }
@@ -58,9 +58,6 @@ module.exports = {
   // updateItemWithId,
   // deleteItemWithId
 };
-
-
-
 
 // async function getItemsWithImgBlobs() {
 //   devItemDAO('retrive items with blobs and no img_paths');

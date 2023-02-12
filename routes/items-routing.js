@@ -13,11 +13,16 @@ const devItemsRLog = debug('devLog:itemRLog');
 //link to controller
 const itemsController = require('../controllers/items-controller');
 
-router.post("/create-new", upload.single('image'), async (req, res) => { 
+router.post("/create-new", upload.single('item_img'), async (req, res) => { 
   devItemsRLog('ep- post new item to controller');
   const newItemId = uuid();
   const fileName = `${newItemId}.jpg`;
   const filePath = `./public/images/${fileName}`;
+  if (!req.file) {
+    devItemsRLog('No file was uploaded.');
+    return res.status(400).send('No file was uploaded.');
+  }
+  
   fs.writeFileSync(filePath, req.file.buffer);
   
   const item = {
@@ -28,10 +33,11 @@ router.post("/create-new", upload.single('image'), async (req, res) => {
     cost: req.body.cost,
     UOM: req.body.UOM,
     qty: req.body.qty,
-    image_path: filePath,
+    item_img_path: filePath
   };
 
   try {
+    devItemsRLog("Item to send to Controller:", item)
     const itemCreated = await itemsController.createNewItem(item);
     devItemsRLog('return from controller:', itemCreated);
     if (itemCreated.value) {
