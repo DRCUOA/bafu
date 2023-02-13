@@ -18,6 +18,7 @@ router.post("/create-new", upload.single('item_img'), async (req, res) => {
   const newItemId = uuid();
   const fileName = `${newItemId}.jpg`;
   const filePath = `./public/images/${fileName}`;
+  const serverFilePath = `/images/${fileName}`
   if (!req.file) {
     devItemsRLog('No file was uploaded.');
     return res.status(400).send('No file was uploaded.');
@@ -33,7 +34,7 @@ router.post("/create-new", upload.single('item_img'), async (req, res) => {
     cost: req.body.cost,
     UOM: req.body.UOM,
     qty: req.body.qty,
-    item_img_path: filePath
+    item_img_path: serverFilePath
   };
 
   try {
