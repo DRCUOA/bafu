@@ -4,7 +4,7 @@ const router = express.Router();
 const debug = require('debug');
 
 // setup debug namespaces
-const devClientInputVal = debug('devLog:clientIntVLog');
+const devClientInputVal = debug('devLog:clientside_validation');
 
 // import dao required
 const userDao = require('../models/user-dao');

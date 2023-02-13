@@ -8,7 +8,7 @@ const moment = require("moment");
 const debug = require("debug");
 
 //debug namespace
-const devItemDAO = debug('devLog:itemDAO');
+const devItemDAO = debug('devLog:dao_items');
 
 /** Creates a new ITEM
 * @param item, the item to insert into the database 
@@ -40,8 +40,9 @@ async function createItem(item) {
     ${item.qty},
     ${item.item_img_path}
     );`);
-    return item;
+  return item;
 }
+
 async function retrieveItemByID(itemId) {
   const db = await dbPromise;
   const item = db.get(SQL`
@@ -51,40 +52,28 @@ async function retrieveItemByID(itemId) {
   return item;
 };
 
-module.exports = {
-  createItem,
-  retrieveItemByID
-  // retrieveItemWithSearchString,
-  // updateItemWithId,
-  // deleteItemWithId
+async function retrieveItemByBarcode(barcode) {
+  devItemDAO('Search db for: ', barcode)
+  const db = await dbPromise;
+  const item = db.get(SQL`
+  SELECT * FROM items 
+  WHERE barcode = ${barcode};`);
+
+  item.then((data) => {
+    if(data === 'undefined') {
+      devItemDAO('should not be = undefined')
+      return item;
+    } else {
+      devItemDAO('item not found')
+      return 'false';
+    }
+  });
+
 };
 
-// async function getItemsWithImgBlobs() {
-//   devItemDAO('retrive items with blobs and no img_paths');
-//   const db = await dbPromise;
-//   const itemIds = await db.get(SQL`
-//     SELECT item_id, item_img_blob, item_img_path
-//     FROM items WHERE
-//     item_img_path IS NULL AND
-//     item_img_blob IS NOT NULL;`)
-//   devItemDAO(itemIds)
-//   return itemIds;
-// }
 
-// async function updateImgDetailsByItemID(itemId, filePath) {
-//   devItemDAO('update item record with file path')
-//   const db = await dbPromise;
-//   const updated_at = moment(new (Date)).format('YYYY-MM-DD HH:mm:ss');
-//   // update the item record with the img filepath and clean out used blob data
-//   const sql = `
-//       UPDATE 
-//       items SET 
-//       updated_at = ?, 
-//       item_img_path = ?, 
-//       item_img_blob = NULL 
-//       WHERE item_id = ?`;
-//   const params = [updated_at, filePath, itemId];
-//   await db.run(sql, params);
-//   devItemDAO('update item record with file path')
-//   return
-// }
+module.exports = {
+  createItem,
+  retrieveItemByID,
+  retrieveItemByBarcode
+};

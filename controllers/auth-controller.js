@@ -1,7 +1,7 @@
 const debug = require('debug');
 
 // debug namespace
-const devAuthCtrl = debug('devLOG:AuthCtrl');
+const devAuthCtrl = debug('devLOG:controller_auth');
 // import dao
 const userDao = require('../models/user-dao');
 

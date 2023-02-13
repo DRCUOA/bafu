@@ -1,7 +1,7 @@
 // custom helper to render arrays with single or multiple arrays (work-around 2 min object issues on standard each helper)
 //dev debug logging
 const debug = require('debug');
-const devCustomHelpers = debug('devLog:CustomHelpers');
+const devCustomHelpers = debug('devLog:handlebars_customhelpers');
 
 const Handlebars = require('handlebars');
 

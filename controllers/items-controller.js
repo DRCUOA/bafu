@@ -6,7 +6,7 @@ const Joi = require('joi');
 const debug = require('debug');
 
 //set-up debug namespace
-const devItemController = debug('devLog:devItemCntrllr');
+const devItemController = debug('devLog:controller_items');
 
 //link to model
 const itemDao = require('../models/item-dao');
@@ -30,25 +30,30 @@ const validateFormData = (formData) => {
 
 // insert new item into db
 async function createNewItem(item) {
-  devItemController(item)
-
+  devItemController('createNewItem(item)', `id: ${item.item_id} barcode: ${item.barcode} name: ${item.name}`);
   const result = validateFormData(item);
-
   if (result.error) {
     devItemController(result.error.message);
     result.validationPass = false;
     return (result);
   } else {
-    devItemController(result)
     devItemController('Form data is valid.');
     result.validationPass = true;
-    devItemController('Validated data object being passed to model:', item);
+    devItemController('Validated data object being passed to model:', `id: ${item.item_id} barcode: ${item.barcode} name: ${item.name}`);
     const newItem = await itemDao.createItem(item);
-    devItemController(`Item with barcode: ${newItem.barcode} added with item_id : ${newItem.item_id}`);
+    devItemController(`Confirm Item added, id: ${item.item_id} barcode: ${item.barcode} name: ${item.name}`);
     return newItem;
   }
 }
 
+async function retrieveItemWithBarcode(barcode) {
+  devItemController(`look for item with barcode ${barcode}`);
+  const result = itemDao.retrieveItemByBarcode(barcode);
+  devItemController('model return to controller:', await result)
+  return result;
+}
+
 module.exports = {
-  createNewItem
+  createNewItem,
+  retrieveItemWithBarcode
 }

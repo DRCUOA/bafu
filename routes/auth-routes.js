@@ -6,7 +6,7 @@ const router = express.Router();
 const debug = require('debug');
 
 // setup debug namespaces
-const devAuthRLog = debug('devLog:authRLog');
+const devAuthRLog = debug('devLog:routing_auth');
 // import dao required
 const userDao = require('../models/user-dao');
 

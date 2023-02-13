@@ -8,7 +8,7 @@ const upload = multer({ storage });
 const debug = require('debug');
 
 //set-up debug namespaces
-const devItemsRLog = debug('devLog:itemRLog');
+const devItemsRLog = debug('devLog:routing_items');
 
 //link to controller
 const itemsController = require('../controllers/items-controller');

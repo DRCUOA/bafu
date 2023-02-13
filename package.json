@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "runOnMac": "DEBUG=devLog* nodemon app.js",
+    "r_log": "DEBUG=devLog:r* nodemon app.js",
+    "c_log": "DEBUG=devLog:c* nodemon app.js",
+    "m_log": "DEBUG=devLog:dao* nodemon app.js",
+    "a_log": "DEBUG=devLog:* nodemon app.js",
     "runOnWin": "set DEBUG=devLog* & nodemon app.js"
   },
   "repository": {
