@@ -45,7 +45,7 @@ async function createItem(item) {
 
 async function retrieveItemByID(itemId) {
   const db = await dbPromise;
-  const item = db.get(SQL`
+  const item = await db.get(SQL`
     SELECT *
     FROM items WHERE
     item_id = ${itemId};`);
@@ -55,7 +55,7 @@ async function retrieveItemByID(itemId) {
 async function retrieveItemByBarcode(barcode) {
   devItemDAO('Search db for: ', barcode)
   const db = await dbPromise;
-  return db.get(SQL`SELECT * FROM items WHERE barcode = ${barcode};`)
+  return await db.get(SQL`SELECT * FROM items WHERE barcode = ${barcode};`)
     .then((data) => {
       if (data) {
         return data;
@@ -65,10 +65,23 @@ async function retrieveItemByBarcode(barcode) {
     });
 };
 
-
+async function retrieveItemWithSearchTerm(searchTerm) {
+  devItemDAO('Search db for: ', searchTerm)
+  const db = await dbPromise;
+  const query = SQL`
+    SELECT *
+    FROM items
+    WHERE item_name LIKE ${'%' + searchTerm + '%'}
+      OR item_description LIKE ${'%' + searchTerm + '%'}
+      OR barcode LIKE ${'%' + searchTerm + '%'}
+  `;
+  const items = await db.all(query);
+  return items;
+}
 
 module.exports = {
   createItem,
   retrieveItemByID,
-  retrieveItemByBarcode
+  retrieveItemByBarcode,
+  retrieveItemWithSearchTerm
 };

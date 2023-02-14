@@ -304,7 +304,7 @@ form > button:hover {
   line-height: 160%;
 }
 
-#hero-intro > h1, h2, h3 {
+#hero-intro > h1, h2, h3, h4, p {
   text-align: center;
 }
 

@@ -1,0 +1,20 @@
+<!-- general search results-list -->
+<script type="text/x-handlebars-template" data-template="inventory-list-template">
+{{#if items}}
+  <ul class="inventory-list" id="search-results-list">
+    {{#each items}}
+      <li class="inventory-item">
+        <h3 class="item-name">{{item_name}}</h3>
+        <button class="view-details-btn">View Details</button>
+        <div class="item-details" style="display: none;">
+          <img src="{{item_img_path}}" alt="{{item_name}} image">
+          <p class="item-description">{{item_description}}</p>
+          <p class="item-quantity">Quantity: {{item_quantity}} {{item_UOM}}</p>
+          <p class="item-cost">Cost: {{item_cost}}</p>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No items found.</p>
+{{/if}}

@@ -115,3 +115,23 @@ async function checkIfBarcodeExists(barcode) {
   return await fetch(`/search-items/item_check?barcode=${barcode}`)
     .then(response => response.json());
 }
+
+// Client-side code to handle search box input and make AJAX request
+
+
+
+
+const searchBox = document.querySelector('#search-box');
+searchBox.addEventListener('input', () => {
+  const searchTerm = searchBox.value.trim();
+  if (searchTerm.length > 0) {
+    fetch(`/search-items/gen-search?q=${searchTerm}`)
+      .then(response => response.json())
+      .then(items => {
+        // Handle the search results, e.g. update the view with the matched items
+        console.log(items);
+        
+      })
+      .catch(error => console.error(error));
+  }
+});

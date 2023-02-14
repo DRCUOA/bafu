@@ -56,9 +56,19 @@ if (document.getElementById('register-button') || document.getElementById('sign-
   footer.style.display = "None";
 }
 
-if(document.querySelector("#item-summary")) {
+if (document.querySelector("#item-summary")) {
   const okBtn = document.querySelector('#confirm-ok-btn');
   okBtn.addEventListener('click', () => {
     window.location.href = "/";
   });
 };
+
+if (document.querySelector("#search-results-list")) {
+  const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+  viewDetailsButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      const itemDetails = event.target.nextElementSibling;
+      itemDetails.style.display = itemDetails.style.display === 'none' ? 'block' : 'none';
+    });
+  });
+}

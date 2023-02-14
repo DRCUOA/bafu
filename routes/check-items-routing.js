@@ -38,4 +38,19 @@ router.get('/manual-search', async (req, res) => {
   }
 });
 
+// general search request /search-items
+router.get('/gen-search', async (req, res) => {
+  devCheckItemsRLog('/gen-search?q=', req.query.q)
+  try {
+    const searchTerm = req.query.q;
+    const items = await itemsController.retrieveItemsWithSearchTerm(searchTerm);
+    res.json(items); // Return the search results as JSON to the client
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
+
 module.exports = router;

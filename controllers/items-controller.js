@@ -53,7 +53,12 @@ async function retrieveItemWithBarcode(barcode) {
   return result;
 }
 
+async function retrieveItemsWithSearchTerm(searchTerm) {
+  return items = await itemDao.retrieveItemWithSearchTerm(searchTerm)
+}
+
 module.exports = {
   createNewItem,
-  retrieveItemWithBarcode
+  retrieveItemWithBarcode,
+  retrieveItemsWithSearchTerm
 }
