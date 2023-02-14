@@ -23,7 +23,7 @@ router.get('/item_retrieve', async (req, res) => {
   const itemFound = await itemsController.retrieveItemWithBarcode(req.query.barcode);
   devCheckItemsRLog(itemFound);
   res.setToastMessage("!");
-  res.redirect('/ ');
+  res.render('item-found', {itemFound: [itemFound]});
 });
 
 module.exports = router;
