@@ -56,17 +56,15 @@ if (document.querySelector('#interactive')) {
         Quagga.stop();
         const barcodeFound = document.querySelector('#barcode-found');
         barcodeFound.value = data.codeResult.code;
-        // check if the barcode detected already exists in the database
-        checkIfBarcodeExists(data.codeResult.code).then((data) => {
-          if (data) {
-            console.log(`barcode ${data.codeResult.code} found in db is : ${data}`)
-            fetch(`/`)
+        // check if the barcode detected already exists in the database.
+        checkIfBarcodeExists(data.codeResult.code).then((item) => {
+          if (item) {
+          console.log(`barcode :${data.codeResult.code}, found in database. Item found:`, item);
           } else {
-            //continue
-          }
           document.querySelector('#new-item-form').style.display = 'block';
           addEventListenerForm();
-        });
+          }
+          });
         scanBtn.disabled = false;
       });
     });
@@ -90,8 +88,10 @@ function addEventListenerForm() {
   });
 }
 
+/* LEARNING NOTE: 
+the "fetch" function returns a Response object, which is an object representing the response to a request.  To access the actual item data, you need to extract the data from the Response object. You can do this by calling the ".json()" method on the Response object, which will parse the response body as JSON and return a promise that resolves to a JavaScript object.
+*/
 async function checkIfBarcodeExists(barcode) {
-  // console.log('check if barcode exists: disabled')
-  const result = await fetch(`/search-items/item_check?barcode=${barcode}`);
-  return false
+  return await fetch(`/search-items/item_check?barcode=${barcode}`)
+      .then(response => response.json());
 }

@@ -55,21 +55,16 @@ async function retrieveItemByID(itemId) {
 async function retrieveItemByBarcode(barcode) {
   devItemDAO('Search db for: ', barcode)
   const db = await dbPromise;
-  const item = db.get(SQL`
-  SELECT * FROM items 
-  WHERE barcode = ${barcode};`);
-
-  item.then((data) => {
-    if(data === 'undefined') {
-      devItemDAO('should not be = undefined')
-      return item;
-    } else {
-      devItemDAO('item not found')
-      return 'false';
-    }
-  });
-
+  return db.get(SQL`SELECT * FROM items WHERE barcode = ${barcode};`)
+    .then((data) => {
+      if (data) {
+        return data;
+      } else {
+        return false;
+      }
+    });
 };
+
 
 
 module.exports = {

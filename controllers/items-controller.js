@@ -48,8 +48,8 @@ async function createNewItem(item) {
 
 async function retrieveItemWithBarcode(barcode) {
   devItemController(`look for item with barcode ${barcode}`);
-  const result = itemDao.retrieveItemByBarcode(barcode);
-  devItemController('model return to controller:', await result)
+  const result = await itemDao.retrieveItemByBarcode(barcode);
+  devItemController('model return to controller:', result)
   return result;
 }
 
