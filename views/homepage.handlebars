@@ -7,9 +7,9 @@
             alt="logo-a graphic that appears like a friendly simling face"></span>Reset</button>
     </div>
     <!-- Scanning Viewport-->
-    
+
     <div id="result">
-        <img id="cap" alt="image capture from device cam whem barcode detected" style="display: none;">  
+      <img id="cap" alt="image capture from device cam whem barcode detected" style="display: none;">
     </div>
 
     <div id="interactive" class="viewport">
@@ -20,7 +20,12 @@
         <video id="camera-stream"></video>
       </div>
     </div>
-<canvas id="camera-view"></canvas>
+    <canvas id="camera-view"></canvas>
+
+    <div id="manual-entry">
+      <p>Press SHIFT + M to enter a barcode manually</p>
+    </div>
+
   </div>
 </div>
 
@@ -28,9 +33,16 @@
 <p class="toast" id="index-toast">{{toastMessage}}</p>
 {{/if}}
 
-<!-- Modal for contact form -->
+<!-- Modal for new item-form -->
 <div id="new-item-form" class="modal" style="display: {{#if showModal}}block{{else}}none{{/if}};">
   <div class="modal-content">
     {{> new-item-form}}
+  </div>
+</div>
+
+<!-- Modal for manaul entry of barcode form -->
+<div id="enter-manual-barcode-form" class="modal" style="display: {{#if showModal}}block{{else}}none{{/if}};">
+  <div class="modal-content">
+    {{> manual-barcode-form}}
   </div>
 </div>

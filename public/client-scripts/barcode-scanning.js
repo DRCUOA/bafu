@@ -5,6 +5,16 @@
 if (document.querySelector('#interactive')) {
   const scanBtn = document.querySelector('#new-item-form-btn');
   const animatedLine = document.querySelector('#animatedLine');
+
+  // document listener for manually barcode entry:
+  document.addEventListener('keydown', function(event) {
+    if (event.shiftKey && event.key === 'M') {
+      console.log('Shift + M was pressed');
+      const manualBarcodeForm = document.querySelector("#enter-manual-barcode-form");
+      manualBarcodeForm.style.display = "block";
+    }
+  });
+
   // scan button click event:
   scanBtn.addEventListener('click', function () {
     animatedLine.style.display = "block";

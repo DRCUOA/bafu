@@ -23,7 +23,19 @@ router.get('/item_retrieve', async (req, res) => {
   const itemFound = await itemsController.retrieveItemWithBarcode(req.query.barcode);
   devCheckItemsRLog(itemFound);
   res.setToastMessage("!");
-  res.render('item-found', {itemFound: [itemFound]});
+  res.render('item-found', { itemFound: [itemFound] });
+});
+
+router.get('/manual-search', async (req, res) => {
+  devCheckItemsRLog('/manual-search', req.query.barcodeM);
+  const barcode = req.query.barcodeM;
+  const itemFound = await itemsController.retrieveItemWithBarcode(barcode);
+  devCheckItemsRLog('manual search returned: ', itemFound);
+  if (!itemFound) {
+    res.send(false);
+  } else {
+    res.render('item-found', { itemFound: [itemFound] });
+  }
 });
 
 module.exports = router;

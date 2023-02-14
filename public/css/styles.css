@@ -239,7 +239,7 @@ form > button:hover {
   color: var(--primary-color);
 }
 
-#close-log-in, #reg-close, #close-new-details-form {
+#close-log-in, #reg-close, #close-new-details-form, #close-manual-barcode-form {
     position: absolute;
     right: var(--sm-spacing);
     top: var(--sm-spacing);  
@@ -251,7 +251,7 @@ form > button:hover {
     font-weight: 400;
 }
 
-#close-log-in:hover, #reg-close:hover, #close-new-details-form:hover {
+#close-log-in:hover, #reg-close:hover, #close-new-details-form:hover, #close-manual-barcode-form:hover {
   transform: rotate(180deg) scale(1.3);
   color: var(--tertiary-color);
   transition: transform 1s ease, color 1s ease;
