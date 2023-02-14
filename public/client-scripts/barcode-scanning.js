@@ -7,13 +7,15 @@ if (document.querySelector('#interactive')) {
   const animatedLine = document.querySelector('#animatedLine');
 
   // document listener for manually barcode entry:
-  document.addEventListener('keydown', function(event) {
+  const keydownHandler = function(event) {
     if (event.shiftKey && event.key === 'M') {
       console.log('Shift + M was pressed');
       const manualBarcodeForm = document.querySelector("#enter-manual-barcode-form");
       manualBarcodeForm.style.display = "block";
     }
-  });
+  };
+
+  document.addEventListener('keydown', keydownHandler);
 
   // scan button click event:
   scanBtn.addEventListener('click', function () {
@@ -62,6 +64,7 @@ if (document.querySelector('#interactive')) {
       Quagga.start();
       // on code detected:
       Quagga.onDetected(function (data) {
+        document.removeEventListener('keydown', keydownHandler);
         vport.style.display = 'none';
         Quagga.stop();
         const barcodeFound = document.querySelector('#barcode-found');

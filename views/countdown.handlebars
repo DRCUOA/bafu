@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Old Product Purchased</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each arrayObj}}
+      <tr>
+        <td><img src="{{this.image}}" width="100" height="100"></td>
+        <td>{{this.name}}</td>
+        <td>{{this.price}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

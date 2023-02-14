@@ -469,6 +469,45 @@ cursor: pointer;
 
 /**************************************************************************
  *
+ *      countdown table 
+ *
+ **********/
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: var(--md-spacing) auto;
+  font-family: var(--primary-font);
+}
+
+thead {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+th, td {
+  padding: var(--md-spacing);
+  text-align: left;
+  border: 1px solid var(--secondary-color);
+}
+
+tr:nth-child(even) {
+  background-color: rgb(255, 255, 255);
+}
+
+td:hover {
+  background-color: var(--shading);
+  color: var(--primary-color);
+}
+
+td > img{
+  display: flex;
+  justify-content: center;
+  align-items: center
+} 
+
+/**************************************************************************
+ *
  *      media queries / break points  (680) 
  *
  **********/
