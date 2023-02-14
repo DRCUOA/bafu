@@ -1,5 +1,5 @@
-<!-- item-summary view on item creation-->
-{{#custom-each itemCreated}}
+<!-- item-summary view on item retrieval from db -->
+{{#custom-each itemFound}}
 <div class="item-summary-container" id="item-summary">
   <img src="{{item_img_path}}" alt="image of product at time of scanning" id="item-image">
   <p id="item-id">Item ID:
@@ -9,16 +9,16 @@
     <strong style="color: blue;">{{barcode}}</strong>
   </p>
   <p id="item-name">Item Name:
-    <strong style="color: blue">{{name}}</strong>
+    <strong style="color: blue">{{item_name}}</strong> <!-- changed from {{name}} -->
   </p>
   <p id="item-description">Item Description:
-    <strong style="color: blue">{{description}}</strong>
+    <strong style="color: blue">{{item_description}}</strong> <!-- changed from {{description}} -->
   </p>
   <p id="item-cost">Item cost:
-    <strong style="color: blue">$ {{cost}} {{UOM}} </strong>
+    <strong style="color: blue">$ {{item_cost}} {{item_UOM}} </strong> <!-- changed from $ {{cost}} {{UOM}} -->
   </p>
   <p id="item-qty">Qty:
-    <strong style="color: blue;">{{qty}} </strong>
+    <strong style="color: blue;">{{item_quantity}} </strong> <!-- changed from {{qty}} -->
   </p>
   <div>
     <button id="confirm-ok-btn"><span><img id="hero-logo" src="/assets/logo-nb-nt-smiley-200.webp"

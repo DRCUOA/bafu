@@ -50,7 +50,7 @@ router.post("/create-new", upload.single('item_img'), async (req, res) => {
     } else {
       res.setToastMessage("Item Created Sucessfully!");
       res.render('item-summary', {itemCreated: [itemCreated]});
-        }
+      }
   } catch (err) {
     devItemsRLog(err);
     res.setToastMessage("Item Setup Failed. Server responded with: " + err);

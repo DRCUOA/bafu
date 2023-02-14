@@ -59,12 +59,13 @@ if (document.querySelector('#interactive')) {
         // check if the barcode detected already exists in the database.
         checkIfBarcodeExists(data.codeResult.code).then((item) => {
           if (item) {
-          console.log(`barcode :${data.codeResult.code}, found in database. Item found:`, item);
+            // console.log(`barcode :${data.codeResult.code}, found in database. Item found:`, item);
+            fetch(`/search-items/item_retrieve?barcode=${item.barcode}`)
           } else {
-          document.querySelector('#new-item-form').style.display = 'block';
-          addEventListenerForm();
+            document.querySelector('#new-item-form').style.display = 'block';
+            addEventListenerForm();
           }
-          });
+        });
         scanBtn.disabled = false;
       });
     });
@@ -72,6 +73,15 @@ if (document.querySelector('#interactive')) {
 }
 
 function addEventListenerForm() {
+  document.addEventListener('keyup', (event) => {
+    if(event.key === "Escape") {
+      document.querySelector('#new-item-form').style.display = 'none';
+    } else {
+      document.querySelector('#new-item-form').style.display = 'block';
+    }
+  });
+  document.querySelector("#close-new-details-form").addEventListener('click', (event) => { 
+    document.querySelector('#new-item-form').style.display = 'none'; });
   document.getElementById("enter-new-details-form").addEventListener("submit", function (event) {
     console.log('submit event fired');
     event.preventDefault();
@@ -93,5 +103,5 @@ the "fetch" function returns a Response object, which is an object representing 
 */
 async function checkIfBarcodeExists(barcode) {
   return await fetch(`/search-items/item_check?barcode=${barcode}`)
-      .then(response => response.json());
+    .then(response => response.json());
 }

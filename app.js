@@ -27,7 +27,7 @@ customHelpers.register(hbs.handlebars);
 
 //http logging
 const morgan = require('morgan');
-// app.use(morgan('tiny'));
+app.use(morgan('tiny'));
 //dev debug logging
 const debug = require('debug');
 const devApp = debug('devLog:app_main');

@@ -11,12 +11,19 @@ const itemsController = require('../controllers/items-controller');
 //check if an item already exists
 router.get('/item_check', async (req, res) => {
   const item_check = await itemsController.retrieveItemWithBarcode(req.query.barcode);
-  devCheckItemsRLog(item_check);
+  // devCheckItemsRLog(item_check);
   if (item_check) {
     res.send(item_check);
   } else {
     res.send(false);
-  }  
+  }
+});
+
+router.get('/item_retrieve', async (req, res) => {
+  const itemFound = await itemsController.retrieveItemWithBarcode(req.query.barcode);
+  devCheckItemsRLog(itemFound);
+  res.setToastMessage("!");
+  res.redirect('/ ');
 });
 
 module.exports = router;

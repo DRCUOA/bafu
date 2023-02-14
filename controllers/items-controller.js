@@ -17,7 +17,7 @@ const schema = Joi.object({
   barcode: Joi.string().min(1).max(30).required(),
   name: Joi.string().min(2).max(30).required(),
   description: Joi.string().max(255),
-  cost: Joi.number().min(1).max(1000).required(),
+  cost: Joi.number().min(0).max(1000).required(),
   UOM: Joi.string().min(1).max(30).required(),
   qty: Joi.number().min(1).max(1000).required(),
   item_img_path: Joi.string()
