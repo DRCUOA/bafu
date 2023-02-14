@@ -487,7 +487,8 @@ thead {
 
 th, td {
   padding: var(--md-spacing);
-  text-align: left;
+  text-align: center;
+  text-transform: capitalize;
   border: 1px solid var(--secondary-color);
 }
 
@@ -511,9 +512,41 @@ td > img{
  *      media queries / break points  (680) 
  *
  **********/
-@media only screen and (max-width: 680px) {
+ @media only screen and (max-width: 680px) {
 
   .main .btn-container {
-    flex-direction:  column;
+    flex-direction: column;
+  }
+
+  table {
+    width: 80%;
+    border: none;
+  }
+
+  td, th {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+
+  td:first-child {
+  }
+
+  td:last-child {
+  }
+
+  td:nth-child(2) {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  td:nth-child(2)::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }

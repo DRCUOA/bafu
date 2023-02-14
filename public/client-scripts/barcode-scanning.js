@@ -7,7 +7,7 @@ if (document.querySelector('#interactive')) {
   const animatedLine = document.querySelector('#animatedLine');
 
   // document listener for manually barcode entry:
-  const keydownHandler = function(event) {
+  const keydownHandler = function (event) {
     if (event.shiftKey && event.key === 'M') {
       console.log('Shift + M was pressed');
       const manualBarcodeForm = document.querySelector("#enter-manual-barcode-form");
@@ -87,14 +87,15 @@ if (document.querySelector('#interactive')) {
 
 function addEventListenerForm() {
   document.addEventListener('keyup', (event) => {
-    if(event.key === "Escape") {
+    if (event.key === "Escape") {
       document.querySelector('#new-item-form').style.display = 'none';
     } else {
       document.querySelector('#new-item-form').style.display = 'block';
     }
   });
-  document.querySelector("#close-new-details-form").addEventListener('click', (event) => { 
-    document.querySelector('#new-item-form').style.display = 'none'; });
+  document.querySelector("#close-new-details-form").addEventListener('click', (event) => {
+    document.querySelector('#new-item-form').style.display = 'none';
+  });
   document.getElementById("enter-new-details-form").addEventListener("submit", function (event) {
     console.log('submit event fired');
     event.preventDefault();
@@ -123,18 +124,19 @@ async function checkIfBarcodeExists(barcode) {
 
 
 
+if (document.querySelector('#search-box')) {
+  const searchBox = document.querySelector('#search-box');
+  searchBox.addEventListener('input', () => {
+    const searchTerm = searchBox.value.trim();
+    if (searchTerm.length > 0) {
+      fetch(`/search-items/gen-search?q=${searchTerm}`)
+        .then(response => response.json())
+        .then(items => {
+          // Handle the search results, e.g. update the view with the matched items
+          console.log(items);
 
-const searchBox = document.querySelector('#search-box');
-searchBox.addEventListener('input', () => {
-  const searchTerm = searchBox.value.trim();
-  if (searchTerm.length > 0) {
-    fetch(`/search-items/gen-search?q=${searchTerm}`)
-      .then(response => response.json())
-      .then(items => {
-        // Handle the search results, e.g. update the view with the matched items
-        console.log(items);
-        
-      })
-      .catch(error => console.error(error));
-  }
-});
+        })
+        .catch(error => console.error(error));
+    }
+  });
+}
