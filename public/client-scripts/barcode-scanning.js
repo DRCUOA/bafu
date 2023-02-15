@@ -5,7 +5,6 @@
 if (document.querySelector('#interactive')) {
   const scanBtn = document.querySelector('#new-item-form-btn');
   const animatedLine = document.querySelector('#animatedLine');
-
   // document listener for manually barcode entry:
   const keydownHandler = function (event) {
     if (event.shiftKey && event.key === 'M') {
@@ -14,9 +13,7 @@ if (document.querySelector('#interactive')) {
       manualBarcodeForm.style.display = "block";
     }
   };
-
   document.addEventListener('keydown', keydownHandler);
-
   // scan button click event:
   scanBtn.addEventListener('click', function () {
     animatedLine.style.display = "block";
@@ -72,13 +69,19 @@ if (document.querySelector('#interactive')) {
         // check if the barcode detected already exists in the database.
         checkIfBarcodeExists(data.codeResult.code).then((item) => {
           if (item) {
-            // console.log(`barcode :${data.codeResult.code}, found in database. Item found:`, item);
-            fetch(`/search-items/item_retrieve?barcode=${item.barcode}`)
+            let sendBack = JSON.stringify(item);
+            fetch(`/search-items/manual-search?item=${sendBack}`)
+              .then(response => response.text())
+              .then(newPageHtml => {
+                // Replace the current page with the new page HTML
+                document.documentElement.innerHTML = newPageHtml;
+              })
+              .catch(error => console.error(error));
           } else {
             document.querySelector('#new-item-form').style.display = 'block';
             addEventListenerForm();
           }
-        });
+        });        
         scanBtn.disabled = false;
       });
     });
@@ -112,31 +115,44 @@ function addEventListenerForm() {
   });
 }
 
-/* LEARNING NOTE: 
-the "fetch" function returns a Response object, which is an object representing the response to a request.  To access the actual item data, you need to extract the data from the Response object. You can do this by calling the ".json()" method on the Response object, which will parse the response body as JSON and return a promise that resolves to a JavaScript object.
-*/
 async function checkIfBarcodeExists(barcode) {
   return await fetch(`/search-items/item_check?barcode=${barcode}`)
     .then(response => response.json());
 }
 
 // Client-side code to handle search box input and make AJAX request
-
-
-
 if (document.querySelector('#search-box')) {
   const searchBox = document.querySelector('#search-box');
-  searchBox.addEventListener('input', () => {
-    const searchTerm = searchBox.value.trim();
-    if (searchTerm.length > 0) {
-      fetch(`/search-items/gen-search?q=${searchTerm}`)
-        .then(response => response.json())
-        .then(items => {
-          // Handle the search results, e.g. update the view with the matched items
-          console.log(items);
-
+  searchBox.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      const searchTerm = searchBox.value.trim();
+      if (searchTerm.length > 0) {
+        fetch(`/search-items/gen-search?q=${searchTerm}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        })
+        .then(response => response.text())
+        .then(newPageHtml => {
+          // Replace the current page with the new page HTML
+          document.documentElement.innerHTML = newPageHtml;
         })
         .catch(error => console.error(error));
+      }
     }
   });
 }
+
+/* LEARNING NOTES: 
+The "fetch" function returns a Response object, which is an object representing the response to a request.  This response object is a Promise. To access the actual item data, you need to extract the data from the Response object. You can do this by calling the ".json()" method on the Response object, which will parse the response body as JSON and return a promise that resolves to a JavaScript object.
+
+The fetch call in JavaScript is designed to make an HTTP request to a server and receive a response back as a Promise. By default, this response is in the form of a Response object that contains metadata about the response (e.g., status code, headers) and the response body as a stream of bytes.
+
+The fetch call does not have any built-in functionality for rendering a new page or updating the current page in the browser. Instead, it's up to the client-side code (e.g., JavaScript) to handle the response from the server and update the page as needed.
+
+If your server-side code is configured to use res.render to generate a new page, the fetch call can receive the new page as an HTML string in the response body, but it's up to the client-side code to decide how to handle this HTML string. For example, you could use JavaScript to update the innerHTML property of an element in the current page with the new HTML string, effectively "replacing" the current page with the new one.
+
+So, to summarize, the fetch call in JavaScript can receive a new page as an HTML string in the response body, but it's up to the client-side code to handle this response and update the current page as needed.
+*/
+

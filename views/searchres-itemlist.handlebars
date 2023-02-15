@@ -1,0 +1,146 @@
+{{!-- <h2>Items Found</h2> --}}
+{{#each items}}
+<div class="items-container">
+  <div id="img">
+    <img src="{{item_img_path}}" alt="{{item_name}}" width="100">
+  </div>
+  <div id="nam">
+    <p>{{item_name}}</p>
+    <img src="/assets/shoppingbag.png" alt="shopping cart" width="50px" height="50px">
+  </div>
+  <div id="cst">
+    <p>$ {{item_cost}}</p>
+  </div>
+  <div id="qty">
+    <p>per {{item_quantity}}</p>
+  </div>
+  <div id="uom">
+    <p>{{item_UOM}}</p>
+  </div>
+  <div id="add">
+    <button><img src="/assets/shoppingcart.png" alt="shopping bag" width="25px" height="25px"> Add to Shopping List</button>
+    
+  </div>
+  <div id="can">
+    <button>Cancel</button>
+  </div>
+</div>
+{{/each}}
+
+<style>
+  #img {
+    grid-area: img;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #nam {
+    grid-area: nam;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    color: rgba(0, 0, 0, .8);
+
+  }
+
+  #cst {
+    grid-area: cst;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #qty {
+    grid-area: qty;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #uom {
+    grid-area: uom;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #add {
+    grid-area: add;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #can {
+    grid-area: can;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .items-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    grid-template-areas:
+      "img"
+      "nam"
+      "cst"
+      "qty"
+      "uom"
+      "add"
+      "can";
+    position: fixed;
+    top: 4em;
+    width: 50vw;
+    margin-left: 20vw;
+    padding: 1em;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 0 10px 4px rgba(0, 0, 0, .2);
+    text-transform: capitalize;
+  }
+
+  #add>button {
+    color: white;
+    background-color: rgba(255, 69, 0, 1);
+    min-width: 12em;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  #can>button {
+    color: white;
+    background-color: rgba(255, 69, 0, 1);
+    min-width: 12em;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  /**************************************************************************
+ *
+ *      media queries / break points  (680) 
+ *
+ **********/
+  @media only screen and (max-width: 680px) {
+    .items-container {
+      display: grid;
+      grid-template-columns: 7fr;
+      grid-template-rows: auto;
+      gap: 10px;
+      grid-template-areas:
+        "img nam cst qty uom add can";
+      position: fixed;
+      top: 4em;
+    }
+  }
+</style>

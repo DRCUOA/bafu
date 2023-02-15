@@ -2,21 +2,6 @@
 *  Client-side Javascript
 */
 
-//hamburger menu
-if (document.getElementById('hamburger') || document.getElementById('nav')) {
-  const nav = document.getElementById("nav");
-  const hamburgerMenu = document.getElementById("hamburger-menu");
-  function toggleNav() {
-    if (nav.style.display === "flex") {
-      nav.style.display = "none";
-      hamburgerMenu.classList.remove("open");
-    } else {
-      nav.style.display = "flex";
-      nav.style.flexDirection = "column";
-      hamburgerMenu.classList.add("open");
-    }
-  };
-}
 
 // regisitration and login helpers:
 if (document.getElementById('register-button') || document.getElementById('sign-in-button')) {

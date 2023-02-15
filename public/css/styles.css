@@ -496,16 +496,20 @@ tr:nth-child(even) {
   background-color: rgb(255, 255, 255);
 }
 
-td:hover {
-  background-color: var(--shading);
-  color: var(--primary-color);
-}
-
 td > img{
   display: flex;
   justify-content: center;
   align-items: center
 } 
+
+td > button {
+  font-size: var(--sm-text-size);
+  background: linear-gradient(to top left, black, white , gray);
+  padding: var(--sm-spacing);
+  border-radius: 90px;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
 
 /**************************************************************************
  *
@@ -527,26 +531,11 @@ td > img{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
-  }
-
-  td:first-child {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
   }
 
   td:last-child {
-  }
-
-  td:nth-child(2) {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  td:nth-child(2)::before {
-    content: attr(data-label);
-    font-weight: bold;
-    text-transform: uppercase;
+    /* border-bottom: 1px solid black; */
   }
 }
