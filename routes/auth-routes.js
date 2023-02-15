@@ -9,6 +9,8 @@ const debug = require('debug');
 const devAuthRLog = debug('devLog:routing_auth');
 // import dao required
 const userDao = require('../models/user-dao');
+// import controller required
+const userController = require('../controllers/auth-controller')
 
 router.post("/new-account", async (req, res) => {
     devAuthRLog("Received a request to the '/new-account' route");
@@ -45,7 +47,6 @@ router.post("/new-account", async (req, res) => {
 
     })
 });
-
 
 router.get("/logout", function (req, res) {
     res.clearCookie("authToken");
@@ -102,6 +103,69 @@ router.post('/login', async (req, res) => {
 });
 
 
+
+//password reset handling:
+// Define the route to handle the password reset request
+router.post("/api/resetpassword", async (req, res) => {
+    devAuthRLog("/api/resetpassword  ?email = ${req.body",)
+    const { email } = req.body;
+    // Check if the email is valid
+    const isValid = await isValid(email)
+
+    if (!isValidEmail(email)) {
+        return res.status(400).send('Invalid email');
+    }
+
+    // Generate a reset token and send it to the user's email address
+    const resetToken = generateResetToken();
+    sendResetToken(email, resetToken);
+
+    // Return a success response
+    return res.send('Reset token sent');
+});
+
+
+// Define the route to handle the password reset confirmation
+router.post("/api/resetpassword/:resetToken", async (req, res) => {
+    const { email, newPassword } = req.body;
+    const { resetToken } = req.params;
+
+    // Verify the reset token
+    if (!isValidResetToken(email, resetToken)) {
+        return res.status(400).send('Invalid reset token');
+    }
+
+    // Reset the user's password
+    const saltRounds = 10;
+
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+        // returns salt
+        bcrypt.hash(newPassword, salt, async (err, hash) => {
+            // returns hash with salt
+
+            try {
+                const user = await userDao.findUserByEmail(email);
+                user.password = hash;
+                const userUpdated = await userDao.updateUser(user);
+                res.send('Password reset successful');
+            }
+            catch (err) {
+                res.status(500).send('Internal server error');
+            }
+        });
+    });
+});
+
+/* 
+ **     **    *     *****     ****   
+ * *   * *    *    *     *   *     *
+ *  * *  *    *    *         *  
+ *   *   *    *     *****    *
+ *       *    *          *   *
+ *       *    *    *     *   *     *                                           
+ *       *    *     *****     ****                                                              
+* * * * * * * * * * * * * * * * * * */
+
 router.get('/edaman-test', (req, res) => {
     const exampleReturn =
     {
@@ -142,40 +206,40 @@ router.get('/edaman-test', (req, res) => {
                         [
                             {
                                 "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
-                                "label": "Serving", 
+                                "label": "Serving",
                                 "weight": 50.0
-                            }, 
-                            { 
-                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package", 
-                                "label": "Package", 
-                                "weight": 800.0 
-                            }, 
-                            { 
-                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram", 
-                                "label": "Gram", 
-                                "weight": 1.0 
-                            }, 
-                            { 
-                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce", 
-                                "label": "Ounce", 
-                                "weight": 28.349523125 
-                            }, 
-                            { 
-                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound", 
-                                "label": "Pound", 
-                                "weight": 453.59237 
-                            }, 
-                            { 
-                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram", 
-                                "label": "Kilogram", 
-                                "weight": 1000.0 
+                            },
+                            {
+                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+                                "label": "Package",
+                                "weight": 800.0
+                            },
+                            {
+                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+                                "label": "Gram",
+                                "weight": 1.0
+                            },
+                            {
+                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+                                "label": "Ounce",
+                                "weight": 28.349523125
+                            },
+                            {
+                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+                                "label": "Pound",
+                                "weight": 453.59237
+                            },
+                            {
+                                "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+                                "label": "Kilogram",
+                                "weight": 1000.0
                             }
                         ]
                 }
             ]
     }
     devAuthRLog(exampleReturn)
-    res.render("edaman", { exampleReturn : exampleReturn })
+    res.render("edaman", { exampleReturn: exampleReturn })
 });
 
 
@@ -211,10 +275,5 @@ router.get('/countdown', (req, res) => {
 
     res.render('countdown', { arrayObj });
 });
-
-
-
-
-
 
 module.exports = router;

@@ -180,6 +180,7 @@ a:hover {
  *
  **********/
 
+/* Modal */
 .modal {
   display: none;  /* Hidden by default */
   position: fixed;   /* Stay in place */
@@ -207,12 +208,11 @@ a:hover {
   top: 30%;
   left: 35%;
   transform: translate(-50%, -50%);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 1s ease-in-out;
   border-radius: 5px;
   border: 2px solid black;
   box-shadow: var(--base-box-shadow);
 }
-
 
 label, input {
   display: block;
@@ -240,15 +240,15 @@ form > button:hover {
 }
 
 #close-log-in, #reg-close, #close-new-details-form, #close-manual-barcode-form {
-    position: absolute;
-    right: var(--sm-spacing);
-    top: var(--sm-spacing);  
-    cursor:pointer;
-    font-size: var(--mid-text-size);
-    transition: transform 1s ease, color 1s ease;
-    transform: rotate(0deg) scale(1);
-    transform-origin: center;
-    font-weight: 400;
+  position: absolute;
+  right: var(--sm-spacing);
+  top: var(--sm-spacing);  
+  cursor:pointer;
+  font-size: var(--mid-text-size);
+  transition: transform 1s ease, color 1s ease;
+  transform: rotate(0deg) scale(1);
+  transform-origin: center;
+  font-weight: 400;
 }
 
 #close-log-in:hover, #reg-close:hover, #close-new-details-form:hover, #close-manual-barcode-form:hover {
@@ -259,6 +259,78 @@ form > button:hover {
   font-weight: 900;
 }
 
+/* Password Reset Modal */
+#password-reset-modal {
+  display: none;
+}
+
+#password-reset-modal.modal {
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-content p {
+  font-size: xx-small;
+  font-style: italic;
+}
+
+.modal-content p:hover {
+  cursor: pointer;
+  color: var(--tertiary-color);
+}
+
+#password-reset-modal .modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#password-reset-modal label,
+#password-reset-modal input {
+  display: block;
+  margin: 2px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 2px;
+  min-width: 12vw;
+}
+
+#password-reset-modal input:focus {
+  background-color: rgb(184, 184, 184);
+  }
+  
+  #password-reset-modal form > button {
+  border-radius: 5px;
+  margin: 0 calc(100%/4.3) 0 calc(100%/3);
+  padding: 10px;
+  }
+  
+  #password-reset-modal form > button:hover {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  }
+  
+  #password-reset-modal .close {
+  position: absolute;
+  right: var(--sm-spacing);
+  top: var(--sm-spacing);
+  cursor:pointer;
+  font-size: var(--mid-text-size);
+  transition: transform 1s ease, color 1s ease;
+  transform: rotate(0deg) scale(1);
+  transform-origin: center;
+  font-weight: 400;
+  }
+  
+  #password-reset-modal .close:hover {
+  transform: rotate(180deg) scale(1.3);
+  color: var(--tertiary-color);
+  transition: transform 1s ease, color 1s ease;
+  transform-origin: center;
+  font-weight: 900;
+  }
 /**************************************************************************
  *
  *      Hero Section

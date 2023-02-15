@@ -12,4 +12,22 @@
   <input type="password" name="password" required>
   <br>
   <button type="submit">Log In</button>
+  <p onclick="toggleNav()">
+    Trouble Logging In?
+  </p>
 </form>
+
+<!-- password reset -->
+
+<div id="password-reset-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" id="close-password-reset">&times;</span>
+    <h2>Reset Password</h2>
+    <p>Please enter your email address to receive a password reset link:</p>
+    <form id="password-reset-form" method="post" action="/api/resetpassword">
+      <label for="email">Email address:</label>
+      <input type="email" name="email" required>
+      <button type="submit">Reset Password</button>
+    </form>
+  </div>
+</div>
