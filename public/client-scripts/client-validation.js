@@ -110,19 +110,11 @@ function isValidPassword(password) {
 
 
 // password resets
-
-const passwordResetModel = document.querySelector("password-reset-modal");
-  const hamburgerMenu = document.getElementById("hamburger-menu");
-  function toggleNav() {
-    if (nav.style.display === "flex") {
-      nav.style.display = "none";
-      hamburgerMenu.classList.remove("open");
-    } else {
-      nav.style.display = "flex";
-      nav.style.flexDirection = "column";
-      hamburgerMenu.classList.add("open");
-    }
-  }
+const pwdResetModel = document.querySelector("#password-reset-modal");
+  function pwdResetModal() {
+    pwdResetModel.style.display = "block"; 
+    pwdResetModel.classList.add("show");
+  };
 
 document.querySelector('#password-reset-form').addEventListener('submit', async (event) => {
   event.preventDefault();

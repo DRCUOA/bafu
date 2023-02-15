@@ -38,7 +38,7 @@ if (document.getElementById('register-button') || document.getElementById('sign-
   header.style.display = "None";
 
   let footer = document.querySelector('#footer');
-  footer.style.display = "None";
+  // footer.style.display = "None";
 }
 
 if (document.querySelector("#item-summary")) {
