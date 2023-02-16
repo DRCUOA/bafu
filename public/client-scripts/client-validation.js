@@ -110,17 +110,14 @@ function isValidPassword(password) {
 
 
 // password resets
-// const pwdResetModel = document.querySelector("#password-reset-modal");
-//   function pwdResetModal() {
-//     pwdResetModel.style.display = "block"; 
-//     pwdResetModel.classList.add("show");
-//   };
-
 document.querySelector('#password-reset-form').addEventListener('submit', async (event) => {
   event.preventDefault();
-  const email = document.querySelector('#email').value;
+  const email = document.querySelector('#email2').value;
+  console.log(email)
   if (email !== '') {
+    console.log('email not null')
     const emailExists = await isEmailForResetPassword(email);
+    console.log('mailExists', emailExists);
     if (emailExists) {
       // Generate a reset token and send it to the user's email address
       const resetToken = generateResetToken();
@@ -139,7 +136,7 @@ document.querySelector('#password-reset-form').addEventListener('submit', async 
       // Show an error message if the email does not exist
       document.querySelector('#email-status').innerText = 'Email not found';
     }
-  }
+  } else ("input is null")
 });
 
 // Function to check if the email exists for the password reset
@@ -148,3 +145,15 @@ async function isEmailForResetPassword(email) {
   const user = await response.json();
   return user !== null;
 }
+
+function isEmailForResetPassword(email) {
+  return fetch(`/api/check-email-for-reset-password?email=${encodeURIComponent(email)}`)
+    .then(response => response.json())
+    .then(data => data.emailExists)
+    .catch(error => {
+      console.error(`Error checking email for password reset: ${error.message}`);
+      return false;
+    });
+}
+
+

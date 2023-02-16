@@ -66,11 +66,11 @@ async function retrieveUserWithAuthToken(authToken) {
 async function retrieveUserWithEmail(email) {
   devUserDAO('retrieveUserWithEmail(email)')
   const db = await dbPromise;
-  const userEmail = await db.get(SQL`
+  const user = await db.get(SQL`
       SELECT * FROM app_users 
       WHERE
       email = ${email};`);
-  return userEmail;
+  return user;
 };
 
 /** Update user details in db with new authToken.

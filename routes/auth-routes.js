@@ -7,10 +7,11 @@ const debug = require('debug');
 
 // setup debug namespaces
 const devAuthRLog = debug('devLog:routing_auth');
-// import dao required
+// app module imports
 const userDao = require('../models/user-dao');
-// import controller required
-const userController = require('../controllers/auth-controller')
+const authController = require('../controllers/auth-controller');
+const resetTokens = require('../utils/generateResetToken')
+const emailClient = require('../utils/sendemail');
 
 router.post("/new-account", async (req, res) => {
     devAuthRLog("Received a request to the '/new-account' route");
@@ -104,21 +105,27 @@ router.post('/login', async (req, res) => {
 
 //password reset handling:
 
+// intial client side check if email exists in the db.  return trus if exisits or false if not in db.
+router.get('/api/user/email/:email', (req,res) => {
+    devAuthRLog('/api/user/email/', req.params.email);
+    return isInDb = authController.checkEmailInDb(req.params.email);
+});
+
 // Define the route to handle the password reset request
 router.post("/api/resetpassword", async (req, res) => {
     devAuthRLog("/api/resetpassword  ?email = ${req.body",)
     const { email } = req.body;
     // Check if the email is valid
-    const isValid = await isValid(email)
-
-    if (!isValidEmail(email)) {
+    const isValid = await authController.checkEmailInDb(email);
+    if (!isValid) {
         return res.status(400).send('Invalid email');
     }
-
-    // Generate a reset token and send it to the user's email address
-    const resetToken = generateResetToken();
-    sendResetToken(email, resetToken);
-
+    // Generate a reset token - send to user's email
+    const resetToken = resetTokens.generateResetToken();
+    const to = email;
+    const subject = 'Password Reset | homeshopping app';
+    const body = `<p>Here is your password reset token: ${resetToken}</p>`
+    emailClient.sendEmail(to, subject, body);
     // Return a success response
     return res.send('Reset token sent');
 });
@@ -164,6 +171,14 @@ router.post("/api/resetpassword/:resetToken", async (req, res) => {
  *       *    *    *     *   *     *                                           
  *       *    *     *****     ****                                                              
 * * * * * * * * * * * * * * * * * * */
+
+
+const crypto = require("crypto");
+
+router.get("/rd", (req,res) => {
+    res.send(crypto.randomBytes(8).toString("base64"));
+});
+
 
 router.get('/edaman-test', (req, res) => {
     const exampleReturn =

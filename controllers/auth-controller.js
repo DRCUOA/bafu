@@ -35,7 +35,26 @@ async function verifyAuthenticated(req, res, next) {
   }
 };
 
+async function checkEmailInDb(email) {
+  devAuthCtrl(`checkEmailInDb(${email})`);
+  try {
+    const result = userDao.retrieveUserWithEmail(email);
+    if(user) {
+      return true
+    } else {
+      return false
+    }  
+  } catch (err) {
+    devAuthCtrl('err');
+    return false;
+  }
+}
+
+
+
 module.exports = {
   addUserToLocals,
+  checkEmailInDb,
   verifyAuthenticated
 }
+
