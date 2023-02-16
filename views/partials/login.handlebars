@@ -21,12 +21,13 @@
 <div id="password-reset-modal" class="modal" style="display: none;">
   <div class="modal-content">
     <span class="close" id="close-password-reset">&times;</span>
-    <h2>Reset Password</h2>
+    <img src="/assets/logo-nb-nt-smiley-200.webp" alt="logo"
+      style="height: 40px; width: 40px; margin: -9px -10px -1px 0px;">
     <p>Please enter your email address to receive a password reset link:</p>
     <form id="password-reset-form" method="post" action="/api/resetpassword">
       <label for="email">Email address:</label>
       <input type="email" name="email" required>
-      <button id="password-reset-button" type="submit">Reset Password</button>
+      <button id="password-reset-button" type="submit">Send</button>
     </form>
   </div>
 </div>
