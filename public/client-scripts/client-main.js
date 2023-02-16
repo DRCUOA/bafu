@@ -22,6 +22,7 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
   const modalReg = document.querySelector('#register-modal');
   const modalSignIn = document.querySelector('#sign-in-modal');
   const modelPwdRest = document.querySelector('#password-reset-modal');
+  
   closeRegButton.addEventListener('click', function () {
     modalReg.style.display = "none";
   });
@@ -32,6 +33,20 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
     modelPwdRest.style.display = "none";
   });
 
+  // add esc to close modals  
+  document.addEventListener('keyup', (event) => {
+    if (event.key === "Escape") {
+      if(modalReg.style.display) {
+        modalReg.style.display = "none";
+      }
+      if(modalSignIn) {
+        modalSignIn.style.display = "none";
+      }
+      if(modelPwdRest) {
+        modelPwdRest.style.display = "none";
+      }
+    }
+  });
   //section break
 
   let header = document.querySelector('#header');
