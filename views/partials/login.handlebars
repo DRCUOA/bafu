@@ -17,17 +17,34 @@
   </p>
 </form>
 
-<!-- password reset modal-->
-<div id="password-reset-modal" class="modal" style="display: none;">
+<!-- password reset start process modal-->
+<div id="password-reset-modal" class="modal">
   <div class="modal-content">
     <span class="close" id="close-password-reset">&times;</span>
     <img src="/assets/logo-nb-nt-smiley-200.webp" alt="logo"
       style="height: 40px; width: 40px; margin: -9px -10px -1px 0px;">
     <p>Please enter your email address to receive a password reset link:</p>
     <form id="password-reset-form" method="post" action="/api/resetpassword">
-      <label for="email">Email address:</label>
-      <input type="email" name="email" id="email2" required>
-      <button id="password-reset-button" type="submit">Send</button>
+      <label for="email2">Email address:</label>
+      <input type="email" name="email2" id="email2" required>
+      <p id="email-status"></p>
+      <button type="submit" id="password-reset-button" disabled>Send Reset Email</button>
+    </form>
+  </div>
+</div>
+
+<!-- password reset confirmation modal-->
+<div class="modal" id="password-reset-confirmation-modal">
+  <div class="modal-content">
+    <h3>Confirm Password Reset</h3>
+    <form id="reset-password-confirmation-form">
+      <input type="hidden" id="email" name="email" value="{{email}}">
+      <input type="hidden" id="resetToken" name="resetToken" value="{{resetToken}}">
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" name="newPassword" required>
+      <label for="confirmNewPassword">Confirm New Password:</label>
+      <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+      <button id="reset-password-confirmation-submit" type="submit" disabled>Submit</button>
     </form>
   </div>
 </div>

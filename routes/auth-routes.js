@@ -106,29 +106,48 @@ router.post('/login', async (req, res) => {
 //password reset handling:
 
 // intial client side check if email exists in the db.  return trus if exisits or false if not in db.
-router.get('/api/user/email/:email', (req,res) => {
+router.get('/api/user/email/:email', (req, res) => {
     devAuthRLog('/api/user/email/', req.params.email);
-    return isInDb = authController.checkEmailInDb(req.params.email);
+    const isInDb = authController.checkEmailInDb(req.params.email);
+    res.json({ emailExists: isInDb });
 });
 
-// Define the route to handle the password reset request
-router.post("/api/resetpassword", async (req, res) => {
-    devAuthRLog("/api/resetpassword  ?email = ${req.body",)
+router.post('/api/resetpassword', async (req, res) => {
     const { email } = req.body;
+
     // Check if the email is valid
     const isValid = await authController.checkEmailInDb(email);
     if (!isValid) {
         return res.status(400).send('Invalid email');
     }
-    // Generate a reset token - send to user's email
+
+    // Generate a reset token and send it to the user's email address
     const resetToken = resetTokens.generateResetToken();
+    const resetTokenExpiration = new Date(Date.now() + process.env.RESET_TOKEN_EXPIRATION_TIME).toISOString();
+    const resetTokenSaved = await authController.saveResetToken(email, resetToken, resetTokenExpiration);
+    if (!resetTokenSaved) {
+        return res.status(500).send('Internal server error');
+    }
+
+    const resetUrl = `http://${req.headers.host}/resetpassword/${resetToken}`;
+    
     const to = email;
-    const subject = 'Password Reset | homeshopping app';
-    const body = `<p>Here is your password reset token: ${resetToken}</p>`
-    emailClient.sendEmail(to, subject, body);
-    // Return a success response
-    return res.send('Reset token sent');
+    const subject = 'Reset your password for Homeshopping app';
+    const html = `
+        <p>You are receiving this email because you have requested to reset your password for Homeshopping app. Please click the link below to create a new password:</p>
+        <a href="${resetUrl}">${resetUrl}</a>
+        <p>If you did not request a password reset, please ignore this email and your password will remain unchanged.</p>
+    `;
+
+    try {
+        await emailClient.sendEmail(to, subject, html);
+        return res.status(200).send('Reset email sent');
+    } catch (error) {
+        console.error(`Error sending reset email: ${error.message}`);
+        return res.status(500).send('Internal server error');
+    }
 });
+
 
 
 // Define the route to handle the password reset confirmation
@@ -175,7 +194,7 @@ router.post("/api/resetpassword/:resetToken", async (req, res) => {
 
 const crypto = require("crypto");
 
-router.get("/rd", (req,res) => {
+router.get("/rd", (req, res) => {
     res.send(crypto.randomBytes(8).toString("base64"));
 });
 

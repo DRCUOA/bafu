@@ -3,16 +3,19 @@
 */
 
 
-// regisitration and login helpers:
+// register/login/password reset
 if (document.querySelector('#register-button') || document.querySelector('#sign-in-button') || document.querySelector('#reset-pwd-btn')) {
   document.querySelector('#register-button').addEventListener('click', function () {
     document.querySelector('#register-modal').style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
   });
   document.querySelector('#sign-in-button').addEventListener('click', function () {
     document.querySelector('#sign-in-modal').style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
   });
   document.querySelector('#reset-pwd-btn').addEventListener('click', function () {
     document.querySelector('#password-reset-modal').style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
   });
 
   // manage model close (times) btn events
@@ -47,6 +50,8 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
       }
     }
   });
+
+  
   //section break
 
   let header = document.querySelector('#header');
