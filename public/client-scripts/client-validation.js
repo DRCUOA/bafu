@@ -112,12 +112,13 @@ function isValidPassword(password) {
 document.querySelector('#password-reset-form').addEventListener('submit', async (event) => {
   event.preventDefault();
   const email = document.querySelector('#email2').value;
-  console.log(email)
+  console.log('115', email)
   if (email !== '') {
     console.log('email not null')
     const emailExists = await isEmailForResetPassword(email);
     console.log('mailExists', emailExists);
     if (emailExists) {
+      console.log('121', email)
       await sendPasswordResetEmail(email);
       document.querySelector('#password-reset-form').style.display = 'none';
       document.querySelector('#password-reset-success').style.display = 'block';
@@ -132,6 +133,7 @@ document.querySelector('#password-reset-form').addEventListener('submit', async 
 
 // Function to check if the email exists for the password reset
 async function isEmailForResetPassword(email) {
+  console.log('136', email)
   return await fetch(`/api/user/email/${encodeURIComponent(email.toLowerCase())}`)
     .then(response => response.json())
     .then(data => data.emailExists)
@@ -142,12 +144,13 @@ async function isEmailForResetPassword(email) {
 }
 
 async function sendPasswordResetEmail(email) {
-  return await fetch('/api/resetpassword', {
+  const encodedEmail = encodeURIComponent(email);
+  
+  return await fetch(`/api/resetpassword?email=${encodedEmail}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email: email })
+    }
   })
     .then(response => {
       if (response.ok) {
@@ -161,6 +164,7 @@ async function sendPasswordResetEmail(email) {
     });
 }
 
+
 // Extract the reset token from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const resetToken = urlParams.get('resetToken');
@@ -169,39 +173,41 @@ const resetToken = urlParams.get('resetToken');
 document.querySelector('#resetToken').value = resetToken;
 
 // Handle the form submission
-document.querySelector('#reset-password-form').addEventListener('submit', async (event) => {
-  event.preventDefault();
+if (document.querySelector('#reset-password-form')) {
+  document.querySelector('#reset-password-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-  // Extract the form data
-  const email = document.querySelector('#email').value;
-  const resetToken = document.querySelector('#resetToken').value;
-  const newPassword = document.querySelector('#newPassword').value;
-  const confirmNewPassword = document.querySelector('#confirmNewPassword').value;
+    // Extract the form data
+    const email = document.querySelector('#email').value;
+    const resetToken = document.querySelector('#resetToken').value;
+    const newPassword = document.querySelector('#newPassword').value;
+    const confirmNewPassword = document.querySelector('#confirmNewPassword').value;
 
-  // Verify that the new password and confirm password fields match
-  if (newPassword !== confirmNewPassword) {
-    document.querySelector('#password-match-status').innerText = 'Passwords do not match';
-    return;
-  }
+    // Verify that the new password and confirm password fields match
+    if (newPassword !== confirmNewPassword) {
+      document.querySelector('#password-match-status').innerText = 'Passwords do not match';
+      return;
+    }
 
-  // Send the password reset confirmation to the server
-  const response = await fetch('/api/resetpassword', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email: email,
-      resetToken: resetToken,
-      newPassword: newPassword
-    })
+    // Send the password reset confirmation to the server
+    const response = await fetch('/api/resetpassword', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        resetToken: resetToken,
+        newPassword: newPassword
+      })
+    });
+
+    if (response.ok) {
+      // Redirect to the login page if the password reset was successful
+      window.location.href = '/login';
+    } else {
+      // Display an error message if the password reset failed
+      document.querySelector('#password-reset-status').innerText = 'Password reset failed';
+    }
   });
-
-  if (response.ok) {
-    // Redirect to the login page if the password reset was successful
-    window.location.href = '/login';
-  } else {
-    // Display an error message if the password reset failed
-    document.querySelector('#password-reset-status').innerText = 'Password reset failed';
-  }
-});
+}

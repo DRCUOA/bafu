@@ -28,7 +28,7 @@
       <label for="email2">Email address:</label>
       <input type="email" name="email2" id="email2" required>
       <p id="email-status"></p>
-      <button type="submit" id="password-reset-button" disabled>Send Reset Email</button>
+      <button type="submit" id="password-reset-button">Send Reset Email</button>
     </form>
   </div>
 </div>
@@ -38,13 +38,13 @@
   <div class="modal-content">
     <h3>Confirm Password Reset</h3>
     <form id="reset-password-confirmation-form">
-      <input type="hidden" id="email" name="email" value="{{email}}">
+      <input type="hidden" id="email3" name="email3" value="{{email2}}">
       <input type="hidden" id="resetToken" name="resetToken" value="{{resetToken}}">
       <label for="newPassword">New Password:</label>
       <input type="password" id="newPassword" name="newPassword" required>
       <label for="confirmNewPassword">Confirm New Password:</label>
       <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
-      <button id="reset-password-confirmation-submit" type="submit" disabled>Submit</button>
+      <button id="reset-password-confirmation-submit" type="submit" >Submit</button>
     </form>
   </div>
 </div>

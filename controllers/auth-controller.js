@@ -38,7 +38,7 @@ async function verifyAuthenticated(req, res, next) {
 async function checkEmailInDb(email) {
   devAuthCtrl(`checkEmailInDb(${email})`);
   try {
-    const result = userDao.retrieveUserWithEmail(email);
+    const user = await userDao.retrieveUserWithEmail(email);
     if(user) {
       return true
     } else {

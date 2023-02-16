@@ -113,17 +113,18 @@ router.get('/api/user/email/:email', (req, res) => {
 });
 
 router.post('/api/resetpassword', async (req, res) => {
-    const { email } = req.body;
-
+    const email = req.query.email;
+    devAuthRLog(`Received reset password request for email: ${email}`)
     // Check if the email is valid
     const isValid = await authController.checkEmailInDb(email);
+    devAuthRLog('isValid', isValid);
     if (!isValid) {
         return res.status(400).send('Invalid email');
     }
 
     // Generate a reset token and send it to the user's email address
-    const resetToken = resetTokens.generateResetToken();
-    const resetTokenExpiration = new Date(Date.now() + process.env.RESET_TOKEN_EXPIRATION_TIME).toISOString();
+    const resetToken = resetTokens.generateResetToken(email);
+    const resetTokenExpiration = new Date(Date.now() + (60 * 60 * 1000)).toISOString();
     const resetTokenSaved = await authController.saveResetToken(email, resetToken, resetTokenExpiration);
     if (!resetTokenSaved) {
         return res.status(500).send('Internal server error');
