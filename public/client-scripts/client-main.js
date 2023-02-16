@@ -4,35 +4,35 @@
 
 
 // regisitration and login helpers:
-if (document.getElementById('register-button') || document.getElementById('sign-in-button')) {
-  document.getElementById('register-button').addEventListener('click', function () {
-    document.getElementById('register-modal').style.display = 'block';
+if (document.querySelector('#register-button') || document.querySelector('#sign-in-button') || document.querySelector('#reset-pwd-btn')) {
+  document.querySelector('#register-button').addEventListener('click', function () {
+    document.querySelector('#register-modal').style.display = 'block';
   });
-  document.getElementById('sign-in-button').addEventListener('click', function () {
-    document.getElementById('sign-in-modal').style.display = 'block';
+  document.querySelector('#sign-in-button').addEventListener('click', function () {
+    document.querySelector('#sign-in-modal').style.display = 'block';
   });
-  // register
-  // Get the close btn
+  document.querySelector('#reset-pwd-btn').addEventListener('click', function () {
+    document.querySelector('#password-reset-modal').style.display = 'block';
+  });
+
+  // manage model close (times) btn events
   const closeRegButton = document.querySelector('#reg-close');
-
-  // Get the modal element
+  const closeSignInButton = document.querySelector('#close-log-in');
+  const pwdResetButton = document.querySelector('#close-password-reset');
   const modalReg = document.querySelector('#register-modal');
-
-  // When the close button is clicked, set the modal's display property to "none"
+  const modalSignIn = document.querySelector('#sign-in-modal');
+  const modelPwdRest = document.querySelector('#password-reset-modal');
   closeRegButton.addEventListener('click', function () {
     modalReg.style.display = "none";
   });
-
-  // login
-  const closeSignInButton = document.querySelector('#close-log-in');
-
-  // Get the modal element
-  const modalSignIn = document.querySelector('#sign-in-modal');
-
-  // When the close button is clicked, set the modal's display property to "none"
   closeSignInButton.addEventListener('click', function () {
     modalSignIn.style.display = "none";
   });
+  pwdResetButton.addEventListener('click', function () {
+    modelPwdRest.style.display = "none";
+  });
+
+  //section break
 
   let header = document.querySelector('#header');
   header.style.display = "None";

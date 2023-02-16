@@ -110,11 +110,11 @@ function isValidPassword(password) {
 
 
 // password resets
-const pwdResetModel = document.querySelector("#password-reset-modal");
-  function pwdResetModal() {
-    pwdResetModel.style.display = "block"; 
-    pwdResetModel.classList.add("show");
-  };
+// const pwdResetModel = document.querySelector("#password-reset-modal");
+//   function pwdResetModal() {
+//     pwdResetModel.style.display = "block"; 
+//     pwdResetModel.classList.add("show");
+//   };
 
 document.querySelector('#password-reset-form').addEventListener('submit', async (event) => {
   event.preventDefault();
