@@ -40,21 +40,39 @@ async function checkEmailInDb(email) {
   try {
     const user = await userDao.retrieveUserWithEmail(email);
     if(user) {
-      return true
+      return true;
     } else {
-      return false
-    }  
+      return false;
+    }
   } catch (err) {
-    devAuthCtrl('err');
+    devAuthCtrl(`Error checking email in DB: ${error.message}`);
     return false;
   }
 }
 
+async function saveResetToken(email, token, expiration) {
+  try {
+    const user = await userDao.retrieveUserWithEmail(email);
+    if (!user) {
+      return false;
+    }
 
+    user.pwdResetToken = token;
+    user.pwdResetToken_expiration = expiration;
+
+    await userDao.updateUser(user);
+
+    return true;
+  } catch (error) {
+    devAuthCtrl(`Error saving reset token: ${error.message}`);
+    return false;
+  }
+}
 
 module.exports = {
   addUserToLocals,
   checkEmailInDb,
-  verifyAuthenticated
+  verifyAuthenticated,
+  saveResetToken
 }
 

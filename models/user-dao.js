@@ -73,21 +73,35 @@ async function retrieveUserWithEmail(email) {
   return user;
 };
 
-/** Update user details in db with new authToken.
+/** Update existing user details in db using passed new user object keys/values.
  * @param {object} user
  */
 async function updateUser(user) {
-  devUserDAO(`updateUser(user): attempt to update user authToken`)
+  if (!user || typeof user !== 'object' || Object.keys(user).length === 0) {
+    devUserDAO(`Invalid user object: ${user}`);
+    return false;
+  }
+
+  devUserDAO(`updateUser(user): attempt to update user...`);
+  devUserDAO(`User: ${user.username} (id: ${user.id} ) ...`);
   db = await dbPromise;
   const updated_at = moment(new (Date)).format('YYYY-MM-DD HH:mm:ss');
-  devUserDAO(user.authToken, updated_at, user.id);
-  await db.run(SQL`
-        UPDATE app_users
-        SET 
-        authToken = ${user.authToken},
-        updated_at = ${updated_at}
-        WHERE id = ${user.id};`);
-};
+  devUserDAO(`User: ${user.username} (id: ${user.id} ) updated at: ${updated_at}`);
+
+  try {
+    await db.run(SQL`
+      UPDATE app_users
+      SET authToken = ${user.authToken},
+          updated_at = ${updated_at}
+      WHERE id = ${user.id};
+    `);
+    return true;
+
+  } catch (err) {
+    devUserDAO(`Error updating user: ${err.message}`);
+    return false;
+  }
+}
 
 module.exports = {
   createUser,
@@ -96,3 +110,18 @@ module.exports = {
   retrieveUserWithEmail,
   updateUser
 };
+
+
+/*LEARNING NOTE:
+
+Dynamic generation of the SQL SET Clause using Object.keys/values:
+
+Using Object.keys and Object.values methods to dynamically generate the SET clause has a few advantages:
+
+It allows for more efficient and cleaner code. Instead of having to manually create each field and value pair, we can dynamically generate them using the Object.keys and Object.values methods. This can greatly reduce the amount of code that we need to write and maintain.
+
+It makes our code more flexible. If we need to add or remove fields in the future, we can do so without having to change the SQL statement. The Object.keys and Object.values methods will automatically generate the correct SQL statement based on the fields that are present in the user object.
+
+It helps to prevent errors. By dynamically generating the SET clause, we can ensure that we are only updating the fields that we want to update. This can help to prevent errors that can occur when manually creating the SET clause.
+
+*/

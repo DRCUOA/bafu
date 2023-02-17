@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer');
+const debug = require('debug');
+const devUtilsEmailClient = debug('devLog:utils_emailClient:');
 
 async function sendEmail(to, subject, body) {
   try {
@@ -20,9 +22,9 @@ async function sendEmail(to, subject, body) {
     };
 
     await transporter.sendMail(mailOptions);
-    console.log(`Email sent to ${to}`);
-  } catch (error) {
-    console.error(`Error sending email: ${error.message}`);
+    devUtilsEmailClient(`Email sent to ${to}`);
+  } catch (err) {
+    devUtilsEmailClient(`Error sending email: ${err.message}`);
   }
 }
 

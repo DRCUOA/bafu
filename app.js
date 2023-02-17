@@ -24,14 +24,20 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 customHelpers.register(hbs.handlebars);
-
-//http logging
 const morgan = require('morgan');
-app.use(morgan('tiny'));
-//dev debug logging
 const debug = require('debug');
+
 const devApp = debug('devLog:app_main');
 devApp('dev log enabled');
+
+app.use(morgan('tiny', {
+  stream: {
+    write: (message) => {
+      devApp(message.trim());
+    }
+  }
+}));
+
 
 //set-up cookie parser
 const cookieParser = require('cookie-parser');
