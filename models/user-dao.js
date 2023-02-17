@@ -64,12 +64,13 @@ async function retrieveUserWithAuthToken(authToken) {
  * @param email a query string
  */
 async function retrieveUserWithEmail(email) {
-  devUserDAO('retrieveUserWithEmail(email)')
+  devUserDAO(`retrieveUserWithEmail(email: ${email})`)
   const db = await dbPromise;
   const user = await db.get(SQL`
       SELECT * FROM app_users 
       WHERE
       email = ${email};`);
+  devUserDAO(user.username)
   return user;
 };
 
@@ -77,38 +78,131 @@ async function retrieveUserWithEmail(email) {
  * @param {object} user
  */
 async function updateUser(user) {
+  devUserDAO(`updateUser(${user.username})`)
   if (!user || typeof user !== 'object' || Object.keys(user).length === 0) {
     devUserDAO(`Invalid user object: ${user}`);
     return false;
   }
 
+  db = await dbPromise;
+
   devUserDAO(`updateUser(user): attempt to update user...`);
   devUserDAO(`User: ${user.username} (id: ${user.id} ) ...`);
-  db = await dbPromise;
   const updated_at = moment(new (Date)).format('YYYY-MM-DD HH:mm:ss');
-  devUserDAO(`User: ${user.username} (id: ${user.id} ) updated at: ${updated_at}`);
-
+  const setClause = Object.keys(user).map(key => `${key} = ?`).join(', ');
+  const values = Object.values(user).concat(updated_at, user.id);
+  devUserDAO(`setClause: ${setClause}`);
+  devUserDAO(`values: ${values}`);
+  const sql = `UPDATE app_users SET ${setClause}, updated_at = ? WHERE id = ?;`;
+  devUserDAO(`sql: ${sql}`);
   try {
-    await db.run(SQL`
-      UPDATE app_users
-      SET authToken = ${user.authToken},
-          updated_at = ${updated_at}
-      WHERE id = ${user.id};
-    `);
+    await db.run(sql, values);
+    devUserDAO(`User: ${user.username} (id: ${user.id} ) updated at: ${updated_at}`);
     return true;
-
   } catch (err) {
     devUserDAO(`Error updating user: ${err.message}`);
     return false;
   }
 }
 
+
+//start of reset section
+// Retrieve a user by email - already coverd above
+// function retrieveUserWithEmail(email) {
+//   return new Promise((resolve, reject) => {
+//     const sql = `SELECT * FROM app_users WHERE email = ?`;
+//     db.get(sql, [email], (err, row) => {
+//       if (err) {
+//         reject(err);
+//       } else {
+//         resolve(row);
+//       }
+//     });
+//   });
+// }
+
+// Retrieve a user by id
+function retrieveUserWithId(id) {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT * FROM app_users WHERE id = ?`;
+    db.get(sql, [id], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
+    });
+  });
+}
+
+// Update a user's password
+function updateUserPassword(email, password) {
+  return new Promise((resolve, reject) => {
+    const sql = `UPDATE app_users SET password = ? WHERE email = ?`;
+    db.run(sql, [password, email], function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(this.changes > 0);
+      }
+    });
+  });
+}
+
+// Save a reset token for a user
+function saveResetToken(email, token, expiration) {
+  return new Promise((resolve, reject) => {
+    const sql = `INSERT INTO reset_tokens (email, token, expires_at) VALUES (?, ?, ?)`;
+    db.run(sql, [email, token, expiration], function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(this.lastID);
+      }
+    });
+  });
+}
+
+// Retrieve a reset token for a user
+function getResetToken(email) {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT * FROM reset_tokens WHERE email = ?`;
+    db.get(sql, [email], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
+    });
+  });
+}
+
+// Delete a reset token for a user
+function deleteResetToken(email) {
+  return new Promise((resolve, reject) => {
+    const sql = `DELETE FROM reset_tokens WHERE email = ?`;
+    db.run(sql, [email], function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(this.changes > 0);
+      }
+    });
+  });
+}
+//end of reset section
+
 module.exports = {
   createUser,
   retrieveUserWithUserName,
   retrieveUserWithAuthToken,
   retrieveUserWithEmail,
-  updateUser
+  retrieveUserWithId,
+  updateUserPassword,
+  updateUser,
+  deleteResetToken,
+  saveResetToken,
+  getResetToken,
 };
 
 

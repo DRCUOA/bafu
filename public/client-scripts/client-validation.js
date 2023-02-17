@@ -112,13 +112,10 @@ function isValidPassword(password) {
 document.querySelector('#password-reset-form').addEventListener('submit', async (event) => {
   event.preventDefault();
   const email = document.querySelector('#email2').value;
-  console.log('115', email)
   if (email !== '') {
-    console.log('email not null')
     const emailExists = await isEmailForResetPassword(email);
     console.log('mailExists', emailExists);
     if (emailExists) {
-      console.log('121', email)
       await sendPasswordResetEmail(email);
       document.querySelector('#password-reset-form').style.display = 'none';
       document.querySelector('#password-reset-success').style.display = 'block';
@@ -133,7 +130,6 @@ document.querySelector('#password-reset-form').addEventListener('submit', async 
 
 // Function to check if the email exists for the password reset
 async function isEmailForResetPassword(email) {
-  console.log('136', email)
   return await fetch(`/api/user/email/${encodeURIComponent(email.toLowerCase())}`)
     .then(response => response.json())
     .then(data => data.emailExists)
@@ -171,6 +167,10 @@ const resetToken = urlParams.get('resetToken');
 
 // Store the reset token in the hidden input field
 document.querySelector('#resetToken').value = resetToken;
+
+// Redirect to the password reset confirmation page
+const confirmationUrl = `http://${window.location.host}/reset-password-confirmation?resetToken=${resetToken}`;
+window.location.href = confirmationUrl;
 
 // Handle the form submission
 if (document.querySelector('#reset-password-form')) {

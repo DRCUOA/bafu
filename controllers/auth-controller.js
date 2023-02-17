@@ -1,7 +1,7 @@
 const debug = require('debug');
 
 // debug namespace
-const devAuthCtrl = debug('devLOG:controller_auth');
+const devAuthCtrl = debug('devLog:controller_auth');
 // import dao
 const userDao = require('../models/user-dao');
 
@@ -51,20 +51,24 @@ async function checkEmailInDb(email) {
 }
 
 async function saveResetToken(email, token, expiration) {
+  devAuthCtrl(`Saving reset token for email: ${email}, token: ${token}, expiration: ${expiration}`);
   try {
     const user = await userDao.retrieveUserWithEmail(email);
     if (!user) {
+      devAuthCtrl(`User not found for email: ${email}`);
       return false;
     }
 
     user.pwdResetToken = token;
     user.pwdResetToken_expiration = expiration;
-
+    devAuthCtrl(`updated user object being sent to dao:  ${user.pwdResetToken}`)
     await userDao.updateUser(user);
+    devAuthCtrl(`Reset token saved for email: ${email}`);
 
     return true;
+
   } catch (error) {
-    devAuthCtrl(`Error saving reset token: ${error.message}`);
+    console.error(`Error saving reset token: ${error.message}`);
     return false;
   }
 }
