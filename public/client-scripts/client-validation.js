@@ -119,7 +119,7 @@ document.querySelector('#password-reset-form').addEventListener('submit', async 
     if (emailExists) {
       await sendPasswordResetEmail(email);
       document.querySelector('#password-reset-form').style.display = 'none';
-      document.querySelector('#password-reset-success').style.display = 'block';
+      // document.querySelector('#password-reset-confirmation').style.display = 'block';
     } else {
       // Show an error message if the email does not exist
       document.querySelector('#email-status').innerText = 'Email not found';
@@ -140,6 +140,7 @@ async function isEmailForResetPassword(email) {
     });
 }
 
+// Function to send the reset email to user if email is in the db
 async function sendPasswordResetEmail(email) {
   const encodedEmail = encodeURIComponent(email);
   
@@ -161,16 +162,30 @@ async function sendPasswordResetEmail(email) {
     });
 }
 
-
 // Extract the reset token from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const resetToken = urlParams.get('resetToken');
 
-// Store the reset token in the hidden input field
+// Get the current URL
+// const url = window.location.href;
+// const parts = url.split('/');
+// const resetToken = parts[parts.length - 1];
+
+// // Store the reset token in the hidden input field
+// document.querySelector('#resetToken').value = resetToken;
+
+const url = window.location.href;
+const parts = url.split('/');
+const resetToken = parts[parts.length - 2];
+const email = parts[parts.length - 1];
 document.querySelector('#resetToken').value = resetToken;
+document.querySelector('#email').value = email;
+
+
 
 // Redirect to the password reset confirmation page
-const confirmationUrl = `http://${window.location.host}/reset-password-confirmation?resetToken=${resetToken}`;
+// const confirmationUrl = `http://${window.location.host}/reset-password-confirmation?resetToken=${resetToken}`;
+
+const confirmationUrl = `http://${window.location.host}/reset-password-confirmation/${resetToken}`;
+
 window.location.href = confirmationUrl;
 
 // Handle the form submission
@@ -202,8 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newPassword: newPassword
       })
     });
-  });
-
+  
     if (response.ok) {
       // Redirect to the login page if the password reset was successful
       window.location.href = '/login';
@@ -212,3 +226,4 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('#password-reset-status').innerText = 'Password reset failed';
     }
   });
+});

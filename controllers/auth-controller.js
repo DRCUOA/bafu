@@ -45,7 +45,7 @@ async function checkEmailInDb(email) {
       return false;
     }
   } catch (err) {
-    devAuthCtrl(`Error checking email in DB: ${error.message}`);
+    devAuthCtrl(`Error checking email in DB: ${err.message}`);
     return false;
   }
 }

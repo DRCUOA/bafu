@@ -125,16 +125,20 @@ router.post('/api/resetpassword', async (req, res) => {
     // Generate a reset token and send it to the user's email address
     const resetToken = resetTokens.generateResetToken(email);
     const resetTokenExpiration = new Date(Date.now() + (60 * 60 * 1000)).toISOString();
-    
+
     const resetTokenSaved = await authController.saveResetToken(email, resetToken, resetTokenExpiration);
 
-    devAuthRLog('resetTokenSaved',resetTokenSaved)
-    
+    devAuthRLog('resetTokenSaved', resetTokenSaved)
+
     if (!resetTokenSaved) {
         return res.status(500).send('Internal server error');
     }
-    
-    const resetUrl = `http://${req.headers.host}/reset-password-confirmation/${resetToken}`;
+
+    // const resetUrl = `http://${req.headers.host}/reset-password-confirmation/${resetToken}`;
+
+    const resetUrl = `http://${req.headers.host}/reset-password-confirmation/${resetToken}/${email}`;
+
+
 
     const to = email;
     const subject = 'Reset your password for Homeshopping app';
@@ -153,11 +157,18 @@ router.post('/api/resetpassword', async (req, res) => {
     }
 });
 
-router.get('/reset-password-confirmation/:resetToken', (req, res) => {
-    devAuthRLog('handle : /reset-password-confirmation?resetToken=', req.params.resetToken)
+router.get('/reset-password-confirmation/:resetToken/:email', (req, res) => {
+    devAuthRLog('handle : /reset-password-confirmation?resetToken=', req.params.resetToken, 'email=', req.params.email);
+
     const resetToken = req.params.resetToken;
-    res.render('reset-password-confirmation', { resetToken: resetToken });
+    const email = req.params.email;
+
+    res.render('reset-password-confirmation', {
+        resetToken: resetToken,
+        email: email
+    });
 });
+
 
 // Define the route to handle the password reset confirmation
 router.post("/api/resetPassword/:resetToken", async (req, res) => {
