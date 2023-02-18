@@ -184,7 +184,7 @@ document.querySelector('#email').value = email;
 // Redirect to the password reset confirmation page
 // const confirmationUrl = `http://${window.location.host}/reset-password-confirmation?resetToken=${resetToken}`;
 
-const confirmationUrl = `http://${window.location.host}/reset-password-confirmation/${resetToken}`;
+const confirmationUrl = `http://${window.location.host}/reset-password-confirmation/${resetToken}/${email}`;
 
 window.location.href = confirmationUrl;
 
