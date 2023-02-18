@@ -109,6 +109,7 @@ function isValidPassword(password) {
 }
 
 // password resets
+if(document.querySelector('#password-reset-form')){
 document.querySelector('#password-reset-form').addEventListener('submit', async (event) => {
   event.preventDefault();
   const email = document.querySelector('#email2').value;
@@ -127,7 +128,7 @@ document.querySelector('#password-reset-form').addEventListener('submit', async 
     document.querySelector('#email-status').innerText = 'Please enter an email address';
   }
 });
-
+}
 // Function to check if the email exists for the password reset
 async function isEmailForResetPassword(email) {
   return await fetch(`/api/user/email/${encodeURIComponent(email.toLowerCase())}`)
@@ -173,9 +174,9 @@ const confirmationUrl = `http://${window.location.host}/reset-password-confirmat
 window.location.href = confirmationUrl;
 
 // Handle the form submission
-if (document.querySelector('#reset-password-form')) {
-  document.querySelector('#reset-password-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('#reset-password-confirmation-submit').addEventListener('click', async (event) => {
+    // event.preventDefault();
 
     // Extract the form data
     const email = document.querySelector('#email').value;
@@ -190,7 +191,7 @@ if (document.querySelector('#reset-password-form')) {
     }
 
     // Send the password reset confirmation to the server
-    const response = await fetch('/api/resetpassword', {
+    const response = await fetch('/api/resetPassword', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -201,6 +202,7 @@ if (document.querySelector('#reset-password-form')) {
         newPassword: newPassword
       })
     });
+  });
 
     if (response.ok) {
       // Redirect to the login page if the password reset was successful
@@ -210,4 +212,3 @@ if (document.querySelector('#reset-password-form')) {
       document.querySelector('#password-reset-status').innerText = 'Password reset failed';
     }
   });
-}

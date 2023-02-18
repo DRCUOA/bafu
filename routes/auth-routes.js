@@ -160,10 +160,11 @@ router.get('/reset-password-confirmation/:resetToken', (req, res) => {
 });
 
 // Define the route to handle the password reset confirmation
-router.post("/api/resetpassword/:resetToken", async (req, res) => {
+router.post("/api/resetPassword/:resetToken", async (req, res) => {
+    devAuthRLog(`/api/resetPassword/:resetToken  **** RESET PASSWORD ****`)
     const { email, newPassword } = req.body;
     const { resetToken } = req.params;
-    devAuthRLog(email, newPassword)
+    devAuthRLog(email, newPassword, resetToken)
 
     // Verify the reset token
     if (!isValidResetToken(email, resetToken)) {
