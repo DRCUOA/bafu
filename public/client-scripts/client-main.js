@@ -2,7 +2,6 @@
 *  Client-side Javascript
 */
 
-
 // register/login/password reset
 if (document.querySelector('#register-button') || document.querySelector('#sign-in-button') || document.querySelector('#reset-pwd-btn')) {
   document.querySelector('#register-button').addEventListener('click', function () {

@@ -1,5 +1,5 @@
 /**
- * Showpan - Home shopping app
+ * passwordreto - practice signon with option for password reset
  * v1.0.0
  * Author: Richard Clark
  * Licence: MIT
@@ -10,7 +10,7 @@
 const express = require('express');
 const app = express();
 require("dotenv").config();
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 3000;
 
 const customHelpers = require('./views/customhelpers/renderArrayHelper');
 
@@ -71,14 +71,8 @@ app.use("/", authRouting);
 const clientInputValidation = require("./routes/clientValidationRouting.js");
 app.use('/validation', clientInputValidation);
 
-const itemsRouting = require("./routes/create-items-routing");
-app.use("/items", itemsRouting);
-
-const checkItemsRouting = require("./routes/check-items-routing");
-app.use("/search-items", checkItemsRouting);
-
 //start the server
 app.listen(port, () => {
-  devApp(`Shopping App V1.0.1 | Listening on port ${port}`)
+  devApp(`PASSWORD RESETO App V1.0.1 | Listening on port ${port}`)
 });
 
