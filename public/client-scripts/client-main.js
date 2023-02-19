@@ -12,27 +12,18 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
     document.querySelector('#sign-in-modal').style.display = 'block';
     document.querySelector('body').style.overflow = 'hidden';
   });
-  document.querySelector('#reset-pwd-btn').addEventListener('click', function () {
-    document.querySelector('#password-reset-modal').style.display = 'block';
-    document.querySelector('body').style.overflow = 'hidden';
-  });
 
   // manage model close (times) btn events
   const closeRegButton = document.querySelector('#reg-close');
   const closeSignInButton = document.querySelector('#close-log-in');
-  const pwdResetButton = document.querySelector('#close-password-reset');
   const modalReg = document.querySelector('#register-modal');
   const modalSignIn = document.querySelector('#sign-in-modal');
-  const modelPwdRest = document.querySelector('#password-reset-modal');
   
   closeRegButton.addEventListener('click', function () {
     modalReg.style.display = "none";
   });
   closeSignInButton.addEventListener('click', function () {
     modalSignIn.style.display = "none";
-  });
-  pwdResetButton.addEventListener('click', function () {
-    modelPwdRest.style.display = "none";
   });
 
   // add esc to close modals  
@@ -44,13 +35,9 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
       if(modalSignIn) {
         modalSignIn.style.display = "none";
       }
-      if(modelPwdRest) {
-        modelPwdRest.style.display = "none";
-      }
     }
   });
 
-  
   //section break
 
   let header = document.querySelector('#header');
