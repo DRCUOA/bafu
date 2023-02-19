@@ -12,8 +12,6 @@ const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 3000;
 
-const customHelpers = require('./views/customhelpers/renderArrayHelper');
-
 //setup view engine
 const exhbs = require('express-handlebars');
 const hbs = exhbs.create({
@@ -23,7 +21,6 @@ const hbs = exhbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-customHelpers.register(hbs.handlebars);
 const morgan = require('morgan');
 const debug = require('debug');
 
@@ -37,7 +34,6 @@ app.use(morgan('tiny', {
     }
   }
 }));
-
 
 //set-up cookie parser
 const cookieParser = require('cookie-parser');

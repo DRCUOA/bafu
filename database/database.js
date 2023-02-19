@@ -1,7 +1,7 @@
 const sqlite = require('sqlite');
 const sqlite3 = require('sqlite3');
 const dbPromise = sqlite.open({
-  filename: "./showpan1.db",
+  filename: "./passwordresto.db",
   driver: sqlite3.Database
 });
 

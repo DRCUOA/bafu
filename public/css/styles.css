@@ -7,11 +7,13 @@
 
  :root {
   /* Color Palette */
-  --primary-color: rgba(255, 255, 255, 0.8);
-  --off-primary-color: rgba(184, 177, 177, 0.6);
-  --secondary-color: rgba(0, 0, 0,.8);
-  --tertiary-color: rgba(255, 69, 0, 1);
-  --shading: rgb(199, 196, 195);
+  --primary-color: #4B0082;
+  --secondary-color: #00FFFF;
+  --tertiary-color: #FFD700;
+  --background-color: #F5F5F5;
+  --text-color: #333333;
+  
+  
 
   /*borders */
   --frame-corner: 3px solid rgb(3, 19, 232);
