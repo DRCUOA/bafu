@@ -1,0 +1,219 @@
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-color" style="background-color: blue;"></div>
+    <div class="legend-label">Input</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background-color: green"></div>
+    <div class="legend-label">Output</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background-color: orangered"></div>
+    <div class="legend-label">Note on Error Handling</div>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Participant From</th>
+      <th>Step Description</th>
+      <th>Participant To</th>
+      <th>Input</th>
+      <th>Output</th>
+      <th>Note on Error Handling</th>
+      <th>Pseudo Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Browser</td>
+      <td>Navigate to password reset page</td>
+      <td>Serv_View</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>// Redirect to password reset page</td>
+    </tr>
+    <tr>
+      <td>Serv_View</td>
+      <td>Request password reset form</td>
+      <td>Serv_Controller</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>// Render password reset form template</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Render password reset form</td>
+      <td>Serv_View</td>
+      <td></td>
+      <td>Password reset form HTML</td>
+      <td></td>
+      <td>// Return password reset form HTML to Serv_View</td>
+    </tr>
+    <tr>
+      <td>Browser</td>
+      <td>Submit password reset form with email</td>
+      <td>Serv_Controller</td>
+      <td>Email address</td>
+      <td></td>
+      <td>Display error message if email address is invalid or not found</td>
+      <td>// Retrieve email address from form, validate it, and submit it to Serv_Controller</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Find user by email</td>
+      <td>Serv_Model</td>
+      <td>Email address</td>
+      <td>User object</td>
+      <td>Display error message if user is not found</td>
+      <td>// Query Serv_Model for user with the given email address, and return the User object to Serv_Controller</td>
+    </tr>
+    <tr>
+      <td>Serv_Model</td>
+      <td>Query user by email</td>
+      <td>SQLite_dB</td>
+      <td>Email address</td>
+      <td>User record</td>
+      <td>Display error message if database query fails</td>
+      <td>// Query SQLite_dB for user record with the given email address, and return the result to Serv_Model</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Send password reset link</td>
+      <td>Email_Service</td>
+      <td>User object</td>
+      <td>Password reset token</td>
+      <td>Display error message if email service fails</td>
+      <td>// Create a password reset token for the User object, and submit it to Email_Service to send a password reset email to the user</td>
+    </tr>
+    <tr>
+      <td>Email_Service</td>
+      <td>Create password reset token</td>
+      <td>User</td>
+      <td>User object</td>
+      <td>Password reset token</td>
+      <td></td>
+      <td>// Generate a password reset token    </tr>
+    <tr>
+      <td>Email_Service</td>
+      <td>Generate password reset email</td>
+      <td>Email_Service</td>
+      <td>User object, password reset token</td>
+      <td>Password reset email</td>
+      <td></td>
+      <td>// Generate a password reset email template, including the password reset link with the token, and return it to Email_Service</td>
+    </tr>
+    <tr>
+      <td>Serv_View</td>
+      <td>Render password reset confirmation page</td>
+      <td>Serv_View</td>
+      <td></td>
+      <td>Password reset confirmation page HTML</td>
+      <td></td>
+      <td>// Render the password reset confirmation page template, and return the resulting HTML to Serv_View</td>
+    </tr>
+    <tr>
+      <td>Browser</td>
+      <td>Navigate to password reset link</td>
+      <td>Serv_View</td>
+      <td>Password reset token</td>
+      <td></td>
+      <td>Display error message if token is invalid or expired</td>
+      <td>// Click on the password reset link in the email, and submit the token to Serv_View to initiate the password reset process</td>
+    </tr>
+    <tr>
+      <td>Serv_View</td>
+      <td>Request password reset form with token</td>
+      <td>Serv_Controller</td>
+      <td>Password reset token</td>
+      <td></td>
+      <td>Display error message if token is invalid or expired</td>
+      <td>// Retrieve the password reset token from the URL, validate it, and submit it to Serv_Controller to render the password reset form</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Render password reset form</td>
+      <td>Serv_View</td>
+      <td></td>
+      <td>Password reset form HTML</td>
+      <td></td>
+      <td>// Render the password reset form template, and return the resulting HTML to Serv_View</td>
+    </tr>
+    <tr>
+      <td>Browser</td>
+      <td>Submit password reset form with new password</td>
+      <td>Serv_Controller</td>
+      <td>New password</td>
+      <td></td>
+      <td>Display error message if password is too weak or confirmation doesn't match</td>
+      <td>// Retrieve the new password from the form, validate it, and submit it to Serv_Controller to update the user's password</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Update user password</td>
+      <td>Serv_Model</td>
+      <td>User object, new password</td>
+      <td></td>
+      <td>Display error message if database update fails</td>
+      <td>// Update the user's password in Serv_Model, and submit the User object and new password to SQLite_dB to save the changes</td>
+    </tr>
+    <tr>
+      <td>Serv_Model</td>
+      <td>Update user password</td>
+      <td>SQLite_dB</td>
+      <td>User object, new password</td>
+      <td></td>
+      <td>Display error message if database update fails</td>
+      <td>// Update the user's password in the SQLite_dB database using the User object and new
+      password, and return an error message if the update fails</td>
+    </tr>
+    <tr>
+      <td>Serv_View</td>
+      <td>Render password reset confirmation page</td>
+      <td>Serv_View</td>
+      <td></td>
+      <td>Password reset confirmation page HTML</td>
+      <td></td>
+      <td>// Render the password reset confirmation page template, and return the resulting HTML to Serv_View</td>
+    </tr>
+    <tr>
+      <td>Browser</td>
+      <td>Login with new password</td>
+      <td>Serv_Controller</td>
+      <td>Email address, new password</td>
+      <td></td>
+      <td>Display error message if authentication fails</td>
+      <td>// Submit the user's email address and new password to Serv_Controller to authenticate the user and log them in</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Authenticate user</td>
+      <td>Serv_Model</td>
+      <td>Email address, new password</td>
+      <td>User object</td>
+      <td>Display error message if authentication fails</td>
+      <td>// Authenticate the user by querying Serv_Model with the email address and new password, and return the User object if authentication succeeds, or an error message if it fails</td>
+    </tr>
+    <tr>
+      <td>Serv_Model</td>
+      <td>Query user by email and password</td>
+      <td>SQLite_dB</td>
+      <td>Email address, new password</td>
+      <td>User record</td>
+      <td>Display error message if database query fails</td>
+      <td>// Query the SQLite_dB database for a user record with the given email address and new password, and return the result to Serv_Model</td>
+    </tr>
+    <tr>
+      <td>Serv_Controller</td>
+      <td>Redirect to user dashboard</td>
+      <td>Browser</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>// Redirect the user to their dashboard page after successful login</td>
+    </tr>
+  </tbody>
+</table>
+

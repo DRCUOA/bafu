@@ -58,13 +58,6 @@ a {
   padding: 0px;
 }
 
-a:hover {
-  /* border-radius: 10px 0px 10px 0px; */
-  /* border: 4px solid var(--tertiary-color); */
-  /* padding: 5px; */
-  /* color: var(--secondary-color); */
-}
-
 #header {
   height: 1px;
   /* background-color: var(--primary-color); */
@@ -82,7 +75,7 @@ a:hover {
 #content {
   margin-top: 0px;
   padding: 0px;
-  background-color: var(--primary-color);
+   /* background-color: var(--primary-color); */
   margin-bottom: 10px;
   height: fit-content;
 }
@@ -150,7 +143,7 @@ a:hover {
   padding: 10px;
   opacity: 0;
   background-color: rgba(35, 182, 245, 1);
-  z-index: 1;
+  z-index: 100;
   transition: all .2s ease-in-out;
 }
 
@@ -195,6 +188,7 @@ a:hover {
   height: 1rem;
   width: 1rem;
   cursor: pointer;
+  z-index: 99;
 }
 
 #hamburger-menu .bar {
@@ -202,6 +196,7 @@ a:hover {
   height: 3px;
   background-color: var(--tertiary-color);
   transform-origin: center;
+  z-index: 99;
 }
 
 #hamburger-menu.open .bar:nth-of-type(1) {
@@ -394,7 +389,7 @@ form>button:hover {
 #hero-intro {
   position: relative;
   display: block;
-  margin-top: 15vh;
+  margin-top: 5vh;
   right: 5vw;
   font-size: 18px;
   text-align: center;
@@ -414,6 +409,113 @@ p {
 #hero-logo {
   height: 20%;
   width: 30%;
+}
+
+#hero-intro > a > img {
+  width: 250px;
+  height: 250px;
+  margin: 50px;
+  opacity: .5;
+}
+
+/**************************************************************************
+ *
+ *      Table / Diagram Styles
+ *
+ **********/
+
+.diagram > svg{
+  margin-right: 50px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-color {
+  width: 30px;
+  height: 30px;
+  margin-right: 6px;
+}
+
+.legend-label {
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.4em;
+  width: 95%;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  vertical-align: center;
+  text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+td:nth-child(4) {
+  color: blue;
+}
+
+td:nth-child(5) {
+  color: green;
+}
+
+td:nth-child(6) {
+  color: orangered;
+}
+
+th:nth-child(7)
+{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 10px;
+  background-color: black;
+  color: white;
+}
+
+td:nth-child(7) {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 10px;
+  background-color: black;
+  color: white;
+}
+
+.legend {
+  position: sticky;
+  top: 0px;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-start;
+  gap: 50px;
+  margin-bottom: 0px;
+  /* padding-top: 5px; */
+  background-color: white;
+}
+
+table > thead {
+  position: sticky;
+  top: 30px;
+  z-index: 2;
+}
+
+table > tr {
+  z-index: 5;
 }
 
 /**************************************************************************

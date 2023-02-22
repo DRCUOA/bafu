@@ -11,4 +11,9 @@ router.get('/diagram', (req, res) => {
   res.render('diagram');
 });
 
+router.get('/table', (req, res) => {
+  devAppRoutes('render table')
+  res.render('table');
+});
+
 module.exports = router;
