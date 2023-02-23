@@ -1,0 +1,124 @@
+@startuml
+!theme vibrant
+actor User
+participant Browser
+participant "Server: View" as Serv_View
+participant "Server: Controller" as Serv_Controller
+participant "Server: Model" as Serv_Model
+participant "Server: Controller (User)" as Serv_Controller_User
+participant "Server: Controller (Pantry)" as Serv_Controller_Pantry
+participant "Server: Controller (Recipe)" as Serv_Controller_Recipe
+participant "Server: Controller (Chat)" as Serv_Controller_Chat
+participant "Server: Controller (DataIO)" as Serv_Controller_DataIO
+participant "Server: Model (User)" as Serv_Model_User
+participant "Server: Model (Pantry)" as Serv_Model_Pantry
+participant "Server: Model (Recipe)" as Serv_Model_Recipe
+participant "Server: Model (Chat)" as Serv_Model_Chat
+participant "Server: Model (DataIO)" as Serv_Model_DataIO
+database "SQLite dB" as SQLite_dB
+participant QuaggaJS
+participant "Recipe Service" as Recipe_Service
+participant "Chat Service" as Chat_Service
+participant "DataIO Service" as DataIO_Service
+participant "Online Store API" as Online_Store_API
+participant "Email Service" as Email_Service
+participant "Image Service" as Image_Service
+participant Subscribers
+title Web Application User Registration and Login
+User->>Browser: Opens browser, navigates to http://localhost:3000/
+activate User
+activate Browser
+Browser->>Serv_View: Sends GET request for home page
+activate Serv_View
+Serv_View->>Serv_Controller: Handles GET request, retrieves home page data from Serv_Model
+activate Serv_Controller
+Serv_Controller->>Serv_Model: Queries SQLite database for home page data
+activate Serv_Model
+Serv_Model->>SQLite_dB: Queries SQLite database for home page data
+activate SQLite_dB
+SQLite_dB->>Serv_Model: Returns home page data to Serv_Model
+deactivate SQLite_dB
+Serv_Model->>Serv_Controller: Returns home page data to Serv_Controller
+deactivate Serv_Model
+Serv_Controller->>Serv_View: Returns home page data to Serv_View
+deactivate Serv_Controller
+Serv_View->>Browser: Sends home page data to browser for display
+deactivate Serv_View
+deactivate Browser
+
+User->>Browser: Clicks on 'Register' button
+activate Browser
+activate Serv_View
+Browser->>Serv_View: Sends GET request for registration form
+Serv_View->>Serv_Controller_User: Handles GET request, retrieves registration form data from Serv_Model_User
+activate Serv_Controller_User
+Serv_Controller_User->>Serv_Model_User: Queries SQLite database for registration form data
+activate Serv_Model_User
+Serv_Model_User->>SQLite_dB: Queries SQLite database for registration form data
+activate SQLite_dB
+SQLite_dB->>Serv_Model_User: Returns registration form data to Serv_Model_User
+deactivate SQLite_dB
+Serv_Model_User->>Serv_Controller_User: Returns registration form data to Serv_Controller_User
+deactivate Serv_Model_User
+Serv_Controller_User->>Serv_View: Returns registration form data to Serv_View
+deactivate Serv_Controller_User
+Serv_View->>Browser: Sends registration form data to browser for display
+deactivate Serv_View
+deactivate Browser
+
+User->>Browser: Completes registration form, clicks on 'Submit' button
+activate Browser
+activate Serv_View
+Browser->>Serv_View: Sends POST request with registration form data
+Serv_View->>Serv_Controller_User: Handles POST request, validates registration form data
+activate Serv_Controller_User
+Serv_Controller_User->>Serv_Model_User: Queries SQLite database to check if email and username are already in use
+activate Serv_Model_User
+Serv_Model_User->>SQLite_dB: Queries SQLite database to check if email and username are already in use
+activate SQLite_dB
+SQLite_dB->>Serv_Model_User: Returns result of email and username check to Serv_Model_User
+deactivate SQLite_dB
+Serv_Model_User->>Serv_Controller_User: Returns result of email and username check to Serv_Controller_User
+deactivate Serv_Model_User
+Serv_Controller_User->>Serv_View: Returns result of email and username check to Serv_View
+deactivate Serv_Controller_User
+Serv_View->>Browser: Displays validation errors if email or username are already in use
+deactivate Serv_View
+activate Serv_Controller_User
+Serv_Controller_User->>Serv_Model_User: Hashes the password and stores new user data in SQLite database if email, username and password are valid
+activate Serv_Model_User
+Serv_Model_User->>SQLite_dB: Inserts new user data into SQLite database
+activate SQLite_dB
+SQLite_dB->>Serv_Model_User: Returns confirmation of successful user registration to Serv_Model_User
+deactivate SQLite_dB
+Serv_Model_User->>Serv_Controller_User: Returns confirmation of successful user registration to Serv_Controller_User
+deactivate Serv_Model_User
+Serv_Controller_User->>Serv_View: Redirects user to login page after successful registration
+deactivate Serv_Controller_User
+activate Serv_View
+Serv_View->>Browser: Redirects user to login page after successful registration
+deactivate Serv_View
+deactivate Browser
+
+User->>Browser: Enters username and password, clicks on 'Login' button
+activate Browser
+activate Serv_View
+Browser->>Serv_View: Sends POST request with login form data
+Serv_View->>Serv_Controller_User: Handles POST request, retrieves user data from Serv_Model_User, validates username and password
+activate Serv_Controller_User
+Serv_Controller_User->>Serv_Model_User: Queries SQLite database to retrieve user data
+activate Serv_Model_User
+Serv_Model_User->>SQLite_dB: Queries SQLite database to retrieve user data
+activate SQLite_dB
+SQLite_dB->>Serv_Model_User: Returns user data to Serv_Model_User
+deactivate SQLite_dB
+Serv_Model_User->>Serv_Controller_User: Returns user data to Serv_Controller_User
+deactivate Serv_Model_User
+Serv_Controller_User->>Serv_View: Validates username and password, returns authentication status to Serv_View
+deactivate Serv_Controller_User
+Serv_View->>Browser: Redirects user to home page if authentication is successful, otherwise displays error message
+deactivate Serv_View
+deactivate Browser
+
+@enduml
+@enduml

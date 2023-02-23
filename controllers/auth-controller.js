@@ -28,9 +28,10 @@ async function addUserToLocals(req, res, next) {
 // verify if req is from an authenticated user
 async function verifyAuthenticated(req, res, next) {
   if( res.locals.user ) {
+    devAuthCtrl('User authenticated')
     next();
   } else {
-    devAuthCtrl('render index')
+    devAuthCtrl('User not authenticated: render index')
   res.render("index");
   }
 };
