@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-function generateResetToken(email) {
+function generateResetToken(user) {
   const payload = {
-    email: email,
+    user: user.username,
+    email: user.email,
   };
   
   const secret = process.env.RESET_TOKEN_SECRET;

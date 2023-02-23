@@ -16,6 +16,7 @@
     <h1>Welcome to Showpan</h1>
     <button id="register-button">Register</button>
     <button id="sign-in-button">Sign In</button>
+    <p id="reset-pwd-btn">Trouble Logging In?</p>
   </div>
 </section>
 {{/if}}
@@ -30,6 +31,12 @@
 <div id="sign-in-modal" class="modal">
   <div class="modal-content">
     {{> login}}
+  </div>
+</div>
+<!-- Model to reset password -->
+<div id="password-reset-form" class="modal">
+  <div class="modal-content">
+    {{> password-reset-form}}
   </div>
 </div>
 </section>

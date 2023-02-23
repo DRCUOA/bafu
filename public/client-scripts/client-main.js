@@ -16,14 +16,21 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
   // manage model close (times) btn events
   const closeRegButton = document.querySelector('#reg-close');
   const closeSignInButton = document.querySelector('#close-log-in');
+  const reqPwdResetEmail = document.querySelector('#close-reset-form');
+
   const modalReg = document.querySelector('#register-modal');
   const modalSignIn = document.querySelector('#sign-in-modal');
+  const modelPwdResetEmailForm = document.querySelector('#password-reset-form')
+
   
   closeRegButton.addEventListener('click', function () {
     modalReg.style.display = "none";
   });
   closeSignInButton.addEventListener('click', function () {
     modalSignIn.style.display = "none";
+  });
+  reqPwdResetEmail.addEventListener('click', function () {
+    modelPwdResetEmailForm.style.display = "none";
   });
 
   // add esc to close modals  
@@ -35,6 +42,8 @@ if (document.querySelector('#register-button') || document.querySelector('#sign-
       if(modalSignIn) {
         modalSignIn.style.display = "none";
       }
+      if(modelPwdResetEmailForm)
+        modelPwdResetEmailForm.style.display = "none";
     }
   });
 

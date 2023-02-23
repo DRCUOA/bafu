@@ -64,6 +64,9 @@ app.get('/', verifyAuthenticated, (req, res) => {
 const authRouting = require("./routes/auth-routes");
 app.use("/", authRouting);
 
+const pwdResetRouting = require("./routes/pwdResetRouting");
+app.use("/reset", pwdResetRouting);
+
 const clientInputValidation = require("./routes/clientValidationRouting.js");
 app.use('/validation', clientInputValidation);
 
