@@ -71,7 +71,7 @@ const clientInputValidation = require("./routes/clientValidationRouting.js");
 app.use('/validation', clientInputValidation);
 
 const appRoutes = require("./routes/appRouting.js");
-app.use('/application', appRoutes);
+app.use('/app', appRoutes);
 
 //start the server
 app.listen(port, () => {

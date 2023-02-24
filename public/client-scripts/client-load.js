@@ -24,7 +24,7 @@ if (document.querySelector('#search-btn')) {
   });
 };
 
-if (pageContext === '/application/diagram') {
+if (pageContext === '/app/diagram') {
   let isLargeScreen = window.innerWidth > 1300;
   let isMediumScreen = window.innerWidth < 1300 && window.innerWidth > 800
 
