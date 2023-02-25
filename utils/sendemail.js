@@ -2,7 +2,8 @@ const nodemailer = require('nodemailer');
 const debug = require('debug');
 const devUtilsEmailClient = debug('devLog:utils_emailClient:');
 
-async function sendEmail(to, subject, body) {
+async function sendEmail(user, token) {
+  
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.PROVIDER_HOST,
@@ -16,13 +17,14 @@ async function sendEmail(to, subject, body) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: to,
-      subject: subject,
-      html: body,
+      to: user.email,
+      subject: 'Password Reset',
+      html: `Click on this link to reset your password: http://localhost:3000/reset/resetpassword?token=${token}`
     };
+    devUtilsEmailClient(mailOptions)
 
     await transporter.sendMail(mailOptions);
-    devUtilsEmailClient(`Email sent to ${to}`);
+    devUtilsEmailClient(`Email sent to: ${mailOptions.to}`);
   } catch (err) {
     devUtilsEmailClient(`Error sending email: ${err.message}`);
   }

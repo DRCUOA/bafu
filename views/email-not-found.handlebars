@@ -1,0 +1,17 @@
+<!-- password reset form -->
+  <img src="/assets/logo.webp" alt="logo"
+    style="height: 40px; width: 40px; margin: -9px -10px -1px 0px;">
+  <br>
+  <p>We're sorry, an account with email: <strong>{{queryEmail}}</strong> could not be found,  please check the email entered and try again. </p>
+  <br>
+  <button onclick="goToIndexRoute()">Ok</button>
+  <script>
+    const ham = document.querySelector('#hamburger-menu');
+  ham.style.display = 'none';
+    const closeBtn = document.querySelector('#close');
+
+    function goToIndexRoute() {
+      window.location.href = "/";
+    }
+
+  </script>

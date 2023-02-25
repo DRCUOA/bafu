@@ -242,6 +242,64 @@ a {
 
 /**************************************************************************
  *
+ *      Reset Password Form
+ *
+ **********/
+
+.reset-password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#reset-password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid gray;
+  background-color: var(--background-color);
+  width: 50%;
+  margin: 5px;
+  padding: 15px;
+}
+
+.logo-form-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.reset-password-form img {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.reset-password-form .close {
+  font-size: var(--mid-text-size);
+  transition: transform 1s ease, color 1s ease;
+  transform: rotate(0deg) scale(1);
+  transform-origin: center;
+  font-weight: 400;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.reset-password-form .close:hover {
+  transform: rotate(180deg) scale(1.3);
+  color: var(--tertiary-color);
+  transition: transform 1s ease, color 1s ease;
+  transform-origin: center;
+  font-weight: 900;
+}
+
+/**************************************************************************
+ *
  *      Index Route - Register/Sign In
  *
  **********/
@@ -378,9 +436,6 @@ form>button:hover {
   font-weight: 900;
 }
 
-#password-reset-form {
- 
-}
 
 /**************************************************************************
  *

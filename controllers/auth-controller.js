@@ -52,6 +52,7 @@ async function checkEmailInDb(email) {
 }
 
 async function saveResetToken(email, token, expiration) {
+  // change this to just use and time-expire flag
   devAuthCtrl(`Saving reset token for email: ${email}, token: ${token}, expiration: ${expiration}`);
   try {
     const user = await userDao.retrieveUserWithEmail(email);
@@ -74,10 +75,15 @@ async function saveResetToken(email, token, expiration) {
   }
 }
 
+async function updateUserPassword() {
+
+}
+
 module.exports = {
   addUserToLocals,
   checkEmailInDb,
   verifyAuthenticated,
-  saveResetToken
+  saveResetToken,
+  updateUserPassword
 }
 
