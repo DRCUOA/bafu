@@ -1,3 +1,10 @@
+<button onclick=gotoDiagrams()>Back to List</button>
 <h1>{{diagram.diagram_name}}</h1>
 <img src="{{diagram.diagram_img_file_path}}" alt="{{diagram.diagram_name}}">
 <pre>{{diagram.diagram_code}}</pre>
+
+<script>
+  function gotoDiagrams() {
+    window.location.href = "/diagrams/diagrams";
+  }
+</script>

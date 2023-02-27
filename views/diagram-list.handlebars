@@ -11,16 +11,16 @@
     <tbody>
       {{#each diagrams}}
         <tr>
-          <td>{{diagram_name}}</td>
+          <td><a id="prom" href="/diagrams/{{id}}">{{diagram_name}}</a></td>
           <td>
             <form method="GET" action="/diagrams/{{id}}">
               <button type="submit">View</button>
             </form>
             <form method="GET" action="/diagrams/{{id}}/edit">
-              <button type="submit">Modify</button>
+              <button type="submit" disabled>Modify</button>
             </form>
             <form method="POST" action="/diagrams/{{id}}?_method=DELETE">
-              <button type="submit">Delete</button>
+              <button type="submit" disabled>Delete</button>
             </form>
           </td>
         </tr>
@@ -31,9 +31,10 @@
   <p>No diagrams found.</p>
 {{/if}}
 <style>
-  table {
+table {
   border-collapse: collapse;
-  width: 100%;
+  width: 45%;
+  margin: 0 auto;
 }
 
 th, td {
@@ -52,5 +53,11 @@ tr:nth-child(even) {
 
 button {
   margin: 0 5px;
+}
+
+#prom {
+  font-weight: 900;
+  color: orangered;
+  font-size: 18px;
 }
 </style>
