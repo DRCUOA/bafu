@@ -15,8 +15,8 @@ router.get('/diagram', verifyAuthenticated,(req, res) => {
 
 
 router.get('/password-reset-sequence-diagram', verifyAuthenticated,(req, res) => {
-  devAppRoutes('render password-reset-sequence-diagram')
-  res.render('password-reset-sequence-diagram');
+  devAppRoutes('render diagram form')
+  res.render('upload-diagram');
 });
 
 

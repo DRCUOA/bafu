@@ -73,6 +73,9 @@ app.use('/validation', clientInputValidation);
 const appRoutes = require("./routes/appRouting.js");
 app.use('/app', appRoutes);
 
+const diagramRoutes = require("./routes/diagram-routing");
+app.use('/diagrams', diagramRoutes);
+
 //start the server
 app.listen(port, () => {
   devApp(`PASSWORD RESETO App V1.0.1 | Listening on port ${port}`)

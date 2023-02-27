@@ -1,0 +1,56 @@
+<!-- diagrams list-->
+<h1>List of Diagrams</h1>
+{{#if diagrams}}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each diagrams}}
+        <tr>
+          <td>{{diagram_name}}</td>
+          <td>
+            <form method="GET" action="/diagrams/{{id}}">
+              <button type="submit">View</button>
+            </form>
+            <form method="GET" action="/diagrams/{{id}}/edit">
+              <button type="submit">Modify</button>
+            </form>
+            <form method="POST" action="/diagrams/{{id}}?_method=DELETE">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No diagrams found.</p>
+{{/if}}
+<style>
+  table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th {
+  background-color: lightgray;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+button {
+  margin: 0 5px;
+}
+</style>

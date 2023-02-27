@@ -1,0 +1,44 @@
+<!-- views/newDiagram -->
+<div class="create-new-container">
+  <h2>Create a New Diagram</h2>
+  <p>User the embedded iframe below to generate sequence diagram and the form below to save it in the local database.</p>
+  <div class="plantFarm">
+    <iframe src="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" width="100%"
+      height="500"></iframe>
+  </div>
+  <div class="dbform">
+    <h2>Save to Local Database: </h2>
+    <p>Save the image file - SVG or PNG - using above before completing and upload it from the local fs to the database using the form control below. Copy and paste the uml code into the form</p>
+    <form action="/diagrams/diagrams" method="POST" enctype="multipart/form-data">
+      <label for="diagram_name">Name:</label>
+      <input type="text" id="diagram_name" name="diagram_name" required>
+      <br>
+      <label for="diagram_img_file_path">Diagram Image:</label>
+      <input type="file" id="diagram_img_file_path" name="diagram_img_file_path" accept=".png,.svg" required>
+      <br>
+      <label for="diagram_code">Code:</label>
+      <textarea id="diagram_code" name="diagram_code" rows="5"></textarea>
+      <br>
+      <button type="submit">Upload Diagram</button>
+    </form>
+  </div>
+</div>
+<style>
+  .create-new-container {
+   display: block;
+  }
+
+  .plantFarm{
+    display: block;
+    width: 90%;
+    height: 500px;
+    border: 2px solid blue;
+  }
+
+  .dbform {
+     width: 90%;
+    height: 500px;
+    background-color: rgb(213, 213, 213);
+    border: 2px solid blue;
+  }
+</style>
