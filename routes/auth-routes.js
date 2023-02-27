@@ -9,9 +9,6 @@ const debug = require('debug');
 const devAuthRLog = debug('devLog:routing_auth');
 // app module imports
 const userDao = require('../models/user-dao');
-const authController = require('../controllers/auth-controller');
-const resetTokens = require('../utils/generateResetToken')
-const emailClient = require('../utils/sendemail');
 
 router.post("/new-account", async (req, res) => {
     devAuthRLog("Received a request to the '/new-account' route");

@@ -1,63 +1,160 @@
-<!-- diagrams list-->
-<h1>List of Diagrams</h1>
+<h1>Existing Diagrams</h1>
 {{#if diagrams}}
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each diagrams}}
-        <tr>
-          <td><a id="prom" href="/diagrams/{{id}}">{{diagram_name}}</a></td>
-          <td>
-            <form method="GET" action="/diagrams/{{id}}">
-              <button type="submit">View</button>
-            </form>
-            <form method="GET" action="/diagrams/{{id}}/edit">
-              <button type="submit" disabled>Modify</button>
-            </form>
-            <form method="POST" action="/diagrams/{{id}}?_method=DELETE">
-              <button type="submit" disabled>Delete</button>
-            </form>
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+  <div class="card-deck">
+    {{#each diagrams}}
+      <div class="card" style="animation-delay: {{@index}}s;">
+        <h5 class="card-title">{{diagram_name}}<span id="idRef" data-diagramID="{{id}}">{{id}}</span></h5>
+        <div class="card-body">
+          <p class="label">Description:</p>
+          <p id="description">{{description}}</p>
+          <p class="label">Revision Notes: </p>
+          <p id="revision-notes">{{revision_notes}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 {{else}}
   <p>No diagrams found.</p>
 {{/if}}
 <style>
-table {
-  border-collapse: collapse;
-  width: 45%;
-  margin: 0 auto;
+  
+.header {
+  padding-top: 70px; /* adjust as needed to create space for the fixed elements */
 }
 
-th, td {
-  border: 1px solid black;
-  padding: 8px;
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
 }
 
-th {
-  background-color: lightgray;
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-button {
-  margin: 0 5px;
-}
-
-#prom {
-  font-weight: 900;
+h1 {
+  position: fixed;
+  height: 2em;
+  top: -30px; /* adjust as needed */
+  left: 0;
+  right: 0;
+  z-index: 1;
   color: orangered;
-  font-size: 18px;
+  background-color: #e9e9e9;
+  border-bottom: 2px solid rgb(127, 127, 127);
+  padding: 5px;
 }
+
+.card-deck {
+  display: flex;
+  max-width: calc(100% - 10px);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 125px;
+}
+
+.card {
+  width: 90%;
+  max-width: calc(50% - 10px);
+  margin-bottom: 20px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.25);
+  animation: fadeIn .1s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+
+  75% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.card:nth-child(even) {
+  animation-delay: calc(0.1s + {{@index}}s);
+}
+
+.card:nth-child(odd) {
+  animation-delay: {{@index}}s;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 20em;
+  background-color: rgba(139, 205, 205, .4);
+}
+
+.card-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+
+.card-title span {
+  color: white;
+  font-size: 12px;
+  background-color: orangered;
+  padding: 10px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
+#description {
+    height: 10em;
+    width: 90%;
+    margin: 10px;
+    text-align: justify;
+}
+
+.label {
+  color: #bcbcbc;
+  margin: 10px;
+  text-align: justify;
+}
+
+#revision-notes {
+  height: 5em;
+  width: 90%;
+  margin: 10px;
+  text-align: justify;
+  border: 2px dashed rgb(127, 127, 130);
+}
+
+@media only screen and (max-width: 760px) {
+  .card{
+  max-width: calc(90% - 10px);
+  }
+}
+
 </style>
+<script>
+
+  // add event listeners to the cards displayed to open detail view on click
+  const diagramsDisplayed = document.querySelectorAll(".card");
+    diagramsDisplayed.forEach(diagram => {
+      const idRef = diagram.querySelector('#idRef');
+      const id = parseInt(idRef.getAttribute('data-diagramID'));
+      diagram.addEventListener('click', () => {
+      window.location.href = `/diagrams/${id}`;
+  });
+});
+
+  </script>

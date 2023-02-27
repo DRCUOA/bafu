@@ -13,6 +13,12 @@
       <label for="diagram_name">Name:</label>
       <input type="text" id="diagram_name" name="diagram_name" required>
       <br>
+      <label for="description">Description:</label>
+      <input type="text" id="description" name="description" required>
+      <br>
+      <label for="revision_notes">Revision Notes:</label>
+      <input type="text" id="revision_notes" name="revision_notes" required>
+      <br>
       <label for="diagram_img_file_path">Diagram Image:</label>
       <input type="file" id="diagram_img_file_path" name="diagram_img_file_path" accept=".png,.svg" required>
       <br>
@@ -23,6 +29,12 @@
     </form>
   </div>
 </div>
+
+<p>
+	description	TEXT,
+	revision_notes	TEXT,
+	</p>
+
 <style>
   .create-new-container {
    display: block;

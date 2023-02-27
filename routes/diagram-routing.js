@@ -6,7 +6,7 @@ const diagramController = require('../controllers/diagramController');
 
 // render the "newDiagram" view when the user navigates to "/diagrams/new"
 router.get('/diagrams/new', (req, res) => {
-  res.render('newDiagram');
+  res.render('upload-diagram');
 });
 
 // handle the form submission and insert a new diagram into the "diagrams" table
