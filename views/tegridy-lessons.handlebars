@@ -1,0 +1,1198 @@
+<!-- ,---,         ,----,          .---.            ,---.'|                  \    /  \  \    /  \               
+  ,-+-. /  |      .'   .`|         /. ./|            |   | :                  |   :    | |   :    |   .--.--.    
+ ,--.'|'   |   .'   .'  .'      .-'-. ' |    ,---.   :   : :       ,--.--.    |   | .\ : |   | .\ :  /  /    '   
+ |   |  ,"' | ,---, '   ./      /___/ \: |   /     \  :     |,-.   /       \   .   : |: | .   : |: | |  :  /`./   
+ |   | /  | | ;   | .'  /    .-'.. '   ' .  /    /  | |   : '  |  .--.  .-. |  |   |  \ : |   |  \ : |  :  ;_     
+ |   | |  | | `---' /  ;--, /___/ \:     ' .    ' / | |   |  / :   \__\/: . .  |   : .  | |   : .  |  \  \    `.  
+ |   | |  |/    /  /  / .`| .   \  ' .\    '   ;   /| '   : |: |   ," .--.; |  :     |`-' :     |`-'   `----.   \ 
+ |   | |--'   ./__;     .'   \   \   ' \ | '   |  / | |   | '/ :  /  /  ,.  |  :   : :    :   : :     /  /`--'  / 
+ |   |/       ;   |  .'       \   \  |--"  |   :    | |   :    | ;  :   .'   \ |   | :    |   | :    '--'.     /  
+ '---'        `---'            \   \ |      \   \  /  /    \  /  |  ,     .-./ `---'.|    `---'.|      `--'---'    -->
+
+
+<!-- 
+   oo_       wWw        c  c   (o)__(o)    wW  Ww     .-.      \\\  ///         .-.      \\\  ///    wWw   
+   /  _)-<    (O)_       (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))       c(O_O)c    ((O)(O))    (O)_  
+   \__ `.     / __)    ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||       ,'.---.`,    | \ ||     / __) 
+      `. |   / (      / //_|_\     )(         ||   / /|_|_|\ \   ||\\||      / /|_|_|\ \   ||\\||    / (    
+      _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |      | \_____/ |   || \ |   (  _)   
+   ,-'   |   \ \_     '.    )      )/       (_/\_) '. `---' .`   ||  ||      '. `---' .`   ||  ||    \ \_   
+  (_..--'     \__)      `-.'      (                  `-...-'    (_/  \_)       `-...-'    (_/  \_)    \__)   -->
+
+<div class="hero">
+  <p id="start">Tegridy Farm Teaches UML</p>
+  <div class="tableOContents">
+    <div id="one"><a href="#classD">Class</a></div>
+    <div id="two"><a href="#useCase">Use</a></div>
+    <div id="three"><a href="#sequence">Sequence</a></div>
+    <div id="four"><a href="#activityDiagram">Activity</a></div>
+    <div id="five"><a href="#stateMachine">State</a></div>
+    <div id="six"><a href="#component">Component</a></div>
+    <div id="seven"><a href="#deployment">Deployment</a></div>
+    <div id="eight"><a href="#summary">Summary</a></div>
+  </div>
+</div>
+
+<div class="lesson-container" id="classD">
+  <div class="lesson-intro-sp">
+    <h1><a href="#start">Lesson One - Class Diagrams</a></h1>
+    <h2>Using a Class Diagram to Plan a Virtual Farm Application</h2>
+    <ul>
+      <li>Before starting to code a virtual farm application, it's important to create a plan to organize the different
+        classes and their relationships. A Class Diagram is an excellent tool to do this. In this lesson, we will use
+        the
+        example of a virtual farm to show how to create a Class Diagram that will help organize the different classes
+        and
+        their relationships.</li>
+      <li>Creating a UML class diagram is a way to help us understand how different objects in a computer program are
+        related to each other. In this case, we're going to use a virtual farm application as an example.</li>
+      <li>The first thing we need to do is figure out which objects, or "classes," we'll need to represent the different
+        things on the farm. For example, we might need a class to represent the animals, another class for the
+        buildings,
+        and a third class for the people who work on the farm.</li>
+      <li>Once we've figured out which classes we need, we can start to think about how they are related to each other.
+        For
+        example, we might say that the animals are kept in the buildings, so there's a relationship between the Animal
+        class
+        and the Building class.</li>
+      <li>By creating a UML class diagram, we can see all of these relationships at once, and it helps us understand how
+        the
+        different parts of the program fit together. It's kind of like making a map of the farm, but for the computer
+        program instead!</li>
+    </ul>
+    <h3>Step 1: Identify the main classes</h3>
+    <p>Now that we know what classes are, let's look at the classes we're going to use for our virtual farm application.
+      The
+      first class we have is "Animal." This class will be used to represent all the different types of animals on the
+      farm,
+      like cows, chickens, and pigs.</p>
+    <p>The second class we have is "Farmer." This class will be used to represent the person who takes care of the
+      animals
+      and runs the farm.</p>
+    <p>The third class is "FeedType." This class will be used to represent the different types of food that the animals
+      need
+      to eat to stay healthy. For example, cows might eat hay, while chickens might eat corn.</p>
+    <p>The fourth class is "Barn." This class will be used to represent the building on the farm where the animals sleep
+      and
+      are kept safe from bad weather.</p>
+    <p>The fifth and final class is "Pasture." This class will be used to represent the area where the animals can graze
+      and
+      eat grass.</p>
+    <p>By identifying these classes, we're starting to build a picture of what the virtual farm application will look
+      like.
+      We know that we'll need to have objects for the animals, the farmer, the different types of feed, the barn, and
+      the
+      pasture.</p>
+    <ul>
+      <p>So our class objects are:</p>
+      <li>Animal</li>
+      <li>Farmer</li>
+      <li>FeedType</li>
+      <li>Barn</li>
+      <li>Pasture</li>
+    </ul>
+    <h3>Step 2: Identify the attributes and methods of each class</h3>
+    <p>After figuring out which classes we need for our virtual farm application, we now need to figure out what each of
+      those classes can do and what kind of information they hold. We do this by identifying their "attributes" and
+      "methods."</p>
+    <p>Attributes are like characteristics that describe the class, while methods are like actions that the class can
+      perform. For example, the Animal class might have an attribute called "name" that tells us the name of the animal,
+      and a method called "feed" that tells us how the animal can be fed.</p>
+    <p>Here are the attributes and methods for each class in our virtual farm application:</p>
+    <ul>
+      <li>Animal
+        <ul>
+          <li>Attributes:
+            <ul>
+              <li>id: int (a number that identifies the animal)</li>
+              <li>name: string (the name of the animal)</li>
+              <li>type: string (what type of animal it is, like cow or chicken)</li>
+              <li>weight: float (how much the animal weighs)</li>
+            </ul>
+          </li>
+          <li>Methods:
+            <ul>
+              <li>feed(feedType: FeedType): void (feeds the animal with a specific type of food)</li>
+              <li>move(location: string): void (moves the animal to a different location)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Farmer
+        <ul>
+          <li>Attributes:
+            <ul>
+              <li>id: int (a number that identifies the farmer)</li>
+              <li>name: string (the name of the farmer)</li>
+              <li>age: int (how old the farmer is)</li>
+            </ul>
+          </li>
+          <li>Methods:
+            <ul>
+              <li>feedAnimals(feedType: FeedType): void (feeds all the animals with a specific type of food)</li>
+              <li>moveAnimal(animal: Animal, location: string): void (moves a specific animal to a different location)
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>FeedType
+        <ul>
+          <li>Attributes:
+            <ul>
+              <li>id: int (a number that identifies the type of food)</li>
+              <li>name: string (the name of the type of food)</li>
+              <li>price: float (how much the food costs)</li>
+            </ul>
+          </li>
+          <li>Methods:
+            <ul>
+              <li>getPrice(): float (gets the price of the food)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+  </div>
+  <div class="lesson-content-sp">
+    <li>Barn
+      <ul>
+        <li>Attributes:
+          <ul>
+            <li>id: int (a number that identifies the barn)</li>
+            <li>name: string (the name of the barn)</li>
+            <li>capacity: int (how many animals the barn can hold)</li>
+            <li>animals: List&lt;Animal&gt; (a list of all the animals currently in the barn)</li>
+          </ul>
+        </li>
+        <li>Methods:
+          <ul>
+            <li>addAnimal(animal: Animal): void (adds an animal to the barn)</li>
+            <li>removeAnimal(animal: Animal): void (removes an animal from the barn)
+            <li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Pasture
+      <ul>
+        <li>Attributes:
+          <ul>
+            <li>id: int (a number that identifies the pasture)</li>
+            <li>name: string (the name of the pasture)</li>
+            <li>location: string (the location of the pasture on the farm)</li>
+            <li>animals: List&lt;Animal&gt; (a list of all the animals currently in the pasture)</li>
+          </ul>
+        </li>
+        <li>Methods:
+          <ul>
+            <li>addAnimal(animal: Animal): void (adds an animal to the pasture)</li>
+            <li>removeAnimal(animal: Animal): void (removes an animal from the pasture)</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    </ul>
+    <p>By identifying the attributes and methods of each class, we can see how they interact with each other. For
+      example, we know that the Farmer class has a method called "feedAnimals," which takes a FeedType as a parameter,
+      so we can see that the Farmer is responsible for feeding the animals. We also know that the Barn class has an
+      attribute called "animals," which is a list of Animal objects, so we can see that the Barn is where the animals
+      are kept.</p>
+    <p>Overall, creating a UML class diagram with identified classes, attributes and methods can help us understand the
+      relationships between different parts of a computer program, just like a map can help us understand the
+      relationships between different parts of a farm.</p>
+
+    <h3>Step 3: Identify the relationships between the classes</h3>
+    <p>After identifying the attributes and methods of each class, the next step is to identify the relationships
+      between
+      the classes. In this example, the relationships are as follows:</p>
+    <ul>
+      <li>An Animal is either in a Barn or in a Pasture.</li>
+      <li>A Barn can have many Animals.</li>
+      <li>A Pasture can have many Animals.</li>
+      <li>A Farmer can have many Animals.</li>
+      <li>A FeedType can be fed to many Animals.</li>
+    </ul>
+    <h3>Step 4: Create the Class Diagram</h3>
+    <p>Using the information gathered from steps 1 to 3, the Class Diagram for the virtual farm application can now be
+      created. The diagram should show the main classes, their attributes, their methods, and their relationships. Here
+      is
+      the Class Diagram for the virtual farm application:</p>
+    <img src="../public/diagram/imgs/Tegridy Farm Class Diagram.png" alt="Class Diagram for virtual farm application"><a
+      href="http://localhost:3000/diagrams/20">Example Class Diagram</a>
+
+    <h3>Conclusion</h3>
+    <p>Creating a UML class diagram is an important step in planning a software application. It helps organize the
+      different classes and their relationships, making it easier to develop and maintain the application. One way to
+      understand the concept of UML class diagrams is to look at real-world examples. For instance, a social media
+      application like Instagram or a library management system could have classes such as "User," "Post," "Comment,"
+      "Book," and "Author."</p>
+    <p>When designing a social media application, a systems engineer would need to identify the main classes that are
+      essential to the application's functionality. These main classes would be the ones that represent the most
+      important concepts or objects within the application. For example, in a social media application, the "User" class
+      would be considered a main class because it is fundamental to the application's operation. Without users, there
+      would be no social media application.</p>
+    <p>Other main classes in a social media application might include "Post," "Comment," and "Hashtag." These classes
+      represent important concepts within the application and are necessary for it to function properly. For example,
+      the "Post" class would be used to represent a user's post, while the "Comment" class would be used to represent a
+      user's comment on a post.</p>
+    <p>When it comes to identifying which classes are main and which are not, a systems engineer would need to consider
+      the application's requirements and objectives. For example, if the goal of the social media application is to
+      provide users with a platform for sharing photos, then the "Photo" class might be considered a main class. On the
+      other hand, if the application's focus is on text-based content, the "Photo" class might be left off as it is not
+      a primary concern for the application's functionality.</p>
+    <p>However, creating a UML class diagram can be a challenging task, especially for someone who is new to software
+      development. To make it easier, you can start by identifying the main classes and their attributes, then figure
+      out how they relate to each other and draw lines to connect them. It's also helpful to keep the diagram simple,
+      use clear and consistent naming conventions, and use colors and shapes to differentiate between classes. </p>
+    <p>Finally, like any skill, creating UML class diagrams takes practice, so start with simple examples and work your
+      way up to more complex ones as you become more comfortable with the process.</p>
+      <img src="../public/diagram/imgs/CartoonTegridy.png" alt="">
+      <img src="../public/assets/logo.webp" alt="" style="height: 15em; margin: auto; display: flex; flex-direction: column;">
+  </div>
+</div>
+<div class="lesson-outro">
+</div>
+<!--
+   oo_       wWw        c  c   (o)__(o)    wW  Ww     .-.      \\\  ///      (o)__(o) (O))  ((O)     .-.     
+  /  _)-<    (O)_       (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))      (__  __)  ||    ||    c(O_O)c   
+  \__ `.     / __)    ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||         (  )    || /\ ||   ,'.---.`,  
+     `. |   / (      / //_|_\     )(         ||   / /|_|_|\ \   ||\\||          )(     ||//\\||  / /|_|_|\ \ 
+      _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |         (  )    / /  \ \  | \_____/ | 
+  ,-'   |   \ \_     '.    )      )/       (_/\_) '. `---' .`   ||  ||          )/    ( /    \ ) '. `---' .` 
+  (_..--'     \__)      `-.'      (                  `-...-'    (_/  \_)        (       )      (    `-...-'   
+
+
+<div class="lesson-container">
+  <div class="lesson-intro"></div>
+  <div class="lesson-content"></div>
+  <div class="lesson-outro"></div>
+</div>
+
+<div class="lesson-container">
+  <div class="lesson-intro"></div>
+  <div class="lesson-content"></div>
+  <div class="lesson-outro"></div>
+</div>
+
+<div class="lesson-container">
+  <div class="lesson-intro"></div>
+  <div class="lesson-content"></div>
+  <div class="lesson-outro"></div>
+</div>
+-->
+<div class="lesson-container" id="useCase">
+  <div class="lesson-intro">
+    <h1><a href="#start">Lesson Two - Use Case Diagrams</a></h1>
+    <h2>Using Use Case Diagrams for Farm Application</h2>
+    <p>
+      In the previous lesson, we learned about Class Diagrams and created a sample UML Class Diagram for Tegridy Farm.
+      In this lesson, we will discuss how to use Use Case Diagrams to create a great plan for our Farm application
+      before we start coding.
+    </p>
+    <h2>What is a Use Case Diagram?</h2>
+    <p>
+      A Use Case Diagram is a type of UML diagram that describes the interactions between actors (users) and a system.
+      It is used to define the system's functionalities and to identify the actors and their roles in the system. The
+      Use Case Diagram illustrates the use cases, which are the actions or tasks that the actors can perform in the
+      system. It helps to identify the system's requirements and to ensure that the system meets the users' needs.
+    </p>
+    <h2>Identifying Actors</h2>
+    <p>
+      The first step in creating a Use Case Diagram is to identify the actors or users of the system. In our Tegridy
+      Farm example, we can identify the following actors:
+    </p>
+    <ul>
+      <li>Farmer</li>
+      <li>Veterinarian</li>
+      <li>Customer</li>
+    </ul>
+    <h2>Defining Use Cases</h2>
+    <p>
+      The next step is to define the use cases or the actions that each actor can perform in the system. We can identify
+      the following use cases for our Tegridy Farm example:
+    </p>
+    <ul>
+      <li>Farmer:
+        <ul>
+          <li>Feed Animals</li>
+          <li>Move Animals</li>
+          <li>Add Animal to Barn</li>
+          <li>Remove Animal from Barn</li>
+          <li>Add Animal to Pasture</li>
+          <li>Remove Animal from Pasture</li>
+        </ul>
+      </li>
+      <li>Veterinarian:
+        <ul>
+          <li>Diagnose Animal</li>
+          <li>Treat Animal</li>
+        </ul>
+      </li>
+      <li>Customer:
+        <ul>
+          <li>Purchase Animal</li>
+          <li>View Animal Information</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="lesson-content">
+    <h2>Creating Use Case Diagram</h2>
+    <p>
+      Now that we have identified the actors and use cases, we can create our Use Case Diagram for Tegridy Farm. The
+      diagram will illustrate the relationships between the actors and the use cases, and how they interact with the
+      system.
+    </p>
+    <img src="../public/diagram/imgs/Use Case Diagram Tegridy Farm System.png" alt="Tegridy Farm Use Case Diagram">
+    <p>
+      As you can see, the Use Case Diagram for Tegridy Farm illustrates the actors, use cases, and their relationships.
+      The diagram shows how the actors interact with the system and how they perform their tasks.
+    </p>
+    <h2>Conclusion</h2>
+    <p>
+      Use Case Diagrams are an excellent tool for defining the requirements of a system and ensuring that the system
+      meets the users' needs. In our Tegridy Farm example, we have identified the actors and use cases and created a Use
+      Case Diagram that illustrates the system's functionalities and how the actors interact with the system.
+    </p>
+  </div>
+</div>
+
+<!-- 
+
+  oo_                  c  c   (o)__(o)    wW  Ww     .-.      \\\  ///        wW  Ww    wW  Ww    wW  Ww 
+/  _)-<    wWw        (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))        (O)(O)    (O)(O)    (O)(O) 
+\__ `.     (O)_     ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||          (..)      (..)      (..)  
+   `. |   .' __)   / //_|_\     )(         ||   / /|_|_|\ \   ||\\||           ||        ||        ||   
+   _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |          _||_      _||_      _||_  
+,-'   |   `.__)    '.    )      )/       (_/\_) '. `---' .`   ||  ||         (_/\_)    (_/\_)    (_/\_) 
+(_..--'               `-.'      (                  `-...-'    (_/  \_)                                    -->
+
+<div class="lesson-container" id="sequence">
+  <div class="lesson-intro-sp">
+    <h1><a href="#start">Lesson Three - Sequence Diagrams</a></h1>
+    <h2>Using Sequence Diagrams to Plan a Farm Application</h2>
+    <p>Sequence diagrams are an essential tool in software development that helps developers to understand the
+      interactions between objects in a software system. They illustrate the sequence of events and the flow of data
+      between objects. In this lesson, we will explore how to use sequence diagrams to plan a farm application, using
+      the Tegridy Farm Class Diagram as an example.</p>
+    <h3>Step 1: Identify the Actors and Their Interactions</h3>
+    <p>The first step in creating a sequence diagram is to identify the actors and their interactions. In the Tegridy
+      Farm Class Diagram, the actors are the Farmer, Animal, Barn, Pasture, and FeedType. The interactions between the
+      actors can be identified by examining the class diagram.</p>
+      <img src="../public/diagram/imgs/CartoonTegridy.png" alt="">
+      <img src="../public/assets/logo.webp" alt="" style="height: 19em; margin-top: 60px; display: flex; flex-direction: column;">
+  </div>
+  <div class="lesson-content-sp">
+    <ul>
+      <li>The Farmer can feed animals and move them to a new location</li>
+      <li>The Animal can be fed and moved to a new location</li>
+      <li>The Barn can store animals and add or remove animals from storage</li>
+      <li>The Pasture can hold animals and add or remove animals from the pasture</li>
+      <li>The FeedType can provide the price of the feed</li>
+    </ul>
+    <h3>Step 2: Create a Skeleton Sequence Diagram</h3>
+    <p>The next step is to create a skeleton sequence diagram that shows the interactions between the actors. The
+      skeleton sequence diagram should include the actors, the interactions, and the messages that are passed between
+      the actors. The skeleton sequence diagram can be used to plan the implementation of the farm application.</p>
+    <img src="../public/diagram/imgs/Tegridy Farms Sequence Diagram 1.png">
+    <h3>Step 3: Refine the Sequence Diagram</h3>
+    <p>The final step is to refine the sequence diagram by adding more detail to the interactions between the actors.
+      The refinement process involves adding more messages, variables, and conditions to the diagram to make it more
+      detailed.</p>
+    <img src="../public/diagram/imgs/Tegridy Farm Sequence Diagram 2.png">
+    <h3>Conclusion</h3>
+    <p>Sequence diagrams are an excellent tool for planning software applications. They help developers to understand
+      the interactions between objects in a software system and can be used to plan the implementation of the software.
+      In this lesson, we have shown how to use sequence diagrams to plan a farm application, using the Tegridy Farm
+      Class Diagram as an example.</p>
+  </div>
+</div>
+
+
+<!-- oo_                  c  c   (o)__(o)    wW  Ww     .-.      \\\  ///        wW  Ww wWw    wWw 
+   /  _)-<    wWw        (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))        (O)(O) (O)    (O) 
+   \__ `.     (O)_     ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||          (..)  ( \    / ) 
+      `. |   .' __)   / //_|_\     )(         ||   / /|_|_|\ \   ||\\||           ||    \ \  / /  
+      _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |          _||_   /  \/  \  
+   ,-'   |   `.__)    '.    )      )/       (_/\_) '. `---' .`   ||  ||         (_/\_)  \ `--' /  
+  (_..--'               `-.'      (                  `-...-'    (_/  \_)                 `-..-'    -->
+
+<div class="lesson-container" id="activityDiagram">
+  <div class="lesson-intro">
+    <h1><a href="#start">Lesson Four - Activity Diagrams</a></h1>
+    <h2>Using Activity Diagrams for Tegridy Farm</h2>
+    <p>
+      In the previous lessons, we learned about Class Diagrams and Use Case Diagrams, and how to use them to create a
+      plan
+      for our Tegridy Farm application. In this lesson, we will discuss how to use Activity Diagrams to model the flow
+      of
+      activities and processes in our application.
+    </p>
+    <h2>What is an Activity Diagram?</h2>
+    <p>
+      An Activity Diagram is a type of UML diagram that shows the flow of activities and processes in a system. It is
+      used to model the steps involved in a process or use case, and the decision points or branches in the process. The
+      Activity Diagram helps to identify the different tasks and steps involved in a process and to ensure that the
+      process is well-defined and easy to understand.
+    </p>
+
+    <h2>Modeling Tegridy Farm Activities</h2>
+    <p>
+      Let's use an Activity Diagram to model the process of adding an animal to Tegridy Farm. The following UML code
+      represents the Activity Diagram for this process:
+    </p>
+    <img src="../public/diagram/imgs/Tegridy Farms Activity Diagram.png" alt="Tegridy Farm Activity Diagram">
+  </div>
+  <div class="lesson-content">
+    <p>
+      As you can see, the Activity Diagram shows the steps involved in adding an animal to Tegridy Farm, starting with
+      selecting the "Add Animal" option, choosing the location (barn or pasture), entering the animal details, and
+      saving the animal details and updating the animal count for the location.
+    </p>
+    <h2>Conclusion</h2>
+    <p>
+      Activity Diagrams are an excellent tool for modeling the flow of activities and processes in a system. In our
+      Tegridy Farm example, we have used an Activity Diagram to model the process of adding an animal to the farm, and
+      ensure that the process is well-defined and easy to understand.
+    </p>
+    <img src="../public/diagram/imgs/CartoonTegridy.png" alt="">
+  </div>
+</div>
+
+
+<!--
+
+    oo_                  c  c   (o)__(o)    wW  Ww     .-.      \\\  ///     wWw    wWw 
+  /  _)-<    wWw        (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))     (O)    (O) 
+  \__ `.     (O)_     ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||      ( \    / ) 
+     `. |   .' __)   / //_|_\     )(         ||   / /|_|_|\ \   ||\\||       \ \  / /  
+     _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |       /  \/  \  
+  ,-'   |   `.__)    '.    )      )/       (_/\_) '. `---' .`   ||  ||       \ `--' /  
+ (_..--'               `-.'      (                  `-...-'    (_/  \_)       `-..-'   
+
+-->
+
+
+<div class="lesson-container" id="stateMachine">
+  <div class="lesson-intro">
+    <h1><a href="#start">Lesson Five - State Machine Diagrams</a></h1>
+    <h2>Using State Machine Diagrams for Planning the Farm Application</h2>
+    <p>In the previous lessons, we have discussed several UML diagrams that help in planning and designing software
+      applications. In this lesson, we will discuss the State Machine Diagram, which is a UML diagram that helps in
+      modeling the behavior of an object or system by depicting its different states and the events that cause a
+      transition from one state to another. We will use the Tegridy Farm Class Diagram as an example to illustrate how
+      to use a State Machine Diagram to plan the Farm Application before starting to code.</p>
+    <h2>The Tegridy Farm Class Diagram</h2>
+    <p>Before we dive into State Machine Diagrams, let's briefly review the Tegridy Farm Class Diagram that we will be
+      using as the basis for this lesson. The diagram includes four main classes: Animal, Farmer, FeedType, Barn, and
+      Pasture, which are interconnected using associations.</p>
+    <p>The Animal class has attributes such as id, name, type, and weight, and methods such as feed() and move(). The
+      Farmer class has attributes such as id, name, and age, and methods such as feedAnimals() and moveAnimal(). The
+      FeedType class has attributes such as id, name, and price, and methods such as getPrice().</p>
+    <p>The Barn and Pasture classes have attributes such as id, name, capacity, location, and animals, and methods such
+      as addAnimal() and removeAnimal(). The associations between classes indicate how they are related to each other.
+    </p>
+    <img src="../public/diagram/imgs/Tegridy Farm Class Diagram.png" alt="Tegridy Farm Class Diagram">
+    <div class="white-space-filler">
+      <h2>Tegridy Farm Launches Revolutionary Computer System</h2>
+      <h5>By Jimmy Valmer, South Park Gazette</h5>
+      <img src="../public/diagram/imgs/CartoonTegridy.png" alt="">
+      <caption>Randy Marsh and others</caption>
+      <p><strong>South Park</strong> - It was a hoedown to remember at Tegridy Farm yesterday as Randy Marsh, owner and
+        operator, launched a brand new computer system. The event was attended by residents of the town, who were eager
+        to see what the buzz was all about.</p>
+      <p> Randy, known for his quirky sense of humor and love of all things country, gave a rousing speech to the crowd.
+        "Welcome to Tegridy Farm, where the grass is green, the cows are happy, and the Wi-Fi signal is stronger than my
+        wife's margaritas," he exclaimed, which elicited laughter from the audience.</p>
+      <p>The new computer system, according to Randy, has more processing power than a cow's digestive system after
+        eating a barrel of hay. And for those who love cows, the system is even programmed to moo every time the space
+        bar is hit.</p>
+      <p>The computer system also features a special mode called "Tegridy Mode", which plays only country music and
+        displays pictures of Randy's prized pigs. "Trust me, it's the most wholesome thing you'll ever experience on a
+        computer," Randy assured the crowd, who chuckled in response.
+      </p>
+      <p>The launch event was a success, with many residents expressing interest in purchasing the new computer system.
+        "I never thought I'd be interested in technology, but if it's got Tegridy, I'm all in," said local resident,
+        Butters Stotch.</p>
+      <p>So head on down to Tegridy Farm and get yourself a computer that's as reliable as their cows and as sweet as
+        their homemade apple pie. Yeehaw!</p>
+    </div>
+  </div>
+  <div class="lesson-content">
+    <h2>State Machine Diagrams</h2>
+    <p>A State Machine Diagram is a UML diagram that models the behavior of an object or system by depicting its
+      different states and the events that cause a transition from one state to another. In other words, a State Machine
+      Diagram represents a finite state machine, which is a mathematical model of computation that has a finite number
+      of states and transitions between them. The State Machine Diagram consists of three main elements: states,
+      transitions, and events.</p>
+    <h3>States</h3>
+    <p>A state is a condition or situation in which an object or system can exist. In the Tegridy Farm Application, some
+      of the states that an Animal object can be in include "eating", "sleeping", "playing", and "moving". Each state
+      crepresents a particular behavior or activity of the Animal object.</p>
+    <h3>Transitions</h3>
+    <p>A transition is a change of state that occurs in response to an event. In the Tegridy Farm Application, some of
+      the events that can cause a transition in an Animal object include "hunger", "thirst", "boredom", and "being
+      moved". When an event occurs, the Animal object transitions from one state to another based on a set of rules or
+      conditions that determine the next state.</p>
+    <h3>Events</h3>
+    <p>Events are stimuli that cause a transition from one state to another. Events can be internal, such as a timer or
+      a change in a variable, or external, such as a user input or a sensor reading. In the Tegridy Farm Application,
+      events can include "being fed", "being moved to a new location", "getting sick", or "being sold".</p>
+    <h2>Using State Machine Diagrams to Plan the Farm Application</h2>
+    <p>To use a State Machine Diagram to plan the Tegridy Farm Application, we need to first identify the states that an
+      Animal object can be in and the events that cause a transition from one state to another. Let's take a closer look
+      at some of the states and events for the Animal class.</p>
+    <h3>States for the Animal Class</h3>
+    <ul>
+      <li>Eating</li>
+      <li>Sleeping</li>
+      <li>Playing</li>
+      <li>Moving</li>
+    </ul>
+    <h3>Events for the Animal Class</h3>
+    <ul>
+      <li>Being fed</li>
+      <li>Being moved to a new location</li>
+      <li>Getting sick</li>
+      <li>Being sold</li>
+    </ul>
+    <p>Using this information, we can create a State Machine Diagram for the Animal class. The diagram will depict the
+      different states as nodes and the events as transitions between nodes. Let's take a look at an example of a State
+      Machine Diagram for the Animal class.
+    </p>
+    <img src="../public/diagram/imgs/Tegridy Farm State Machine Diagram.png"
+      alt="State Machine Diagram for Animal Class">
+    <p>The State Machine Diagram shows the different states that an Animal object can be in and the events that cause a
+      transition from one state to another. For example, when an Animal object is in the "eating" state and receives the
+      "being moved" event, it transitions to the "moving" state. Similarly, when an Animal object is in the "moving"
+      state and receives the "being fed" event, it transitions to the "eating" state. The diagram helps in visualizing
+      the behavior of an Animal object and provides a clear understanding of how it transitions from one state to
+      another.
+    </p>
+  </div>
+  <div class="lesson-outro">
+    <h2>Conclusion</h2>
+    <p>State Machine Diagrams are powerful tools for modeling the behavior of an object or system. They help in planning
+      and designing software applications by providing a visual representation of the different states and events that
+      cause a transition from one state to another. In the Tegridy Farm Application, we used a State Machine Diagram to
+      model the behavior of an Animal object and gain a deeper understanding of its behavior. By using State Machine
+      Diagrams in the planning phase, developers can create more robust and efficient software applications that meet
+      the requirements and expectations of users.</p>
+  </div>
+</div>
+<!-- 
+
+oo_                  c  c   (o)__(o)    wW  Ww     .-.      \\\  ///     wWw    wWw    wW  Ww 
+/  _)-<    wWw        (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))     (O)    (O)    (O)(O) 
+\__ `.     (O)_     ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||      ( \    / )     (..)  
+   `. |   .' __)   / //_|_\     )(         ||   / /|_|_|\ \   ||\\||       \ \  / /       ||   
+   _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |       /  \/  \      _||_  
+,-'   |   `.__)    '.    )      )/       (_/\_) '. `---' .`   ||  ||       \ `--' /     (_/\_) 
+(_..--'               `-.'      (                  `-...-'    (_/  \_)       `-..-'             
+ -->
+
+
+<div class="lesson-container" id="component">
+  <div class="lesson-intro">
+    <h1><a href="#start">Lesson Six - Component Diagram</a></h1>
+    <h2>Using Component Diagrams in Farm Application Development</h2>
+    <p>A Component Diagram is a type of UML diagram that illustrates the structure of a software application by
+      depicting its components, their interfaces, dependencies, and relationships. It provides a high-level view of the
+      system's architecture and how different components work together. In this lesson, we will explore how to use a
+      Component Diagram to design a Farm application before starting the coding process.</p>
+
+    <h2>Using a Component Diagram to Plan the Farm Application</h2>
+
+    <p>When designing a Farm application, it is essential to consider its components and how they interact with each
+      other. A Component Diagram can help to illustrate these interactions and provide a clear understanding of the
+      system's architecture.</p>
+
+    <h3>Example Component Diagram</h3>
+
+    <p>Let us create a Component Diagram for the Tegridy Farm application. It will illustrate the components, their
+      interfaces, and how they interact with each other.</p>
+
+    <img src="../public/diagram/imgs/Component Diagram Tegridy Farm.png" alt="Tegridy Farm Component Diagram">
+
+    <p>The Farm application consists of several components, including:</p>
+
+    <ul>
+      <li>The Farmer component</li>
+      <li>The Animal component</li>
+      <li>The Barn component</li>
+      <li>The Pasture component</li>
+      <li>The FeedType component</li>
+      <li>The Web Server component (real-world application)</li>
+      <li>The Database Server component (real-world application)</li>
+    </ul>
+
+    <p>Each component has its unique properties and functionalities, and they work together to make the Farm application
+      work. Now, let us explore how to use a Component Diagram to plan the Farm application.</p>
+
+    <h3>The Farmer Component</h3>
+
+    <p>The Farmer component is responsible for managing the Farm application. It interacts with other components, such
+      as the Animal component, to ensure that the Farm runs smoothly. In a Component Diagram, the Farmer component can
+      be depicted as a rectangle with the name "Farmer."</p>
+
+    <p>The Farmer component has two primary methods: feedAnimals() and moveAnimal(). The feedAnimals() method is
+      responsible for feeding animals on the Farm, while the moveAnimal() method is responsible for moving animals from
+      one location to another. These methods interact with the Animal component, which is responsible for managing the
+      animals on the Farm.</p>
+
+    <h3>The Animal Component</h3>
+
+    <p>The Animal component is responsible for managing the animals on the Farm. It interacts with other components,
+      such as the Farmer component, to ensure that the animals are well-fed and in the right location. In a Component
+      Diagram, the Animal component can be depicted as a rectangle with the name "Animal."</p>
+
+    <p>The Animal component has two primary methods: feed() and move(). The feed() method is responsible for feeding the
+      animal with a specific feed type, while the move() method is responsible for moving the animal from one location
+      to another. These methods interact with the Farmer component, which is responsible for managing the Farm.
+
+    <h3>The Barn and Pasture Components</h3>
+
+    <p>The Barn and Pasture components are responsible for managing the location of the animals on the Farm. In a
+      Component Diagram, the Barn and Pasture components can be depicted as rectangles with the names "The Barn" and
+      "The Pasture," respectively.</p>
+
+    <p>The Barn component has two primary methods: addAnimal() and removeAnimal(). The addAnimal() method is responsible
+      for adding an animal to the Barn, while the removeAnimal() method is responsible for removing an animal from the
+      Barn. The Barn component interacts with the Animal component to manage the animals on the Farm.</p>
+
+    <p>The Pasture component also has two primary methods: addAnimal() and removeAnimal(). The addAnimal() method is
+      responsible for adding an animal to the Pasture, while the removeAnimal() method is responsible for removing an
+      animal from the Pasture. The Pasture component interacts with the Animal component to manage the animals on the
+      Farm.</p>
+
+    <h3>The FeedType Component</h3>
+
+    <p>The FeedType component is responsible for managing the different types of feeds available on the Farm. It
+      interacts with the Animal component to provide the animals with the correct feed. In a Component Diagram, the
+      FeedType component can be depicted as a rectangle with the name "FeedType."</p>
+
+    <p>The FeedType component has one primary method: getPrice(). The getPrice() method is responsible for returning the
+      price of a specific feed type. This method interacts with the Animal component to provide the correct feed to the
+      animals on the Farm.</p>
+  </div>
+  <div class="lesson-content">
+    <h3>Web Server and Database Server Components (Real-World Application)</h3>
+
+    <p>In a real-world Farm application, we may also need to consider the deployment of the application on different
+      hardware and software environments. We may need to deploy the application on a web server and a database server.
+      These components are responsible for hosting the Farm application and managing the application's data,
+      respectively. In a Component Diagram, the Web Server and Database Server components can be depicted as rectangles
+      with their respective names.</p>
+
+    <p>The Web Server component is responsible for hosting the Farm application and serving requests from users. It
+      interacts with the Farm application components, such as the Farmer, Animal, Barn, Pasture, and FeedType
+      components, to provide the required functionalities to users. The Web Server component may also interact with the
+      Database Server component to retrieve data from the database.</p>
+
+    <p>The Database Server component is responsible for managing the application's data. It stores data related to the
+      Farm application, such as animal information, feed types, and location information. It interacts with the Farm
+      application components, such as the Animal, Barn, Pasture, and FeedType components, to provide data access and
+      data management functionalities. The Database Server component may also interact with the Web Server component to
+      provide the requested data to the users.</p>
+
+    <h3>Example of a Complex Component Diagram</h3>
+
+    <p>Here is an example of a complex Component Diagram for an e-commerce platform:</p>
+
+    <img src="../public/diagram/imgs/Component Diagram (e-commerce) Example.png">
+
+    <p>This Component Diagram depicts an e-commerce platform's structure and relationships between its components. It
+      consists of several components, including:</p>
+    <ul>
+      <li>The User Interface component</li>
+      <li>The Payment Gateway component</li>
+      <li>The Order Processing component</li>
+      <li>The Inventory Management component</li>
+      <li>The Customer Support component</li>
+      <li>The Analytics component</li>
+      <li>The Web Server component</li>
+      <li>The Database Server component</li>
+    </ul>
+
+    <p>Each component has its unique properties and functionalities, and they work together to make the e-commerce
+      platform work. The User Interface component interacts with the Payment Gateway, Order Processing, Inventory
+      Management, and Customer Support components to provide a seamless user experience. The Analytics component
+      provides insights into user behavior, which helps to improve the platform's functionality. The Web Server
+      component hosts the platform and serves requests from users, while the Database Server component manages the
+      application's data.</p>
+
+    <h2>Conclusion</h2>
+
+    <p>A Component Diagram is a powerful tool for designing software applications, such as the Farm application. It
+      helps to provide a clear understanding of the system's architecture, the relationships between different
+      components, and how they interact with each other. By using a Component Diagram to plan the Farm application, we
+      can ensure that we have considered all the components and their interactions before starting the coding process.
+      This can save time, reduce costs, and improve the quality of the application.</p>
+
+    <p>When designing a complex software application, it is essential to consider its components, their interfaces, and
+      how they interact with each other. A Component Diagram can help to illustrate these interactions and provide a
+      clear understanding of the system's architecture. By using a Component Diagram to plan a complex software
+      application, we can ensure that we have considered all the components and their interactions before starting the
+      coding process. This can save time, reduce costs, and improve the quality of the application.</p>
+  </div>
+</div>
+
+<!-- 
+
+oo_                  c  c   (o)__(o)    wW  Ww     .-.      \\\  ///     wWw    wWw    wW  Ww    wW  Ww 
+/  _)-<    wWw        (OO)   (__  __)    (O)(O)   c(O_O)c    ((O)(O))     (O)    (O)    (O)(O)    (O)(O) 
+\__ `.     (O)_     ,'.--.)    (  )       (..)   ,'.---.`,    | \ ||      ( \    / )     (..)      (..)  
+   `. |   .' __)   / //_|_\     )(         ||   / /|_|_|\ \   ||\\||       \ \  / /       ||        ||   
+   _| |  (  _)     | \___      (  )       _||_  | \_____/ |   || \ |       /  \/  \      _||_      _||_  
+,-'   |   `.__)    '.    )      )/       (_/\_) '. `---' .`   ||  ||       \ `--' /     (_/\_)    (_/\_) 
+(_..--'               `-.'      (                  `-...-'    (_/  \_)       `-..-'                       
+ -->
+
+<div class="lesson-container" id="deployment">
+  <div class="lesson-intro-sp">
+    <h1><a href="#start">Lesson Seven - Deployment Diagram</a></h1>
+    <h2>Using Deployment Diagrams for the Tegridy Farm Application</h2>
+    <p>The Deployment Diagram is a UML diagram that shows how software is deployed on hardware and software
+      infrastructure. In this lesson, we will explore how to use a Deployment Diagram to plan the deployment of the
+      Tegridy Farm application.</p>
+    <h2>Step 1: Identify the Hardware and Software Infrastructure</h2>
+    <p>The first step in creating a Deployment Diagram for the Tegridy Farm application is to identify the hardware and
+      software infrastructure needed to run the application. In the case of the Tegridy Farm application, the
+      infrastructure required includes:</p>
+    <ul>
+      <li>A web server</li>
+      <li>A database server</li>
+      <li>Computers or mobile devices to access the application</li>
+    </ul>
+    <p>These components will be represented as nodes in the Deployment Diagram.</p>
+    <h2>Step 2: Add Nodes to the Deployment Diagram</h2>
+    <p>Once the hardware and software infrastructure have been identified, the next step is to add nodes to the
+      Deployment Diagram to represent them. In this case, we will add three nodes to the Deployment Diagram:</p>
+    <ul>
+      <li>The Web Server</li>
+      <li>The Database Server</li>
+      <li>The Client Devices</li>
+    </ul>
+  </div>
+  <div class="lesson-content-sp">
+    <p>Each node should be labeled with a name and an IP address. For example, the Web Server node might be labeled "Web
+      Server (192.168.1.100)".</p>
+    <h2>Step 3: Add Components to the Deployment Diagram</h2>
+    <p>After the nodes have been added, the next step is to add the components of the Tegridy Farm application to the
+      Deployment Diagram. In this case, the components are:</p>
+    <ul>
+      <li>The Tegridy Farm Web Application</li>
+      <li>The Tegridy Farm Database</li>
+    </ul>
+    <p>The Tegridy Farm Web Application will be deployed on the Web Server, and the Tegridy Farm Database will be
+      deployed on the Database Server. Each component should be labeled with a name and a version number.</p>
+    <h2>Step 4: Connect the Nodes and Components</h2>
+    <p>Once the nodes and components have been added, the final step is to connect them. In this case, we will connect the Tegridy Farm Web Application to the Web Server and the Tegridy Farm Database to the Database Server.</p>
+    <p>The connections should be labeled with the protocol used for communication (e.g., HTTP, HTTPS, TCP/IP) and the port number used for communication.</p>
+    <h2>Example Deployment Diagram for the Tegridy Farm Application</h2>
+    <p>Below is an example Deployment Diagram for the Tegridy Farm application:</p>
+    <img src="../public/diagram/imgs/Deployment Diagram Tegridy Farms.png">
+    <p>The Deployment Diagram shows the Tegridy Farm Web Application deployed on the Web Server and the Tegridy Farm Database deployed on the Database Server. The Client Devices communicate with the Web Server over HTTP on port 80 to access the Tegridy Farm Web Application.</p>
+    <p>Using the Deployment Diagram, developers can plan and visualize how the Tegridy Farm application will be deployed on the hardware and software infrastructure. This can help to identify potential issues and optimize the deployment process.</p>
+    <h2>Conclusion</h2>
+    <p>Deployment Diagrams are a valuable tool for planning and visualizing how software is deployed on hardware and software infrastructure. In the case of the Tegridy Farm application, a Deployment Diagram can help developers to plan and optimize the deployment of the Tegridy Farm Web Application and Database on the hardware and software infrastructure.</p>
+  </div>
+</div>
+
+
+<!-- 
+ oo_     wWw  wWw   \\\    ///  \\\    ///             ))       wWw  wWw 
+ /  _)-<  (O)  (O)   ((O)  (O))  ((O)  (O))     /)     (Oo)-.    (O)  (O) 
+ \__ `.   / )  ( \    | \  / |    | \  / |    (o)(O)    | (_))   ( \  / ) 
+    `. | / /    \ \   ||\\//||    ||\\//||     //\\     |  .'     \ \/ /  
+    _| | | \____/ |   || \/ ||    || \/ ||    |(__)|    )|\\       \o /   
+ ,-'   | '. `--' .`   ||    ||    ||    ||    /,-. |   (/  \)     _/ /    
+(_..--'    `-..-'    (_/    \_)  (_/    \_)  -'   ''    )        (_.'      -->
+
+
+<div class="lesson-container" id="summary">
+  <div class="lesson-intro">
+    <h1><a href="#start">Summing it all Up</a></h1>
+    <h2>Summary Lesson: How to Use UML Diagrams</h2>
+    <p>UML (Unified Modeling Language) diagrams are essential tools in software development that enable developers to
+      communicate ideas and plans visually. There are seven primary UML diagrams that developers use to design software
+      applications:</p>
+    <ul>
+      <li>Class diagram</li>
+      <li>Use case diagram</li>
+      <li>Sequence diagram</li>
+      <li>Activity diagram</li>
+      <li>State machine diagram</li>
+      <li>Component diagram</li>
+      <li>Deployment diagram</li>
+    </ul>
+    <p>Here is a summary of how to use each diagram:</p>
+    <h2>Class Diagram</h2>
+    <p>The Class diagram is used to illustrate the structure of a software application by depicting classes, interfaces,
+      associations, and their relationships. It provides a visual representation of how the software system is
+      organized, and it is an excellent tool for designing software architecture.</p>
+    <p>To use the Class diagram, you should:</p>
+    <ul>
+      <li>Identify the classes, interfaces, and associations that make up the system</li>
+      <li>Define the relationships between the classes and interfaces</li>
+      <li>Specify the attributes and methods of each class and interface</li>
+    </ul>
+    <h2>Use Case Diagram</h2>
+    <p>The Use Case diagram is used to describe the behavior of a software application from a user's perspective. It
+      illustrates the system's functionalities and how they are used to achieve specific goals. The Use Case diagram
+      provides an excellent tool for defining requirements and validating the application's functionality.</p>
+    <p>To use the Use Case diagram, you should:</p>
+    <ul>
+      <li>Identify the different use cases that make up the system</li>
+      <li>Define the actors that interact with the system</li>
+      <li>Specify the relationships between the use cases and actors</li>
+    </ul>
+    <h2>Sequence Diagram</h2>
+    <p>The Sequence diagram is used to illustrate the interactions between objects in a software system. It depicts the
+      sequence of events in a software application, from start to finish, and how different objects interact with each
+      other.</p>
+    <p>To use the Sequence diagram, you should:</p>
+    <ul>
+      <li>Identify the objects that make up the system</li>
+      <li>Define the messages and events that trigger the interactions between the objects</li>
+      <li>Specify the order in which the messages and events occur</li>
+    </ul>
+
+    <h2>Activity Diagram</h2>
+    <p>The Activity diagram is used to illustrate the flow of activities in a software application. It is an excellent
+      tool for modeling business processes and workflow. It helps developers to understand the logical flow of the
+      software application.</p>
+    <p>To use the Activity diagram, you should:</p>
+    <ul>
+      <li>Identify the different activities that make up the system</li>
+      <li>Define the relationships between the activities</li>
+      <li>Specify the conditions and decision points that control the flow of activities</li>
+    </ul>
+  </div>
+  <div class="lesson-content">
+    <h2>State Machine Diagram</h2>
+    <p>The State Machine diagram is used to depict the different states of an object and the events that cause a transition from one state to another. It is an excellent tool for modeling systems that have a complex behavior and numerous states.</p>
+    <p>To use the State Machine diagram, you should:</p>
+    <ul>
+      <li>Identify the different states that an object can have</li>
+      <li>Define the events that trigger transitions between the states</li>
+      <li>Specify the actions that occur when a transition occurs</li>
+    </ul>
+    <h2>Component Diagram</h2>
+    <p>The Component diagram is used to depict the components of a software system and how they are connected to each
+      other. It provides a high-level view of the software system's architecture and how different components work
+      together.</p>
+    <p>To use the Component diagram, you should:</p>
+    <ul>
+      <li>Identify the different components that make up the system</li>
+      <li>Define the relationships between the components</li>
+      <li>Specify the interfaces that the components use to communicate with each other</li>
+    </ul>
+    <h2>Deployment Diagram</h2>
+    <p>The Deployment diagram is used to illustrate how a software application is deployed to different hardware and
+      software environments. It depicts the different nodes and their relationships and shows how the software system is
+      distributed across different hardware and software environments.</p>
+    <p>To use the Deployment diagram, you should:</p>
+    <ul>
+      <li>Identify the different nodes that make up the system</li>
+      <li>Define the relationships between the nodes</li>
+      <li>Specify the artifacts that are deployed to each node</li>
+    </ul>
+    <p>In conclusion, UML diagrams are powerful tools that help developers design software applications. Each UML
+      diagram has its unique purpose and application, and by learning how to use them effectively, developers can create
+      better-designed software applications.</p>
+  </div>
+</div>
+<!-- 
+
+   oo_     (o)__(o)   wWw  wWw   W  W       wWw      oo_    
+  /  _)-<  (__  __)   (O)  (O)  (O)(O)      (O)_    /  _)-< 
+  \__ `.     (  )     ( \  / )    ||        / __)   \__ `.  
+     `. |     )(       \ \/ /     | \      / (         `. | 
+     _| |    (  )       \o /      |  `.   (  _)        _| | 
+  ,-'   |     )/       _/ /      (.-.__)   \ \_     ,-'   | 
+ (_..--'     (        (_.'        `-'       \__)   (_..--'  
+
+-->
+
+
+<style>
+  .hero {
+    background-color: #fff;
+    color: #000000;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .hero>p {
+    font-size: 58px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 40px;
+  }
+
+  .tableOContents {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .tableOContents>div {
+    height: 90px;
+    width: 140px;
+    background-color: rgba(220, 143, 143, 0.4);
+    margin: 5px;
+    box-shadow: 2px 2px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .tableOContents>div>a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero {
+      padding: 50px 0;
+    }
+
+    .hero>p {
+      font-size: 36px;
+    }
+  }
+
+  .lesson-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 0px;
+    margin-top: 10px;
+    padding: 50px;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .lesson-intro {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 4;
+    padding: 0;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+
+  .lesson-intro-sp {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 4;
+    padding: 0;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+
+  .lesson-content {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+    padding-left: 20px;
+    margin-bottom: 40px;
+    border-left: 1px solid #e9e9e9;
+    line-height: 1.5;
+  }
+
+  .lesson-content-sp {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 3;
+    padding-left: 20px;
+    margin-bottom: 40px;
+    border-left: 1px solid #e9e9e9;
+    line-height: 1.5;
+  }
+
+
+  .lesson-outro {
+    grid-column: 3;
+    grid-row: 4;
+    padding-left: 20px;
+    line-height: 1.5;
+  }
+
+  h1 {
+    color: orangered;
+    margin: 0;
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+
+  h1>a {
+    color: orangered;
+    margin: 0;
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-decoration: none;
+  }
+
+  p {
+    margin: 1em 0;
+    text-align: justify;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+  }
+
+  ul {
+    margin: 1em 0;
+    padding: 0 0 0 1.5em;
+  }
+
+  li {
+    margin: 0.5em 0;
+    list-style-type: disc;
+  }
+
+  h2,
+  h3 {
+    margin: 1.5em 0 0.5em 0;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 28px;
+    color: #1c1c1c;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: #1c1c1c;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7f7f7f;
+    padding-bottom: 5px;
+  }
+
+  .lesson-outro h2 {
+    color: #fff;
+    margin-top: 0;
+  }
+
+  .lesson-outro p {
+    color: #fff;
+  }
+
+  ul li:before {
+    content: "\2022";
+    color: #1c1c1c;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .white-space-filler {
+    margin-top: 120px;
+    padding: 50px;
+    background-color: rgb(229, 228, 228);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .white-space-filler h1 {
+    color: #1c1c1c;
+    margin: 0;
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .white-space-filler h5 {
+    color: #7f7f7f;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .white-space-filler img {
+    display: inline;
+    max-width: 100%;
+    height: auto;
+    margin: 5px 0;
+  }
+
+  .white-space-filler p {
+    margin: 1em 0;
+    text-align: justify;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .white-space-filler caption {
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .white-space-filler ul {
+    margin: 1em 0;
+    padding: 0 0 0 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .white-space-filler li {
+    margin: 0.5em 0;
+    list-style-type: disc;
+  }
+
+  .white-space-filler h2,
+  .white-space-filler h3 {
+    margin: 1.5em 0 0.5em 0;
+    font-weight: bold;
+    color: #1c1c1c;
+  }
+
+  .white-space-filler h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .white-space-filler h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7f7f7f;
+    padding-bottom: 5px;
+  }
+</style>
+
+<!-- 
+***********************************************
+
+
+
+       _           wWw    wWw             oo_         c  c    ()_()     wW  Ww    ))      (o)__(o) 
+     _||\     /)   (O)    (O)     /)     /  _)-<      (OO)    (O o)     (O)(O)   (o0)-.   (__  __) 
+    (_'\    (o)(O) ( \    / )   (o)(O)   \__ `.     ,'.--.)    |^_\      (..)     | (_))    (  )   
+     (  |    //\\   \ \  / /     //\\       `. |   / //_|_\    |(_))      ||      | .-'      )(    
+      \ |   |(__)|  /  \/  \    |(__)|      _| |   | \___      |  /      _||_     |(        (  )   
+   (\__)|   /,-. |  \ `--' /    /,-. |   ,-'   |   '.    )     )|\\     (_/\_)     \)        )/    
+    `--.)  -'   ''   `-..-'    -'   ''  (_..--'      `-.'     (/  \)               (        (      
+
+
+
+***********************************************
+-->
