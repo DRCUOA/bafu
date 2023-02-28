@@ -1,17 +1,27 @@
+<!-- views/diagram -->
 <button onclick=gotoDiagrams()>Back to List</button>
+<button id="modify">Modify Diagram</button>
+<button onclick="copyCode(`{{diagram.diagram_code}}`)">New Diagram</button>
+<button id="delete" disabled>Delete Diagram</button>
 <h1>Name: {{diagram.diagram_name}}</h1>
 <div class="diagram-image">
   <img src="{{diagram.diagram_img_file_path}}" alt="{{diagram.diagram_name}}">
 </div>
 <div class="diagram-description">
-  <p>Description: {{diagram.description}}</p>
-  <p>Revision Notes: {{diagram.revision_notes}}</p>
+  <p><strong>Description: </strong></p>
+    <p id="description">{{diagram.description}}</p>
+    <div id="description-preview"></div>
+<br>
+  <p>Revision Notes:</p>
+    <p>{{diagram.revision_notes}}</p>
   <br>
-  <p>Code:</p>
+  <p>UML Diagram Code:</p>
   <pre>{{diagram.diagram_code}}</pre>
 </div>
+<button onclick=gotoDiagrams()>Back to List</button>
 <button id="modify">Modify Diagram</button>
-<button onclick="copyCode(`{{diagram.diagram_code}}`)">Copy Code for new Diagram</button>
+<button onclick="copyCode(`{{diagram.diagram_code}}`)">New Diagram</button>
+<button id="delete" disabled>Delete Diagram</button>
 
 <style>
   h1 {
@@ -38,11 +48,35 @@
 
   .diagram-description {
     animation: fadeIn .5s ease forwards;
-    opacity: 0;
+    opacity: 1;
     margin-bottom: 20px;
     padding: 20px;
     background-color: rgba(139, 205, 205, .4);
     box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.25);
+  }
+
+  .diagram-description > p:first-child {
+    display: inline;
+  }
+
+  .diagram-description > div {
+    margin-top: 10px;
+    width: 100%;
+    min-height: 10em;
+    border: 1px solid gray;
+    padding: 5px;
+  }
+
+  .diagram-description > div > h5 {
+    font-size: 1.2EM;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  .diagram-description > div > p {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   pre {
@@ -74,6 +108,10 @@
     opacity: 0.8;
   }
 
+  #description {
+    display: none;
+  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -89,21 +127,34 @@
     }
   }
 </style>
+
 <script>
   function gotoDiagrams() {
     window.location.href = "/diagrams/diagrams";
   }
 
-function copyCode(text) {
-  navigator.clipboard.writeText(text)
-    .then(() => {
-      console.log("Text copied to clipboard");
-      setTimeout(() => {
-        window.location.href = "/diagrams/diagrams/new";
-      }, 100);
-    })
-    .catch((err) => {
-      console.error("Failed to copy text: ", err);
-    });
-}  
+  function copyCode(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log("Text copied to clipboard");
+        setTimeout(() => {
+          window.location.href = "/diagrams/diagrams/new";
+        }, 100);
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  }
+
+  // Convert the Markdown input to HTML using Showdown.js
+const converter = new showdown.Converter();
+
+// Update the preview of the "description" input
+const descriptionInput = document.getElementById('description');
+const descriptionPreview = document.getElementById('description-preview');
+
+const htmlDescription = converter.makeHtml(descriptionInput.textContent.trim());
+descriptionPreview.innerHTML = htmlDescription;
+
+
 </script>

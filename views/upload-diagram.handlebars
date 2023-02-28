@@ -1,20 +1,65 @@
 <!-- views/newDiagram -->
 <div class="create-new-container">
   <h2>Create a New Diagram</h2>
-  <p>User the embedded iframe below to generate sequence diagram and the form below to save it in the local database.</p>
+  <p>Use the embedded frame below to draft a diagram and save it using the form below.
+  </p>
   <div class="plantFarm">
     <iframe src="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" width="100%"
       height="500"></iframe>
   </div>
   <div class="dbform">
     <h2>Save to Local Database: </h2>
-    <p>Save the image file - SVG or PNG - using above before completing and upload it from the local fs to the database using the form control below. Copy and paste the uml code into the form</p>
+    <p>Save the image file as a PNG. Copy and paste the UML code into the form.</p>
     <form action="/diagrams/diagrams" method="POST" enctype="multipart/form-data">
       <label for="diagram_name">Name:</label>
       <input type="text" id="diagram_name" name="diagram_name" required>
       <br>
-      <label for="description">Description:</label>
-      <input type="text" id="description" name="description" required>
+      <div class="radio-options">
+        <strong>Select the type of Diagram this is:</strong>
+        <label>
+          <input type="radio" name="diagram_type" value="Class">
+          Class Diagram
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="diagram_type" value="UseCase">
+          Use Case Diagram
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="diagram_type" value="Sequence">
+          Sequence Diagram
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="diagram_type" value="Activity">
+          Activity Diagram
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="diagram_type" value="StateMachine">
+          State Machine Diagram
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="diagram_type" value="Component">
+          Component Diagram
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="diagram_type" value="Deployment">
+          Deployment Diagram
+      </div>
+      </label <label for="description"><strong>Description (use Markdown): </strong></label>
+      <textarea id="description" name="description" rows="5" required></textarea>
+      <br>
+      <div id="markdown-preview">
+        <h5><span style="color:rgba(189, 189, 189, 0.4)">Preview:</span></h5>
+        <div id="description-preview">
+          <p>Preview of your description will appear here</p>
+        </div>
+      </div>
+      <input type="hidden" id="description-html" name="description-html">
       <br>
       <label for="revision_notes">Revision Notes:</label>
       <input type="text" id="revision_notes" name="revision_notes" required>
@@ -22,35 +67,232 @@
       <label for="diagram_img_file_path">Diagram Image:</label>
       <input type="file" id="diagram_img_file_path" name="diagram_img_file_path" accept=".png,.svg" required>
       <br>
-      <label for="diagram_code">Code:</label>
+      <label for="diagram_code">Paste UML Code:</label>
       <textarea id="diagram_code" name="diagram_code" rows="5"></textarea>
       <br>
       <button type="submit">Upload Diagram</button>
     </form>
   </div>
+  <div id="big-sticky">
+    <p id="big-sticky-label">This an iFrame providing access to the PlantUML Server</p>
+  </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+<script>
+  // Convert the Markdown input to HTML using Showdown.js
+  const converter = new showdown.Converter();
 
-<p>
-	description	TEXT,
-	revision_notes	TEXT,
-	</p>
+  // Update the preview of the "description" input
+  function updateDescriptionPreview() {
+    const descriptionInput = document.getElementById('description');
+    const descriptionPreview = document.getElementById('description-preview');
+    const descriptionHtmlInput = document.getElementById('description-html');
 
-<style>
-  .create-new-container {
-   display: block;
+    const htmlDescription = converter.makeHtml(descriptionInput.value);
+    descriptionPreview.innerHTML = htmlDescription;
+    descriptionHtmlInput.value = descriptionPreview.innerHTML;
   }
 
-  .plantFarm{
-    display: block;
-    width: 90%;
-    height: 500px;
-    border: 2px solid blue;
+  // Update the preview of the "description" input on input change
+  document.getElementById('description').addEventListener('input', updateDescriptionPreview);
+</script>
+
+<style>
+  #markdown-preview {
+    margin-top: 0px;
+    width: 100%;
+    min-height: 10em;
+    border: 1px solid gray;
+  }
+
+  #markdown-preview>h5 {
+    font-size: 1.2EM;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  .create-new-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .radio-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0px;
+    margin: 10px 0px 30px 0px;
+     border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+  }
+
+  .radio-options label {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+  }
+
+  .radio-options input[type="radio"] {
+  }
+
+  .plantFarm {
+    border: 2px solid orangered;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.25);
+  }
+
+  .plantFarm iframe {
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .dbform {
-     width: 90%;
-    height: 500px;
-    background-color: rgb(213, 213, 213);
-    border: 2px solid blue;
+    background-color: rgba(139, 205, 205, .4);
+    border: 1px solid #707070;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.25);
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0;
+    padding: 20px;
+    animation: fadeIn .5s ease forwards;
+    margin-bottom: 20px;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 0.2;
+    }
+
+    75% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type=text],
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    display: block;
+  }
+
+  button[type=submit] {
+    background-color: orangered;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  button[type=submit]:hover {
+    opacity: 0.8;
+  }
+
+  button[type=reset] {
+    background-color: gray;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  button[type=reset]:hover {
+    opacity: 0.8;
+  }
+
+  .container {
+    margin-top: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.25);
+  }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  #big-sticky {
+    position: absolute;
+    top: 230px;
+    left: 100px;
+    width: 3em;
+  }
+
+  @media only screen and (max-width: 760px) {
+    .container {
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    label {
+      font-size: 16px;
+    }
+
+    input[type=text],
+    textarea,
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    button[type=submit],
+    button[type=reset] {
+      font-size: 16px;
+      padding: 8px 16px;
+      margin-top: 10px;
+    }
   }
 </style>

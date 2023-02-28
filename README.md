@@ -12,7 +12,7 @@ For context, the purpose of the app is to provide a complete shopping and pantry
 
 Organization is a breeze with our pantry inventory, which allows you to categorize items for easy searching and keeps track of expiration dates so you never have to throw out spoiled food again. Our shopping list feature makes it simple to add items to your list by scanning barcodes or manually entering information, and you can even transfer your list directly to an online store for seamless shopping.
 
-Multi-user support means that families or roommates can share a pantry and shopping list, making it easier than ever to coordinate grocery shopping. And with data import/export options, you can easily transfer your information from other apps, or share it with others.  Our chat feature allows users commuicate in real-time and get updates when new messages are received. 
+Multi-user support means that families or roommates can share a pantry and shopping list, making it easier than ever to coordinate grocery shopping. And with data import/export options, you can easily transfer your information from other apps, or share it with others. Our chat feature allows users commuicate in real-time and get updates when new messages are received.
 
 Our app also provides user management features, including the ability to edit account information and delete your account if needed. With error handling in place, you can be sure that our app will provide relevant messages in case of any errors during the process.
 
@@ -94,11 +94,41 @@ In short, our app offers a complete solution for all your shopping and pantry ma
 
   <li>User Management:
     <ol type="a">
-      <li>Provide a way for users to edit their account information.</li>
-      <li>Implement the ability to delete a user's account.</li>
+      <li>Implement group functionality:
+        <ol type="i">
+            <li>Provide a way for users to create or join groups that represent flat-mates or people living in the same place who want to combine their pantry.</li>
+            <li>Each group should have a name, description, and list of members.</li>
+            <li>Users should be able to search for and join groups based on various criteria such as location, interests, or pantry preferences.</li>
+        </ol>
+      </li>
+      <li>Group pantry management:
+        <ol type="i">
+          <li>Once users are part of a group, they should be able to view and manage the group's pantry inventory.</li>
+          <li>The group pantry should be a separate entity from each user's individual pantry, but users should be able to add, update, and delete items from the group pantry.</li>
+          <li>Users should also be able to view the group pantry's inventory levels and expiration dates to help with meal planning and shopping.</li>
+        </ol>
+      </li>
+      <li>Group shopping list:
+        <ol type="i">
+          <li>Users in a group should be able to create and manage a shared shopping list that reflects the needs of the entire group.</li>
+          <li>Users should be able to add, update, and delete items from the shopping list, as well as mark items as bought.</li>
+         <li>The shopping list should also be linked to the group pantry, so users can easily add items to the shopping list based on what is currently available in the pantry.</li>
+        </ol>
+      </li>
+      <li>User permissions:
+        <ol type="i">
+          <li>To ensure that each user has appropriate access to the group's pantry and shopping list, it may be necessary to implement different levels of user permissions.</li>
+          <li>For example, group administrators may have full access to add, update, and delete items from the group pantry and shopping list, while regular users may only have permission to view and add items.</li>
+        </ol>
+      </li>
+      <li>Notifications:
+        <ol type="i">
+          <li>To keep all group members informed about pantry inventory levels and shopping list updates, it may be useful to implement notification functionality.</li>
+          <li>Users should be able to choose their preferred notification method, such as email or push notification, and specify the types of updates they want to receive.</li>
+          <li>For example, a user may want to receive a notification when an item in the group pantry is about to expire or when a new item is added to the shopping list.</li>
+        </ol>
+      </li>
     </ol>
-  </li>
-
   <li>Shopping List:
     <ol type="a">
       <li>Allow users to add items to their shopping list by scanning barcodes or manually entering information.</li>
@@ -120,7 +150,13 @@ In short, our app offers a complete solution for all your shopping and pantry ma
   </li>
   <li>Data Import/Export:
     <ol type="a">
-      <li>Implement data import/export functionality to allow users to import/export their pantry, shopping list, and chat data.</li>
+  <li>Pantry Import: Allow users to import a file containing their pantry inventory, in a supported format such as CSV or Excel. The import functionality should be able to map the columns in the file to the appropriate fields in the PantryItem object.</li>
+  <li>Pantry Export: Allow users to export their pantry inventory to a file in a supported format such as CSV or Excel.</li>
+  <li>Shopping List Import: Allow users to import a file containing their shopping list, in a supported format such as CSV or Excel. The import functionality should be able to map the columns in the file to the appropriate fields in the ShoppingList object.</li>
+  <li>Shopping List Export: Allow users to export their shopping list to a file in a supported format such as CSV or Excel.</li>
+  <li>Chat Data Import/Export: Allow users to export their chat messages to a file, in a supported format such as JSON or XML. Allow users to import chat messages from a file, with appropriate mapping to the ChatMessage object fields.</li>
+  <li>Integration with cloud storage: Allow users to import/export their pantry, shopping list, and chat data to/from cloud storage services such as Google Drive or Dropbox. This will allow users to access their data from multiple devices and ensure data backups are always available.</li>
+  <li>Error handling: Provide appropriate error handling for import/export functionality, including validation of file format and handling of any errors encountered during the import/export process.</li>
     </ol>
   </li>
   <li>Testing:
@@ -163,75 +199,74 @@ In short, our app offers a complete solution for all your shopping and pantry ma
 
 ## `pantry_items`
 
-| Field Name   | Data Type | Nullable | Description                                          |
-| ------------ | --------- | -------- | ---------------------------------------------------- |
-| `id`         | INTEGER   | No       | Unique identifier for the pantry item                |
-| `user_id`    | INTEGER   | No       | User's identifier that the pantry item belongs to     |
-| `created_at` | DATETIME  | Yes      | Timestamp of when the pantry item was created         |
-| `updated_at` | DATETIME  | Yes      | Timestamp of when the pantry item was last updated    |
-| `barcode`    | TEXT      | No       | Barcode for the pantry item                           |
-| `name`       | TEXT      | No       | Name for the pantry item                              |
-| `quantity`   | INTEGER   | No       | Quantity of the pantry item                           |
+| Field Name   | Data Type | Nullable | Description                                        |
+| ------------ | --------- | -------- | -------------------------------------------------- |
+| `id`         | INTEGER   | No       | Unique identifier for the pantry item              |
+| `user_id`    | INTEGER   | No       | User's identifier that the pantry item belongs to  |
+| `created_at` | DATETIME  | Yes      | Timestamp of when the pantry item was created      |
+| `updated_at` | DATETIME  | Yes      | Timestamp of when the pantry item was last updated |
+| `barcode`    | TEXT      | No       | Barcode for the pantry item                        |
+| `name`       | TEXT      | No       | Name for the pantry item                           |
+| `quantity`   | INTEGER   | No       | Quantity of the pantry item                        |
 
 ## `items`
 
-| Field Name         | Data Type | Nullable | Description                                           |
-| ------------------ | --------- | -------- | ----------------------------------------------------- |
-| `item_id`          | TEXT      | No       | Unique identifier for the item                         |
-| `created_at`       | DATETIME  | Yes      | Timestamp of when the item was created                 |
-| `updated_at`       | DATETIME  | Yes      | Timestamp of when the item was last updated            |
-| `barcode`          | TEXT      | No       | Barcode for the item                                   |
-| `item_name`        | TEXT      | No       | Name for the item                                      |
-| `item_description` | TEXT      | Yes      | Description for the item                               |
-| `item_cost`        | NUMERIC   | Yes      | Cost for the item                                      |
-| `item_UOM`         | TEXT      | No       | Unit of measurement for the item                       |
-| `item_quantity`    | INTEGER   | No       | Quantity of the item                                   |
-| `item_img_path`    | TEXT      | Yes      | File path for the item's image                          |
-| `item_img_blob`    | BLOB      | Yes      | Binary data for the item's image                        |
+| Field Name         | Data Type | Nullable | Description                                 |
+| ------------------ | --------- | -------- | ------------------------------------------- |
+| `item_id`          | TEXT      | No       | Unique identifier for the item              |
+| `created_at`       | DATETIME  | Yes      | Timestamp of when the item was created      |
+| `updated_at`       | DATETIME  | Yes      | Timestamp of when the item was last updated |
+| `barcode`          | TEXT      | No       | Barcode for the item                        |
+| `item_name`        | TEXT      | No       | Name for the item                           |
+| `item_description` | TEXT      | Yes      | Description for the item                    |
+| `item_cost`        | NUMERIC   | Yes      | Cost for the item                           |
+| `item_UOM`         | TEXT      | No       | Unit of measurement for the item            |
+| `item_quantity`    | INTEGER   | No       | Quantity of the item                        |
+| `item_img_path`    | TEXT      | Yes      | File path for the item's image              |
+| `item_img_blob`    | BLOB      | Yes      | Binary data for the item's image            |
 
 ## `password_reset_tokens`
 
-| Field Name             | Data Type | Nullable | Description                                           |
-| ---------------------- | --------- | -------- | ----------------------------------------------------- |
-| `email`                | TEXT      | No       | Email address associated with the password reset token |
-| `token`                | TEXT      | No       | Password reset token                                  |
-| `expires_at`           | DATETIME  | No       | Timestamp of when the password reset token expires    |
+| Field Name   | Data Type | Nullable | Description                                            |
+| ------------ | --------- | -------- | ------------------------------------------------------ |
+| `email`      | TEXT      | No       | Email address associated with the password reset token |
+| `token`      | TEXT      | No       | Password reset token                                   |
+| `expires_at` | DATETIME  | No       | Timestamp of when the password reset token expires     |
 
 ## `app_users`
 
-| Field Name             | Data Type | Nullable | Description                                           |
-| ---------------------- | --------- | -------- | ----------------------------------------------------- |
-| `id`                   | INTEGER   | No       | Unique identifier for the user                         |
-| `username`             | TEXT      | No       | Username for the user                                  |
-| `email`                | TEXT      | Yes      | Email address for the user                             |
-| `password`             | TEXT      | No       | Password for the user                                  |
-| `created_at`           | DATETIME  | Yes      | Timestamp of when the user account was created         |
-| `updated_at`           | DATETIME  | Yes      | Timestamp of when the user account was last updated    |
-| `deleted_at`           | DATETIME  | Yes      | Timestamp of when the user account was deleted         |
-| `name`                 | TEXT      | Yes      | Name of the user                                       |
-| `authToken`            | TEXT      | Yes      | Authentication token for the user                      |
-| `pwdResetToken`        | TEXT      | Yes      | Password reset token for the user                      |
-| `pwdResetToken_expiration` | DATETIME | Yes  | Timestamp of when the password reset token expires    |
+| Field Name                 | Data Type | Nullable | Description                                         |
+| -------------------------- | --------- | -------- | --------------------------------------------------- |
+| `id`                       | INTEGER   | No       | Unique identifier for the user                      |
+| `username`                 | TEXT      | No       | Username for the user                               |
+| `email`                    | TEXT      | Yes      | Email address for the user                          |
+| `password`                 | TEXT      | No       | Password for the user                               |
+| `created_at`               | DATETIME  | Yes      | Timestamp of when the user account was created      |
+| `updated_at`               | DATETIME  | Yes      | Timestamp of when the user account was last updated |
+| `deleted_at`               | DATETIME  | Yes      | Timestamp of when the user account was deleted      |
+| `name`                     | TEXT      | Yes      | Name of the user                                    |
+| `authToken`                | TEXT      | Yes      | Authentication token for the user                   |
+| `pwdResetToken`            | TEXT      | Yes      | Password reset token for the user                   |
+| `pwdResetToken_expiration` | DATETIME  | Yes      | Timestamp of when the password reset token expires  |
 
 ## `chat_rooms`
 
-| Field Name   | Data Type | Nullable | Description                                          |
-| ------------ | --------- | -------- | ---------------------------------------------------- |
-| `id`         | INTEGER   | No       | Unique identifier for the chat room                  |
-| `name`       | TEXT      | No       | Name for the chat room                                |
-| `created_at` | DATETIME  | Yes      | Timestamp of when the chat room was created           |
-| `updated_at` | DATETIME  | Yes      | Timestamp of when the chat room was last updated      |
+| Field Name   | Data Type | Nullable | Description                                      |
+| ------------ | --------- | -------- | ------------------------------------------------ |
+| `id`         | INTEGER   | No       | Unique identifier for the chat room              |
+| `name`       | TEXT      | No       | Name for the chat room                           |
+| `created_at` | DATETIME  | Yes      | Timestamp of when the chat room was created      |
+| `updated_at` | DATETIME  | Yes      | Timestamp of when the chat room was last updated |
 
 ## `chat_messages`
 
-| Field Name   | Data Type | Nullable | Description                                          |
-| ------------ | --------- | -------- | ---------------------------------------------------- |
-| `id`         | INTEGER   | No       | Unique identifier for the chat message               |
-| `user_id`    | INTEGER   | No       | User's identifier that sent the chat message          |
-| `chat_room_id` | INTEGER | No      | Chat room's identifier where the message was sent     |
-| `message`    | TEXT      | No       | Content of the chat message                           |
-| `created_at` | DATETIME  | Yes      | Timestamp of when the chat message was created        |
-
+| Field Name     | Data Type | Nullable | Description                                       |
+| -------------- | --------- | -------- | ------------------------------------------------- |
+| `id`           | INTEGER   | No       | Unique identifier for the chat message            |
+| `user_id`      | INTEGER   | No       | User's identifier that sent the chat message      |
+| `chat_room_id` | INTEGER   | No       | Chat room's identifier where the message was sent |
+| `message`      | TEXT      | No       | Content of the chat message                       |
+| `created_at`   | DATETIME  | Yes      | Timestamp of when the chat message was created    |
 
 <br>
 <br>
@@ -275,7 +310,6 @@ The app uses robust security and privacy measures to protect user data, such as 
 Testing the app with real users is essential to improving the user experience and identifying potential bugs or issues. User feedback can be gathered through various methods, such as surveys, user testing sessions, or beta testing programs. This feedback can be used to prioritize feature development, improve UI/UX design, and ensure that the app meets the needs and expectations of its target audience.
 
 There are different ways to monetize the app, depending on the business model and target market. Some options could include offering a freemium model with ads or in-app purchases, charging a one-time fee for the app, or offering a subscription-based model with premium features and services. It's important to consider the pricing strategy carefully, based on factors like user demand, competition, and the app's unique value proposition.
-
 
 User Registration: This sequence diagram should illustrate the flow of events that occur when a user registers for a new account, including input validation, hashing the user's password, and creating a new user record in the database.
 User Login: This sequence diagram should illustrate the flow of events that occur when a user logs in to their account, including input validation, checking the user's credentials against the database, and creating a new session for the user.

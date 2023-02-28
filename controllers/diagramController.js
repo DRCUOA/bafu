@@ -2,14 +2,15 @@
 const diagramsDAO = require('../models/diagramsDAO');
 
 async function createDiagram(req, res) {
-  const { diagram_name, diagram_code, description, revision_notes } = req.body;
+  const { diagram_name, diagram_code, description, revision_notes, diagram_type } = req.body;
   const diagram_img_file_path = req.file.path;
   const newDiagram = {
     diagram_img_file_path,
     diagram_code,
     diagram_name,
     description,
-    revision_notes
+    revision_notes,
+    diagram_type
   };
   try {
     const diagram = await diagramsDAO.createDiagram(newDiagram);
