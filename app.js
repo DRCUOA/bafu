@@ -57,23 +57,23 @@ app.use(addUserToLocals);
 // index routing, to index for new users to hp for authenticated users
 app.get('/', verifyAuthenticated, (req, res) => {
   devApp('routing to homepage');
-  res.render('homepage');
+  res.render('pages/homepage');
 });
 
 // setup routes
 const authRouting = require("./routes/auth-routes");
 app.use("/", authRouting);
 
-const pwdResetRouting = require("./routes/pwdResetRouting");
+const pwdResetRouting = require("./routes/resetpwd-routes");
 app.use("/reset", pwdResetRouting);
 
-const clientInputValidation = require("./routes/clientValidationRouting.js");
+const clientInputValidation = require("./routes/validation-routes");
 app.use('/validation', clientInputValidation);
 
-const appRoutes = require("./routes/appRouting.js");
+const appRoutes = require("./routes/app-routes");
 app.use('/app', appRoutes);
 
-const diagramRoutes = require("./routes/diagram-routing");
+const diagramRoutes = require("./routes/diagram-routes");
 app.use('/diagrams', diagramRoutes);
 
 //start the server

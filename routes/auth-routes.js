@@ -57,7 +57,7 @@ router.get("/logout", function (req, res) {
 router.get('/stage-login', (req, res) => {
     res.locals.userCreated = true;
     console.log(res.locals.userCreated)
-    res.render('index');
+    res.render('pages/index');
 });
 
 router.post('/login', async (req, res) => {
@@ -82,7 +82,7 @@ router.post('/login', async (req, res) => {
                 let username = user.username.split('');
                 username.splice(0, 1, firstLetter);
                 let greetName = username.join('');
-                res.render('homepage', { pageTitle: `Welcome ${greetName}` });
+                res.render('pages/homepage', { pageTitle: `Welcome ${greetName}` });
 
             } else {
                 devAuthRLog(`User ${user.username}`)

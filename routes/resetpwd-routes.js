@@ -14,9 +14,9 @@ router.post('/check-email-reset', async (req, res) => {
   const queryEmail = req.body.useremail;
   const userObject = await checkEmailExists(queryEmail);
   if (!userObject) {
-    res.render('email-not-found', { queryEmail })
+    res.render('pages/email-not-found', { queryEmail })
   } else
-    res.render('pwd-email-sent')
+    res.render('pages/pwd-email-sent')
 });
 
 
@@ -32,7 +32,7 @@ router.get('/resetpassword', async function (req, res) {
     res.send('Invalid token');
   } else {
     // Display password reset form
-    res.render('resetpassword', { email: verifyToken.email, token: verifyToken.token });
+    res.render('pages/resetpassword', { email: verifyToken.email, token: verifyToken.token });
   }
 });
 
@@ -64,7 +64,7 @@ router.post('/resetpassword', async function (req, res) {
       });
     });
     res.setToastMessage("Successfully changed password!");
-    res.render("index");
+    res.render("pages/index");
   }
 });
 

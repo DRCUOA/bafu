@@ -26,7 +26,7 @@ async function getDiagram(req, res) {
   console.log('diagram saught:', id)
   try {
     const diagram = await diagramsDAO.retrieveDiagramWithId(id);
-    res.render('diagram-view', { diagram });
+    res.render('diagrams/diagram-view', { diagram });
   } catch (err) {
     console.error(err);
     res.status(404).send('Diagram not found');

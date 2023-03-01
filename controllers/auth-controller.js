@@ -32,7 +32,7 @@ async function verifyAuthenticated(req, res, next) {
     next();
   } else {
     devAuthCtrl('User not authenticated: render index')
-  res.render("index");
+  res.render("pages/index");
   }
 };
 
