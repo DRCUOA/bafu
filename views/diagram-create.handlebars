@@ -7,95 +7,95 @@
     <iframe src="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" width="100%"
       height="500"></iframe>
   </div>
-  <div class="dbform">
-    <h2>Save to Local Database: </h2>
-    <p>Save the image file as a PNG. Copy and paste the UML code into the form.</p>
-    <form action="/diagrams/diagrams" method="POST" enctype="multipart/form-data">
-      <label for="diagram_name">Name:</label>
-      <input type="text" id="diagram_name" name="diagram_name" required>
-      <br>
-      <div class="radio-options">
-        <strong>Select the type of Diagram this is:</strong>
-        <label>
-          <input type="radio" name="diagram_type" value="Class">
-          Class Diagram
-        </label>
+    <div class="dbform">
+      <h2>Save to Local Database: </h2>
+      <p>Save the image file as a PNG. Copy and paste the UML code into the form.</p>
+      <form action="/diagrams/diagrams" method="POST" enctype="multipart/form-data">
+        <label for="diagram_name">Name:</label>
+        <input type="text" id="diagram_name" name="diagram_name" required>
         <br>
-        <label>
-          <input type="radio" name="diagram_type" value="UseCase">
-          Use Case Diagram
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="diagram_type" value="Sequence">
-          Sequence Diagram
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="diagram_type" value="Activity">
-          Activity Diagram
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="diagram_type" value="StateMachine">
-          State Machine Diagram
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="diagram_type" value="Component">
-          Component Diagram
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="diagram_type" value="Deployment">
-          Deployment Diagram
-      </div>
-      </label <label for="description"><strong>Description (use Markdown): </strong></label>
-      <textarea id="description" name="description" rows="5" required></textarea>
-      <br>
-      <div id="markdown-preview">
-        <h5><span style="color:rgba(189, 189, 189, 0.4)">Preview:</span></h5>
-        <div id="description-preview">
-          <p>Preview of your description will appear here</p>
+        <div class="radio-options">
+          <strong>Select the type of Diagram this is:</strong>
+          <label>
+            <input type="radio" name="diagram_type" value="Class">
+            Class Diagram
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="diagram_type" value="UseCase">
+            Use Case Diagram
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="diagram_type" value="Sequence">
+            Sequence Diagram
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="diagram_type" value="Activity">
+            Activity Diagram
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="diagram_type" value="StateMachine">
+            State Machine Diagram
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="diagram_type" value="Component">
+            Component Diagram
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="diagram_type" value="Deployment">
+            Deployment Diagram
         </div>
-      </div>
-      <input type="hidden" id="description-html" name="description-html">
-      <br>
-      <label for="revision_notes">Revision Notes:</label>
-      <input type="text" id="revision_notes" name="revision_notes" required>
-      <br>
-      <label for="diagram_img_file_path">Diagram Image:</label>
-      <input type="file" id="diagram_img_file_path" name="diagram_img_file_path" accept=".png,.svg" required>
-      <br>
-      <label for="diagram_code">Paste UML Code:</label>
-      <textarea id="diagram_code" name="diagram_code" rows="5"></textarea>
-      <br>
-      <button type="submit">Upload Diagram</button>
-    </form>
+        </label <label for="description"><strong>Description (use Markdown): </strong></label>
+        <textarea id="description" name="description" rows="5" required></textarea>
+        <br>
+        <div id="markdown-preview">
+          <h5><span style="color:rgba(189, 189, 189, 0.4)">Preview:</span></h5>
+          <div id="description-preview">
+            <p>Preview of your description will appear here</p>
+          </div>
+        </div>
+        <input type="hidden" id="description-html" name="description-html">
+        <br>
+        <label for="revision_notes">Revision Notes:</label>
+        <input type="text" id="revision_notes" name="revision_notes" required>
+        <br>
+        <label for="diagram_img_file_path">Diagram Image:</label>
+        <input type="file" id="diagram_img_file_path" name="diagram_img_file_path" accept=".png,.svg" required>
+        <br>
+        <label for="diagram_code">Paste UML Code:</label>
+        <textarea id="diagram_code" name="diagram_code" rows="5"></textarea>
+        <br>
+        <button type="submit">Upload Diagram</button>
+      </form>
+    </div>
+    <div id="big-sticky">
+      <p id="big-sticky-label">This an iFrame providing access to the PlantUML Server</p>
+    </div>
   </div>
-  <div id="big-sticky">
-    <p id="big-sticky-label">This an iFrame providing access to the PlantUML Server</p>
-  </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-<script>
-  // Convert the Markdown input to HTML using Showdown.js
-  const converter = new showdown.Converter();
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+  <script>
+    // Convert the Markdown input to HTML using Showdown.js
+    const converter = new showdown.Converter();
 
-  // Update the preview of the "description" input
-  function updateDescriptionPreview() {
-    const descriptionInput = document.getElementById('description');
-    const descriptionPreview = document.getElementById('description-preview');
-    const descriptionHtmlInput = document.getElementById('description-html');
+    // Update the preview of the "description" input
+    function updateDescriptionPreview() {
+      const descriptionInput = document.getElementById('description');
+      const descriptionPreview = document.getElementById('description-preview');
+      const descriptionHtmlInput = document.getElementById('description-html');
 
-    const htmlDescription = converter.makeHtml(descriptionInput.value);
-    descriptionPreview.innerHTML = htmlDescription;
-    descriptionHtmlInput.value = descriptionPreview.innerHTML;
-  }
+      const htmlDescription = converter.makeHtml(descriptionInput.value);
+      descriptionPreview.innerHTML = htmlDescription;
+      descriptionHtmlInput.value = descriptionPreview.innerHTML;
+    }
 
-  // Update the preview of the "description" input on input change
-  document.getElementById('description').addEventListener('input', updateDescriptionPreview);
-</script>
+    // Update the preview of the "description" input on input change
+    document.getElementById('description').addEventListener('input', updateDescriptionPreview);
+  </script>
 
 <style>
   #markdown-preview {

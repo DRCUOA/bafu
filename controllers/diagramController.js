@@ -26,7 +26,7 @@ async function getDiagram(req, res) {
   console.log('diagram saught:', id)
   try {
     const diagram = await diagramsDAO.retrieveDiagramWithId(id);
-    res.render('diagram-single-view', { diagram });
+    res.render('diagram-view', { diagram });
   } catch (err) {
     console.error(err);
     res.status(404).send('Diagram not found');
@@ -46,13 +46,15 @@ async function getAllDiagrams(req, res) {
 
 async function updateDiagram(req, res) {
   const { id } = req.params;
-  const { diagram_name, diagram_code } = req.body;
+  const { diagram_name, diagram_code, description, revision_notes, diagram_type } = req.body;
   const diagram_img_file_path = req.file.path;
   const updatedDiagram = {
     diagram_img_file_path,
     diagram_code,
     diagram_name,
-    id
+    description,
+    revision_notes,
+    diagram_type
   };
   try {
     await diagramsDAO.updateDiagram(updatedDiagram);
