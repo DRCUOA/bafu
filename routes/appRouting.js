@@ -21,9 +21,9 @@ router.get('/password-reset-sequence-diagram', verifyAuthenticated,(req, res) =>
 
 
 
-router.get('/table', verifyAuthenticated, (req, res) => {
-  devAppRoutes('render table')
-  res.render('table');
+router.get('/tregidy', verifyAuthenticated, (req, res) => {
+  devAppRoutes('render tregidy')
+  res.render('tegridy-lessons');
 });
 
 module.exports = router;
