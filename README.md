@@ -8,16 +8,18 @@ For context, the purpose of the app is to provide a complete shopping and pantry
 
 ## My Epic
 
-<p>Introducing the ultimate shopping and pantry management solution! With our app, you'll never have to worry about running out of items or forgetting what you need at the store again. Our app allows you to easily scan barcodes with your device's camera to keep track of everything in your pantry, and our powerful recipe suggestion feature provides you with meal ideas based on what you already have on hand.
+<p>
+Introducing the ultimate shopping and pantry management solution! With our app, you'll never have to worry about running out of items or forgetting what you need at the store again. Our app allows you to easily scan barcodes with your device's camera to keep track of everything in your pantry, reducing food waste by helping you use up items before they expire.
 
-Organization is a breeze with our pantry inventory, which allows you to categorize items for easy searching and keeps track of expiration dates so you never have to throw out spoiled food again. Our shopping list feature makes it simple to add items to your list by scanning barcodes or manually entering information, and you can even transfer your list directly to an online store for seamless shopping.
+Our powerful recipe suggestion feature provides you with meal ideas based on what you already have on hand, maximizing the value of your grocery purchases and reducing the need for last-minute store runs. Our "preferences and allergies" feature takes away the hassle of meal planning for those with particular dietary needs and supports those with nutritional preferences like those following a specific diet or diabetics who need carb-specific meal information.
 
-Multi-user support means that families or roommates can share a pantry and shopping list, making it easier than ever to coordinate grocery shopping. And with data import/export options, you can easily transfer your information from other apps, or share it with others. Our chat feature allows users commuicate in real-time and get updates when new messages are received.
+Organization is a breeze with our pantry inventory, which allows you to categorize items for easy searching and keeps track of expiration dates so you never have to throw out spoiled food again. Our shopping list feature makes it simple to add items to your list by scanning barcodes or manually entering information, and you can even transfer your list directly to an online store for seamless shopping, helping you save time and money.
 
-Our app also provides user management features, including the ability to edit account information and delete your account if needed. With error handling in place, you can be sure that our app will provide relevant messages in case of any errors during the process.
+Multi-user support means that families or roommates can share a pantry and shopping list, making it easier than ever to coordinate grocery shopping and reduce the likelihood of duplicate purchases. And with data import/export options, you can easily transfer your information from other apps or share it with others.
 
-In short, our app offers a complete solution for all your shopping and pantry management needs. Try it out today and simplify your life!
+Our chat feature allows users to communicate in real-time, so you can easily coordinate shopping trips or share recipe ideas. User management features, including the ability to edit account information and delete your account if needed, ensure that your experience with our app is smooth and hassle-free. With error handling in place, you can be sure that our app will provide relevant messages in case of any issues during the process.
 
+In short, our app offers a complete solution for all your shopping and pantry management needs, helping you reduce food waste, maximize your grocery dollars, simplify your life, and support your dietary needs. Try it out today and start enjoying the benefits!
 </p>
 
 ## Development Environment
@@ -52,13 +54,14 @@ In short, our app offers a complete solution for all your shopping and pantry ma
       <li>Implement password reset functionality.</li>
     </ol>
   </li>
-
   <li>Scanning Barcodes:
     <ol type="a">
       <li>Allow users to scan barcodes using the device's camera.</li>
       <li>Store the barcode information in the database.</li>
-      <li>Upon scanning a barcode, the app should automatically check the pantry inventory to see if the item is already in the pantry.</li>
-      <li>If the item is not found in the pantry, the user should be prompted to add the item to the pantry inventory.</li>
+      <li>Upon scanning a barcode, the app should automatically check the pantry inventory to see if the item is already
+        in the pantry.</li>
+      <li>If the item is not found in the pantry, the user should be prompted to add the item to the pantry inventory.
+      </li>
       <li>When adding a new item to the pantry inventory, the following information should be collected and stored:
         <ol type="i">
           <li>Barcode</li>
@@ -73,100 +76,151 @@ In short, our app offers a complete solution for all your shopping and pantry ma
       </li>
     </ol>
   </li>
-
   <li>Pantry Inventory:
     <ol type="a">
       <li>Allow users to keep an inventory of items in their pantry.</li>
-      <li>Provide the ability to add items to the pantry inventory by scanning barcodes or manually entering information.</li>
-      <li>Show a list of items in the pantry inventory, sorted by expiration date, with items that are about to expire appearing first.</li>
+      <li>Provide the ability to add items to the pantry inventory by scanning barcodes or manually entering
+        information.</li>
+      <li>Show a list of items in the pantry inventory, sorted by expiration date, with items that are about to expire
+        appearing first.</li>
       <li>Provide the ability to update the quantity of items in the pantry.</li>
       <li>Allow users to categorize items in their pantry for easier organization and searching.</li>
+      <li>Provide a "preferences and allergies" feature that takes away the hassle of meal planning for those with
+        particular dietary needs and supports those with nutritional preferences like those following a specific diet or
+        diabetics who need carb-specific meal information.</li>
     </ol>
   </li>
-
   <li>Recipe Suggestions:
     <ol type="a">
-      <li>Based on the items in a user's pantry, the app can suggest recipes that can be made using those ingredients.</li>
+      <li>Based on the items in a user's pantry, the app can suggest recipes that can be made using those ingredients.
+      </li>
       <li>Provide nutritional information for each recipe.</li>
       <li>Allow users to save their favorite recipes for later use.</li>
+      <li>Maximize the value of the user's grocery purchases and reduce the need for last-minute store runs.</li>
     </ol>
   </li>
-
   <li>User Management:
     <ol type="a">
       <li>Implement group functionality:
         <ol type="i">
-            <li>Provide a way for users to create or join groups that represent flat-mates or people living in the same place who want to combine their pantry.</li>
-            <li>Each group should have a name, description, and list of members.</li>
-            <li>Users should be able to search for and join groups based on various criteria such as location, interests, or pantry preferences.</li>
+          <li>Provide a way for users to create or join groups that represent flat-mates or people living in the same
+            place who want to combine their pantry.</li>
+          <li>Each group should have a name, description, and list of members.</li>
+          <li>Users should be able to search for and join groups based on various criteria such as location, interests,
+            or pantry preferences.</li>
         </ol>
       </li>
       <li>Group pantry management:
         <ol type="i">
-          <li>Once users are part of a group, they should be able to view and manage the group's pantry inventory.</li>
-          <li>The group pantry should be a separate entity from each user's individual pantry, but users should be able to add, update, and delete items from the group pantry.</li>
-          <li>Users should also be able to view the group pantry's inventory levels and expiration dates to help with meal planning and shopping.</li>
+          <li>Once users are part of a group, they should be able to view and manage the group's pantry inventory.
+          </li>
+          <li>The group pantry should be a separate entity from each user's individual pantry, but users should be
+            able to add, update, and delete items from the group pantry.</li>
+          <li>Users should also be able to view the group pantry's inventory levels and expiration dates to help
+            with meal planning and shopping.</li>
         </ol>
       </li>
       <li>Group shopping list:
-        <ol type="i">
-          <li>Users in a group should be able to create and manage a shared shopping list that reflects the needs of the entire group.</li>
-          <li>Users should be able to add, update, and delete items from the shopping list, as well as mark items as bought.</li>
-         <li>The shopping list should also be linked to the group pantry, so users can easily add items to the shopping list based on what is currently available in the pantry.</li>
+        <ol type="a">
+          <li>Users in a group should be able to create and manage a shared shopping list that reflects the needs of
+            the entire group.</li>
+          <li>Users should be able to add, update, and delete items from the shopping list, as well as mark items as
+            bought.</li>
+          <li>The shopping list should also be linked to the group pantry, so users can easily add items to the
+            shopping list based on what is currently available in the pantry.</li>
         </ol>
       </li>
-      <li>User permissions:
-        <ol type="i">
-          <li>To ensure that each user has appropriate access to the group's pantry and shopping list, it may be necessary to implement different levels of user permissions.</li>
-          <li>For example, group administrators may have full access to add, update, and delete items from the group pantry and shopping list, while regular users may only have permission to view and add items.</li>
+      <li>User Permissions:
+        <ol type="a">
+          <li>Implement different levels of user permissions to ensure that each user has appropriate access to the
+            group's pantry and shopping list.</li>
+          <li>Group administrators should have full access to add, update, and delete items from the group pantry
+            and shopping list, while regular users may only have permission to view and add items.</li>
         </ol>
       </li>
       <li>Notifications:
-        <ol type="i">
-          <li>To keep all group members informed about pantry inventory levels and shopping list updates, it may be useful to implement notification functionality.</li>
-          <li>Users should be able to choose their preferred notification method, such as email or push notification, and specify the types of updates they want to receive.</li>
-          <li>For example, a user may want to receive a notification when an item in the group pantry is about to expire or when a new item is added to the shopping list.</li>
+        <ol type="a">
+          <li>Implement notification functionality to keep all group members informed about pantry inventory levels
+            and shopping list updates.</li>
+          <li>Users should be able to choose their preferred notification method, such as email or push
+            notification, and specify the types of updates they want to receive.</li>
+          <li>For example, a user may want to receive a notification when an item in the group pantry is about to
+            expire or when a new item is added to the shopping list.</li>
         </ol>
       </li>
     </ol>
-  <li>Shopping List:
-    <ol type="a">
-      <li>Allow users to add items to their shopping list by scanning barcodes or manually entering information.</li>
-      <li>Provide the ability to mark items as 'bought' by scanning the barcode in-store or manually marking the item.</li>
-      <li>Show a list of items that have not been bought yet, sorted by category.</li>
-      <li>Provide the option to transfer the list to an online store for shopping.</li>
-      <li>Provide the ability to delete items from the shopping list.</li>
+    <ol>
+      <li>Shopping List:
+        <ol type="a">
+          <li>Allow users to add items to their shopping list by scanning barcodes or manually entering information.
+          </li>
+          <li>Provide the ability to mark items as 'bought' by scanning the barcode in-store or manually marking the
+            item.</li>
+          <li>Show a list of items that have not been bought yet, sorted by category.</li>
+          <li>Provide the option to transfer the list to an online store for shopping.</li>
+          <li>Provide the ability to delete items from the shopping list.</li>
+        </ol>
+      </li>
     </ol>
   </li>
-
   <li>Chat Feature:
     <ol type="a">
       <li>Implement the chat feature using the observer pattern.</li>
-      <li>Allow users to subscribe to the chat service and receive real-time updates when new messages are received.</li>
-<li>Provide an interface for users to send messages to the chat room.</li>
-<li>Store chat messages in the database and display them in the chat interface.</li>
-</ol>
-
-  </li>
-  <li>Data Import/Export:
-    <ol type="a">
-  <li>Pantry Import: Allow users to import a file containing their pantry inventory, in a supported format such as CSV or Excel. The import functionality should be able to map the columns in the file to the appropriate fields in the PantryItem object.</li>
-  <li>Pantry Export: Allow users to export their pantry inventory to a file in a supported format such as CSV or Excel.</li>
-  <li>Shopping List Import: Allow users to import a file containing their shopping list, in a supported format such as CSV or Excel. The import functionality should be able to map the columns in the file to the appropriate fields in the ShoppingList object.</li>
-  <li>Shopping List Export: Allow users to export their shopping list to a file in a supported format such as CSV or Excel.</li>
-  <li>Chat Data Import/Export: Allow users to export their chat messages to a file, in a supported format such as JSON or XML. Allow users to import chat messages from a file, with appropriate mapping to the ChatMessage object fields.</li>
-  <li>Integration with cloud storage: Allow users to import/export their pantry, shopping list, and chat data to/from cloud storage services such as Google Drive or Dropbox. This will allow users to access their data from multiple devices and ensure data backups are always available.</li>
-  <li>Error handling: Provide appropriate error handling for import/export functionality, including validation of file format and handling of any errors encountered during the import/export process.</li>
+      <li>Allow users to subscribe to the chat service and receive real-time updates when new messages are received.
+      </li>
+      <li>Provide an interface for users to send messages to the chat room.</li>
+      <li>Store chat messages in the database and display them in the chat interface.</li>
     </ol>
   </li>
-  <li>Testing:
+  <li>Preferences and Allergies:
     <ol type="a">
-      <li>Thoroughly test the app to ensure that it is working as expected and fix any bugs or errors.</li>
+      <li>Allow users to specify their dietary preferences, such as vegetarian, vegan, or gluten-free, as well as
+        any food allergies or intolerances.</li>
+      <li>When suggesting recipes, the app should take into account the user's dietary preferences and allergies,
+        and only suggest recipes that are suitable for them.</li>
+      <li>Provide a way for users to filter recipes based on their dietary preferences and allergies.</li>
+      <li>When adding items to the pantry inventory or shopping list, the app should provide alerts for any items
+        that contain allergens specified by the user.</li>
     </ol>
   </li>
-  <li>Deployment:
+  <li>Error Handling:
     <ol type="a">
-      <li>Deploy the app to a hosting environment such as Heroku, which is optimized for Node.js-based web applications.</li>
+      <li>Provide appropriate error handling throughout the app to handle unexpected situations and user errors.
+      </li>
+      <li>Implement user-friendly error messages to guide users in resolving any issues they encounter.</li>
+      <li>Handle errors related to database connections, network connections, and other potential sources of
+        failure.</li>
+    </ol>
+  </li>
+  <li>User Interface:
+    <ol type="a">
+      <li>Design an intuitive and user-friendly interface that is easy to navigate.</li>
+      <li>Ensure that the interface is responsive and works well on both desktop and mobile devices.</li>
+      <li>Provide clear and concise instructions for using the app's various features.</li>
+      <li>Use a consistent design language and color scheme throughout the app.</li>
+      <li>Ensure that the app is accessible to users with disabilities by following best practices for
+        accessibility, such as providing alt tags for images and using ARIA attributes where appropriate.</li>
+    </ol>
+  </li>
+  <li>Performance:
+    <ol type="a">
+      <li>Optimize the app for performance to ensure that it loads quickly and operates smoothly.</li>
+      <li>Minimize the app's use of system resources to conserve battery life and prevent unnecessary strain on the
+        device.</li>
+      <li>Implement caching mechanisms to reduce server load and improve response times.</li>
+      <li>Ensure that the app is scalable and can handle increased traffic and usage as the user base grows.</li>
+    </ol>
+  </li>
+  <li>Security:
+    <ol type="a">
+      <li>Implement best practices for security throughout the app to protect user data and prevent unauthorized
+        access.</li>
+      <li>Store user passwords securely using industry-standard encryption techniques.</li>
+      <li>Use HTTPS to encrypt all communication between the app and server to prevent eavesdropping and
+        man-in-the-middle attacks.</li>
+      <li>Implement measures to prevent SQL injection attacks and other common security vulnerabilities.</li>
+      <li>Regularly perform security audits and penetration testing to identify and address potential security
+        weaknesses.</li>
     </ol>
   </li>
 </ol>
