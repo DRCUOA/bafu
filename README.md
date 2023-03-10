@@ -1,13 +1,18 @@
 # passwordresto
 password resto
 ## Shopping & Panty Management App
+<br>
 
 ## Context Prompt
-
+<br>
 For context, the purpose of the app is to provide a complete shopping and pantry management solution with barcode scanning, inventory management, recipe suggestion, and shopping list features. It offers multi-user support and data import/export options, and is built with a tech stack consisting of Visual Studio Code (VS Code) as the Integrated Development Environment (IDE), JavaScript and Handlebars for front-end development, Node.js with the Express framework and a SQLite database for back-end development, and QuaggaJS for barcode scanning functionality.
 
-## My Epic
+<br>
+<hr>
+<br>
 
+## My Epic
+<br>
 <p>
 Introducing the ultimate shopping and pantry management solution! With our app, you'll never have to worry about running out of items or forgetting what you need at the store again. Our app allows you to easily scan barcodes with your device's camera to keep track of everything in your pantry, reducing food waste by helping you use up items before they expire.
 
@@ -21,20 +26,29 @@ Our chat feature allows users to communicate in real-time, so you can easily coo
 
 In short, our app offers a complete solution for all your shopping and pantry management needs, helping you reduce food waste, maximize your grocery dollars, simplify your life, and support your dietary needs. Try it out today and start enjoying the benefits!
 </p>
+<br>
+<hr>
+<br>
 
 ## Development Environment
-
+<br>
 - Use Visual Studio Code (VS Code) as the Integrated Development Environment (IDE) for coding and building the app.
 - Run the app on a local development server during development using the localhost environment.
+<br>
+<hr>
+<br>
 
 ## Build Stack
-
+<br>
 - Front-end: JavaScript and the Handlebars templating engine to build the user interface and handle user interactions.
 - Back-end: Node.js with the Express framework and a SQLite database to store user information and pantry data.
 - Barcode scanning functionality: QuaggaJS, an open-source barcode scanning library for the web.
+<br>
+<hr>
+<br>
 
 ## Development Process
-
+<br>
 1.  Set up the development environment and build the user authentication system, including registration, login, and password reset functionality.
 2.  Implement the barcode scanning feature, including the ability to scan barcodes and store the information in the database.
 3.  Develop the pantry inventory feature, including the ability to add items to the pantry, view the list of items, and update the quantity of items.
@@ -45,8 +59,12 @@ In short, our app offers a complete solution for all your shopping and pantry ma
 8.  Implement data import/export functionality to allow users to import/export their pantry, shopping list, and chat data.
 9.  Thoroughly test the app to ensure that it is working as expected and fix any bugs or errors.
 10. Deploy the app to a hosting environment such as Heroku, which is optimized for Node.js-based web applications.
+<br>
+<hr>
 
-<h1>Requirements</h1>
+## Requirements
+
+<br>
 <ol>
   <li>User Authentication:
     <ol type="a">
@@ -224,22 +242,56 @@ In short, our app offers a complete solution for all your shopping and pantry ma
     </ol>
   </li>
 </ol>
+<br>  
+<br>  
 
-<h2>Database Schema</h2>
-
-<p><strong>app_users:</strong> This table stores information about the users of the app. The table contains information such as the user's username, email, password, created_at and updated_at timestamps, name, authToken, pwdResetToken, and pwdResetToken_expiration. Each user is identified by a unique id.</p>
-
-<p><strong>shopping_list:</strong> This table stores information about the shopping lists created by users. The table contains information such as the user_id that created the list, the created_at and updated_at timestamps, and a name for the list. Each shopping list is identified by a unique id.</p>
-
-<p><strong>pantry_items:</strong> This table stores information about the items in a user's pantry. The table contains information such as the user_id that the pantry item belongs to, the created_at and updated_at timestamps, the item's barcode and name, the quantity of the item in the pantry, and the item's cost, unit of measure, item description, and image. Each pantry item is identified by a unique id.</p>
-
+## Database Schema - Base Table Descriptions
+<br>  
+<hr>
+<hr>
+<br>  
+<p><strong>app_users:</strong>This table stores information about the users of the app. The table contains information such as the user's username, email, password, created_at, and updated_at timestamps, name, authToken, pwdResetToken, and pwdResetToken_expiration. Each user is identified by a unique id. The table also contains a foreign key to the groups table, allowing users to belong to a specific group.</p>
+<br>  
+<hr>
+<br>  
+<p><strong>shopping_list:</strong>This table stores information about the shopping lists created by users. The table contains information such as the user_id that created the list, the created_at and updated_at timestamps, and a name for the list. Each shopping list is identified by a unique id.</p>
+<br>  
+<hr>
+<br>
+<p><strong>pantry_items:</strong> This table stores information about the items in a user's pantry. The table contains information such as the user_id that the pantry item belongs to, the created_at and updated_at timestamps, the item's barcode and name, the quantity of the item in the pantry, and the item's cost, unit of measure, item description, image, purchase date, expiration date, used flag, and recipe_id. Each pantry item is identified by a unique id. The table contains foreign keys to the app_users and items tables, allowing pantry items to be associated with a specific user and item.</p>
+<br>  
+<hr>
+<br>
 <p><strong>items:</strong> This table stores information about the items available in the app. The table contains information such as the item_id, created_at and updated_at timestamps, the item's barcode, name, description, cost, unit of measure, quantity, and image. Each item is identified by a unique id.</p>
-
+<br>  
+<hr>
+<br>
 <p><strong>password_reset_tokens:</strong> This table stores information about the password reset tokens issued by the app. The table contains information such as the user's email, token, and expiration date for the token. The user's email is used as the primary key for this table.</p>
-
+<br>  
+<hr>
+<br>
 <p><strong>chat_rooms:</strong> This table stores information about the chat rooms available in the app. The table contains information such as the room's id, name, created_at and updated_at timestamps. Each chat room is identified by a unique id.</p>
-
+<br>  
+<hr>
+<br>
 <p><strong>chat_messages:</strong> This table stores information about the messages sent in the chat rooms. The table contains information such as the message's id, user_id of the message sender, chat_room_id of the chat room where the message was sent, message text, and created_at timestamp. Each chat message is identified by a unique id. The chat_room_id and user_id fields have foreign key constraints that reference the chat_rooms and app_users tables, respectively.</p>
+<br>  
+<hr>
+<br>
+<p><strong>groups:</strong> This table stores information about the groups in the app. The table contains information such as the group_id, group_name, and group_size. Each group is identified by a unique id. The app_users table contains a foreign key to this table, allowing users to belong to a specific group.</p>
+<br>  
+<hr>
+<br>
+<p><strong>group_preferences:</strong> This table stores information about the preferences of the groups in the app. The table contains information such as the group_id, shopping_frequency, and min_stock_level. Each group preference is identified by a unique id. The table contains a foreign key to the groups table, allowing preferences to be associated with a specific group.</p>
+<br>
+<hr>
+<hr>
+<br>
+<br>
+<br>
+
+## Database Schema
+<br>
 
 ## `shopping_list`
 
@@ -251,101 +303,124 @@ In short, our app offers a complete solution for all your shopping and pantry ma
 | `updated_at` | DATETIME  | Yes      | Timestamp of when the shopping list was last updated |
 | `name`       | TEXT      | Yes      | Name for the shopping list                           |
 
-## `pantry_items`
-
-| Field Name   | Data Type | Nullable | Description                                        |
-| ------------ | --------- | -------- | -------------------------------------------------- |
-| `id`         | INTEGER   | No       | Unique identifier for the pantry item              |
-| `user_id`    | INTEGER   | No       | User's identifier that the pantry item belongs to  |
-| `created_at` | DATETIME  | Yes      | Timestamp of when the pantry item was created      |
-| `updated_at` | DATETIME  | Yes      | Timestamp of when the pantry item was last updated |
-| `barcode`    | TEXT      | No       | Barcode for the pantry item                        |
-| `name`       | TEXT      | No       | Name for the pantry item                           |
-| `quantity`   | INTEGER   | No       | Quantity of the pantry item                        |
-
-## `items`
-
-| Field Name         | Data Type | Nullable | Description                                 |
-| ------------------ | --------- | -------- | ------------------------------------------- |
-| `item_id`          | TEXT      | No       | Unique identifier for the item              |
-| `created_at`       | DATETIME  | Yes      | Timestamp of when the item was created      |
-| `updated_at`       | DATETIME  | Yes      | Timestamp of when the item was last updated |
-| `barcode`          | TEXT      | No       | Barcode for the item                        |
-| `item_name`        | TEXT      | No       | Name for the item                           |
-| `item_description` | TEXT      | Yes      | Description for the item                    |
-| `item_cost`        | NUMERIC   | Yes      | Cost for the item                           |
-| `item_UOM`         | TEXT      | No       | Unit of measurement for the item            |
-| `item_quantity`    | INTEGER   | No       | Quantity of the item                        |
-| `item_img_path`    | TEXT      | Yes      | File path for the item's image              |
-| `item_img_blob`    | BLOB      | Yes      | Binary data for the item's image            |
-
 ## `password_reset_tokens`
 
-| Field Name   | Data Type | Nullable | Description                                            |
-| ------------ | --------- | -------- | ------------------------------------------------------ |
-| `email`      | TEXT      | No       | Email address associated with the password reset token |
-| `token`      | TEXT      | No       | Password reset token                                   |
-| `expires_at` | DATETIME  | No       | Timestamp of when the password reset token expires     |
-
-## `app_users`
-
-| Field Name                 | Data Type | Nullable | Description                                         |
-| -------------------------- | --------- | -------- | --------------------------------------------------- |
-| `id`                       | INTEGER   | No       | Unique identifier for the user                      |
-| `username`                 | TEXT      | No       | Username for the user                               |
-| `email`                    | TEXT      | Yes      | Email address for the user                          |
-| `password`                 | TEXT      | No       | Password for the user                               |
-| `created_at`               | DATETIME  | Yes      | Timestamp of when the user account was created      |
-| `updated_at`               | DATETIME  | Yes      | Timestamp of when the user account was last updated |
-| `deleted_at`               | DATETIME  | Yes      | Timestamp of when the user account was deleted      |
-| `name`                     | TEXT      | Yes      | Name of the user                                    |
-| `authToken`                | TEXT      | Yes      | Authentication token for the user                   |
-| `pwdResetToken`            | TEXT      | Yes      | Password reset token for the user                   |
-| `pwdResetToken_expiration` | DATETIME  | Yes      | Timestamp of when the password reset token expires  |
+| Field Name             | Data Type | Nullable | Description                                           |
+| ---------------------- | --------- | -------- | ----------------------------------------------------- |
+| `email`                | TEXT      | No       | Email address associated with the password reset token |
+| `token`                | TEXT      | No       | Password reset token                                  |
+| `expires_at`           | DATETIME  | No       | Timestamp of when the password reset token expires    |
+| PRIMARY KEY(`email`)
 
 ## `chat_rooms`
 
-| Field Name   | Data Type | Nullable | Description                                      |
-| ------------ | --------- | -------- | ------------------------------------------------ |
-| `id`         | INTEGER   | No       | Unique identifier for the chat room              |
-| `name`       | TEXT      | No       | Name for the chat room                           |
-| `created_at` | DATETIME  | Yes      | Timestamp of when the chat room was created      |
-| `updated_at` | DATETIME  | Yes      | Timestamp of when the chat room was last updated |
+| Field Name   | Data Type | Nullable | Description                                          |
+| ------------ | --------- | -------- | ---------------------------------------------------- |
+| `id`         | INTEGER   | No       | Unique identifier for the chat room                  |
+| `name`       | TEXT      | No       | Name for the chat room                                |
+| `created_at` | DATETIME  | Yes      | Timestamp of when the chat room was created           |
+| `updated_at` | DATETIME  | Yes      | Timestamp of when the chat room was last updated      |
+| PRIMARY KEY(`id`)
 
 ## `chat_messages`
 
-| Field Name     | Data Type | Nullable | Description                                       |
-| -------------- | --------- | -------- | ------------------------------------------------- |
-| `id`           | INTEGER   | No       | Unique identifier for the chat message            |
-| `user_id`      | INTEGER   | No       | User's identifier that sent the chat message      |
-| `chat_room_id` | INTEGER   | No       | Chat room's identifier where the message was sent |
-| `message`      | TEXT      | No       | Content of the chat message                       |
-| `created_at`   | DATETIME  | Yes      | Timestamp of when the chat message was created    |
+| Field Name   | Data Type | Nullable | Description                                          |
+| ------------ | --------- | -------- | ---------------------------------------------------- |
+| `id`         | INTEGER   | No       | Unique identifier for the chat message               |
+| `user_id`    | INTEGER   | No       | User's identifier that sent the chat message          |
+| `chat_room_id` | INTEGER | No      | Chat room's identifier where the message was sent     |
+| `message`    | TEXT      | No       | Content of the chat message                           |
+| `created_at` | DATETIME  | Yes      | Timestamp of when the chat message was created        |
+| PRIMARY KEY(`id`),
+| FOREIGN KEY(`user_id`) REFERENCES `app_users`(`id`),
+| FOREIGN KEY(`chat_room_id`) REFERENCES `chat_rooms`(`id`)
 
-<br>
-<br>
+## `groups`
 
-# Password Reset Feature Implementation Logic
+| Field Name   | Data Type | Nullable | Description                                          |
+| ------------ | --------- | -------- | ---------------------------------------------------- |
+| `group_id`   | INTEGER   | No       | Unique identifier for the group                      |
+| `group_name` | TEXT      | No       | Name for the group                                    |
+| `group_size` | INTEGER   | No       | Size of the group                                     |
+| PRIMARY KEY(`group_id`)
 
-<br>
-<br>
+## `group_preferences`
 
-| Step | Description                                                                                                                                | Code File(s)                                          |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| 1    | The user requests a password reset on the login page by clicking on the "Forgot Password?" link.                                           | login.hbs                                             |
-| 2    | The user is redirected to the password reset page, where they are prompted to enter their email address.                                   | reset-password.hbs                                    |
-| 3    | The user enters their email address and clicks on the "Submit" button.                                                                     | reset-password.js                                     |
-| 4    | The system checks whether the email address is valid and exists in the database.                                                           | user.model.js, user.controller.js                     |
-| 5    | If the email address is valid, the system generates a unique token and sends an email with a link to the password reset confirmation page. | reset-password.js, email.service.js                   |
-| 6    | The user receives the email and clicks on the link to the password reset confirmation page.                                                | (no specific code file)                               |
-| 7    | The user is redirected to the password reset confirmation page, where they are prompted to enter a new password.                           | reset-password-confirmation.hbs                       |
-| 8    | The user enters their new password and clicks on the "Submit" button.                                                                      | reset-password-confirmation.js                        |
-| 9    | The system verifies that the token in the URL is valid and matches the one generated for the email address.                                | reset-password-confirmation.js, resetToken.service.js |
-| 10   | The system updates the user's password in the database.                                                                                    | user.model.js, user.controller.js                     |
-| 11   | The system sends an email to the user confirming that their password has been reset.                                                       | reset-password-confirmation.js, email.service.js      |
-| 12   | The user is redirected to the login page.                                                                                                  | reset-password-confirmation.js                        |
-| 13   | The user can now log in with their new password.                                                                                           | (no specific code file)                               |
+| Field Name           | Data Type | Nullable | Description                                          |
+| --------------------| --------- | -------- | ---------------------------------------------------- |
+| `group_id`          | INTEGER   | No       | Group's identifier that the preferences belong to    |
+| `shopping_frequency`| INTEGER   | No       | Frequency of group's shopping                          |
+| `min_stock_level`   | INTEGER   | No       | Minimum stock level for the group                     |
+| PRIMARY KEY(`group_id`),
+| FOREIGN KEY(`group_id`) REFERENCES `groups`(`group_id`)
 
+## `app_users`
+
+| Field Name             | Data Type | Nullable | Description
+| ---------------------- | --------- | -------- | ---------------------------------------------------- |
+| `id`                   | INTEGER   | No       | Unique identifier for the user                       |
+| `username`             | TEXT      | No       | Username for the user                                 |
+| `email`                | TEXT      | Yes      | Email address for the user                            |
+| `password`             | TEXT      | No       | Password for the user                                 |
+| `created_at`           | DATETIME  | Yes      | Timestamp of when the user account was created        |
+| `updated_at`           | DATETIME  | Yes      | Timestamp of when the user account was last updated   |
+| `deleted_at`           | DATETIME  | Yes      | Timestamp of when the user account was deleted        |
+| `name`                 | TEXT      | Yes      | Name of the user                                      |
+| `authToken`            | TEXT      | Yes      | Authentication token for the user                     |
+| `pwdResetToken`        | TEXT      | Yes      | Password reset token for the user                     |
+| `pwdResetToken_expiration` | DATETIME | Yes  | Timestamp of when the password reset token expires   |
+| `group_id`             | INTEGER   | Yes      | Group's identifier that the user belongs to           |
+| PRIMARY KEY(`id`),
+| FOREIGN KEY(`group_id`) REFERENCES `groups`(`group_id`)
+
+## `items`
+
+| Field Name         | Data Type | Nullable | Description                                           |
+| ------------------ | --------- | -------- | ----------------------------------------------------- |
+| `item_id`          | TEXT      | No       | Unique identifier for the item                        |
+| `created_at`       | DATETIME  | Yes      | Timestamp of when the item was created                |
+| `updated_at`       | DATETIME  | Yes      | Timestamp of when the item was last updated           |
+| `barcode`          | TEXT      | No       | Barcode for the item                                   |
+| `item_name`        | TEXT      | No       | Name for the item                                      |
+| `item_description` | TEXT      | Yes      | Description for the item                               |
+| `item_cost`        | NUMERIC   | Yes      | Cost for the item                                      |
+| `item_UOM`         | TEXT      | No       | Unit of measurement for the item                       |
+| `item_quantity`    | INTEGER   | No       | Quantity of the item                                   |
+| `item_img_path`    | TEXT      | Yes      | File path for the item's image                          |
+| `item_img_blob`    | BLOB      | Yes      | Binary data for the item's image                        |
+| PRIMARY KEY(`item_id`)
+
+## `pantry_items`
+
+| Field Name         | Data Type | Nullable | Description                                           |
+| ------------------ | --------- | -------- | ----------------------------------------------------- |
+| `id`               | TEXT      | No       | Unique identifier for the pantry item                 |
+| `user_id`          | INTEGER   | No       | User's identifier that the pantry item belongs to      |
+| `created_at`       | DATETIME  | Yes      | Timestamp of when the pantry item was created          |
+| `updated_at`       | DATETIME  | Yes      | Timestamp of when the pantry item was last updated     |
+| `barcode`          | TEXT      | No       | Barcode for the pantry item                            |
+| `name`             | TEXT      | No       | Name for the pantry item                               |
+| `quantity`         | INTEGER   | No       | Quantity of the pantry item                            |
+| `item_id`          | TEXT      | Yes      | Identifier for the item in the pantry                   |
+| `purchase_date`    | DATETIME  | Yes      | Date of when the pantry item was purchased              |
+| `expiration_date`  | DATETIME  | Yes      | Date of when the pantry item will expire                |
+| `used`             | BOOLEAN   | Yes      | Indicates whether the pantry item has been used         |
+| `recipe_id`        | INTEGER   | Yes      | Identifier for the recipe that uses the pantry item     |
+| PRIMARY KEY(`id`),
+| FOREIGN KEY(`user_id`) REFERENCES `app_users`(`id`),
+| FOREIGN KEY(`item_id`) REFERENCES `items`(`item_id`),
+| FOREIGN KEY(`recipe_id`) REFERENCES `recipes`(`recipe_id`)
+
+## `item_measure_types`
+
+| Field Name         | Data Type | Nullable | Description                                           |
+| ------------------ | --------- | -------- | ----------------------------------------------------- |
+| `id`               | INTEGER   | No       | Unique identifier for the item measure type            |
+| `name`             | TEXT      | No       | Name of the item measure type                          |
+| `default_measure`  | TEXT      | No       | Default unit of measurement for the item measure type  |
+| PRIMARY KEY(`id`)
+
+<hr>
 <br>
 <br>
 
