@@ -1,0 +1,42 @@
+@media print {
+  body {
+    background-color: rgb(242, 242, 242) !important;
+    color: #000 !important;
+    display: grid !important;
+    grid-template-rows: 1fr 1fr !important;
+    height: 200vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #diagram-image {
+    position: static !important;
+    display: block !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #diagram-description {
+    padding: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .diagram-description > p:first-child {
+    display: none !important;
+  }
+
+  .diagram-description > div {
+    border: none !important;
+  }
+}

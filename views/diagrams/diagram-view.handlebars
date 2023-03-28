@@ -1,19 +1,22 @@
-<!-- views/diagram -->
+{{!-- The diagram-view.handlebars file is the view for the diagram page. It displays the diagram image, description, and
+UML code. It also has buttons to modify the diagram, delete the diagram, and print the diagram. --}}
+
 <button onclick=gotoDiagrams()>Back to List</button>
 <button id="modify">Modify Diagram</button>
 <button onclick="copyCode(`{{diagram.diagram_code}}`)">New Diagram</button>
 <button id="delete" disabled>Delete Diagram</button>
+<button onclick="printDiagram()">Print Diagram</button>
 <h1>Name: {{diagram.diagram_name}}</h1>
 <div class="diagram-image">
   <img src="{{diagram.diagram_img_file_path}}" alt="{{diagram.diagram_name}}">
 </div>
 <div class="diagram-description">
   <p><strong>Description: </strong></p>
-    <p id="description">{{diagram.description}}</p>
-    <div id="description-preview"></div>
-<br>
+  <p id="description">{{diagram.description}}</p>
+  <div id="description-preview"></div>
+  <br>
   <p>Revision Notes:</p>
-    <p>{{diagram.revision_notes}}</p>
+  <p>{{diagram.revision_notes}}</p>
   <br>
   <p>UML Diagram Code:</p>
   <pre>{{diagram.diagram_code}}</pre>
@@ -55,11 +58,11 @@
     box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.25);
   }
 
-  .diagram-description > p:first-child {
+  .diagram-description>p:first-child {
     display: inline;
   }
 
-  .diagram-description > div {
+  .diagram-description>div {
     margin-top: 10px;
     width: 100%;
     min-height: 10em;
@@ -67,13 +70,13 @@
     padding: 5px;
   }
 
-  .diagram-description > div > h5 {
+  .diagram-description>div>h5 {
     font-size: 1.2EM;
     margin-top: 5px;
     margin-left: 5px;
   }
 
-  .diagram-description > div > p {
+  .diagram-description>div>p {
     margin-top: 10px;
     font-size: 16px;
     line-height: 1.5;
@@ -116,12 +119,15 @@
     0% {
       opacity: 0;
     }
+
     50% {
       opacity: 0.2;
     }
+
     75% {
       opacity: 0.5;
     }
+
     100% {
       opacity: 1;
     }
@@ -147,14 +153,44 @@
   }
 
   // Convert the Markdown input to HTML using Showdown.js
-const converter = new showdown.Converter();
+  const converter = new showdown.Converter();
 
-// Update the preview of the "description" input
-const descriptionInput = document.getElementById('description');
-const descriptionPreview = document.getElementById('description-preview');
+  // Update the preview of the "description" input
+  const descriptionInput = document.getElementById('description');
+  const descriptionPreview = document.getElementById('description-preview');
 
-const htmlDescription = converter.makeHtml(descriptionInput.textContent.trim());
-descriptionPreview.innerHTML = htmlDescription;
+  const htmlDescription = converter.makeHtml(descriptionInput.textContent.trim());
+  descriptionPreview.innerHTML = htmlDescription;
 
+ function printDiagram() {
+  // Get the HTML code of the diagram and description components
+  const diagramHTML = document.querySelector('.diagram-image').outerHTML;
+  const descriptionHTML = document.querySelector('.diagram-description > div#description-preview').outerHTML;
 
+  // Combine the HTML code into a single string
+  const imagePath = window.location.origin + '{{diagram.diagram_img_file_path}}';
+  const html = `
+    <html>
+      <head>
+        <title>{{diagram.diagram_name}}</title>
+        <link rel="stylesheet" type="text/css" href="/css/print.css">
+      </head>
+      <body>
+        <h1>{{diagram.diagram_name}}</h1>
+  
+          <div id="diagram-image">
+          <img src="${imagePath}" alt="{{diagram.diagram_name}}">
+            <div id="diagram-description">
+          ${descriptionHTML}
+        </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+ // Open the system print preview dialog
+  const printWindow = window.open('', '_blank');
+  printWindow.document.open();
+  printWindow.document.write(html);
+}
 </script>
