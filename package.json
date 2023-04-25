@@ -38,7 +38,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
-    "quagga": "^0.12.1",
+    "quagga": "^0.6.16",
     "sql-template-strings": "^2.2.2",
     "sqlite": "^4.1.2",
     "sqlite3": "^5.1.4",

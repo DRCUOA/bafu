@@ -1,5 +1,5 @@
 /**
- * passwordreto - practice signon with option for password reset
+ * bafu - Business Analysis Framework Utility
  * v1.0.0
  * Author: Richard Clark
  * Licence: MIT
@@ -78,6 +78,6 @@ app.use('/diagrams', diagramRoutes);
 
 //start the server
 app.listen(port, () => {
-  devApp(`PASSWORD RESETO App V1.0.1 | Listening on port ${port}`)
+  devApp(`Bafu V1.0.0 | Listening on port ${port}`)
 });
 
